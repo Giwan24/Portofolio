@@ -272,7 +272,7 @@
 
         /* Gradient and hover for Hero Title */
         .hero-title-gradient {
-            background-image: linear-gradient(to right, #d78ae3, #a393f5); /* violet-400 to indigo-500 */
+            background-image: linear-gradient(to right, #a78bfa, #6366f1); /* violet-400 to indigo-500 */
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -350,11 +350,13 @@
             </div>
         </div>
         <div id="mobile-menu" class="md:hidden hidden frosted-glass-nav">
-            <a href="#hero" class="block nav-link text-center py-3 px-4 border-b border-slate-700" data-translate-key="navHome">Home</a>
-            <a href="#about" class="block nav-link text-center py-3 px-4 border-b border-slate-700" data-translate-key="navAbout">Tentang Saya</a>
-            <a href="#projects" class="block nav-link text-center py-3 px-4 border-b border-slate-700" data-translate-key="navProjects">Proyek</a>
-            <a href="#skills" class="block nav-link text-center py-3 px-4 border-b border-slate-700" data-translate-key="navSkills">Keahlian</a>
-            <a href="#contact" class="block nav-link text-center py-3 px-4" data-translate-key="navContact">Kontak</a>
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#hero" class="block nav-link text-center py-2 px-3 rounded-md text-base font-medium" data-translate-key="navHome">Home</a>
+                <a href="#about" class="block nav-link text-center py-2 px-3 rounded-md text-base font-medium" data-translate-key="navAbout">Tentang Saya</a>
+                <a href="#projects" class="block nav-link text-center py-2 px-3 rounded-md text-base font-medium" data-translate-key="navProjects">Proyek</a>
+                <a href="#skills" class="block nav-link text-center py-2 px-3 rounded-md text-base font-medium" data-translate-key="navSkills">Keahlian</a>
+                <a href="#contact" class="block nav-link text-center py-2 px-3 rounded-md text-base font-medium" data-translate-key="navContact">Kontak</a>
+            </div>
         </div>
     </nav>
 
@@ -547,15 +549,16 @@
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
-            mobileMenu.classList.toggle('block'); 
+            // Toggle 'block' class for smooth transition if needed, or simply 'hidden'
+            // mobileMenu.classList.toggle('block'); 
         });
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                if (mobileMenu.classList.contains('block')) {
+                // Hide mobile menu when a link is clicked
+                if (!mobileMenu.classList.contains('hidden')) {
                     mobileMenu.classList.add('hidden');
-                    mobileMenu.classList.remove('block');
                 }
 
                 const targetId = this.getAttribute('href');
@@ -587,6 +590,7 @@
             let current = 'hero'; 
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
+                // Adjust this offset to account for the fixed navbar height
                 if (pageYOffset >= sectionTop - 70) { 
                     current = section.getAttribute('id');
                 }
@@ -689,7 +693,6 @@
                 contactSubmitButton: "Kirim Pesan",
                 contactOrReachOut: "Atau hubungi saya melalui:",
                 footerCopyright: "&copy; <span id='currentYear'></span> Giwan Purnama. Semua hak dilindungi.",
-                footerMadeWith: "Dibuat dengan ❤️ dan Tailwind CSS"
             },
             en: {
                 pageTitle: "Giwan Purnama Portfolio - Software Engineer",
@@ -728,7 +731,6 @@
                 contactSubmitButton: "Send Message",
                 contactOrReachOut: "Or reach me via:",
                 footerCopyright: "&copy; <span id='currentYear'></span> Giwan Purnama. All rights reserved.",
-                footerMadeWith: "Made with ❤️ and Tailwind CSS"
             },
             hi: {
                 pageTitle: "गिवान पूर्णिमा पोर्टफोलियो - सॉफ्टवेयर इंजीनियर",
@@ -767,7 +769,6 @@
                 contactSubmitButton: "संदेश भेजें",
                 contactOrReachOut: "या मुझसे संपर्क करें:",
                 footerCopyright: "&copy; <span id='currentYear'></span> गिवान पूर्णिमा। सर्वाधिकार सुरक्षित।",
-                footerMadeWith: "❤️ और टेलविंड सीएसएस के साथ बनाया गया"
             },
             zh: {
                 pageTitle: "吉万·普尔纳马作品集 - 软件工程师",
@@ -806,7 +807,6 @@
                 contactSubmitButton: "发送留言",
                 contactOrReachOut: "或通过以下方式联系我：",
                 footerCopyright: "&copy; <span id='currentYear'></span> 吉万·普尔纳马。保留所有权利。",
-                footerMadeWith: "用 ❤️ 和 Tailwind CSS 制作"
             },
             ko: {
                 pageTitle: "기완 푸르나마 포트폴리오 - 소프트웨어 엔지니어",
@@ -845,7 +845,6 @@
                 contactSubmitButton: "메시지 보내기",
                 contactOrReachOut: "또는 다음을 통해 연락 주세요:",
                 footerCopyright: "&copy; <span id='currentYear'></span> 기완 푸르나마. 모든 권리 보유.",
-                footerMadeWith: "❤️ 및 Tailwind CSS로 제작"
             },
             ar: {
                 pageTitle: "محفظة جيوان بورناما - مهندس برمجيات",
@@ -884,7 +883,6 @@
                 contactSubmitButton: "إرسال الرسالة",
                 contactOrReachOut: "أو تواصل معي عبر:",
                 footerCopyright: "&copy; <span id='currentYear'></span> جيوان بورناما. جميع الحقوق محفوظة.",
-                footerMadeWith: "صنع بـ ❤️ و Tailwind CSS"
             },
             tr: {
                 pageTitle: "Giwan Purnama Portföyü - Yazılım Mühendisi",
@@ -923,7 +921,6 @@
                 contactSubmitButton: "Mesaj Gönder",
                 contactOrReachOut: "Veya bana şu yollarla ulaşın:",
                 footerCopyright: "&copy; <span id='currentYear'></span> Giwan Purnama. Tüm hakları saklıdır.",
-                footerMadeWith: "❤️ ve Tailwind CSS ile yapıldı"
             },
             de: {
                 pageTitle: "Giwan Purnama Portfolio - Softwareentwickler",
@@ -962,7 +959,6 @@
                 contactSubmitButton: "Nachricht senden",
                 contactOrReachOut: "Oder erreichen Sie mich über:",
                 footerCopyright: "&copy; <span id='currentYear'></span> Giwan Purnama. Alle Rechte vorbehalten.",
-                footerMadeWith: "Mit ❤️ und Tailwind CSS erstellt"
             },
             ja: {
                 pageTitle: "ギワン・プルナマ ポートフォリオ - ソフトウェアエンジニア",
@@ -1001,7 +997,6 @@
                 contactSubmitButton: "メッセージを送信",
                 contactOrReachOut: "または以下からご連絡ください：",
                 footerCopyright: "&copy; <span id='currentYear'></span> ギワン・プルナマ。全著作権所有。",
-                footerMadeWith: "❤️ と Tailwind CSS で作成"
             }
         };
 
