@@ -99,12 +99,12 @@
 
         .logo-glitch { animation: logo-flicker 3s linear infinite; }
         @keyframes logo-flicker { 0%, 100% { opacity: 1; } 50.2% { opacity: 0.7; transform: skewX(5deg); } 50.5% { opacity: 1; transform: skewX(0); } }
-
+        
         #boot-sequence .boot-text {
             opacity: 0;
             animation: fadeInUp 0.5s ease-out forwards;
         }
-        @keyframes fadeInUp {
+         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
@@ -230,7 +230,7 @@
         main::-webkit-scrollbar-track { background: transparent; }
         main::-webkit-scrollbar-thumb { background: var(--bf-border-active); border-radius: 4px; }
         main::-webkit-scrollbar-thumb:hover { background: #5fffe9; }
-
+        
         /* --- TIMELINE --- */
         .timeline { position: relative; padding-left: 2rem; }
         .timeline::before {
@@ -244,7 +244,7 @@
             background: var(--bf-accent-cyan); border: 2px solid var(--bf-bg-dark);
             transform: translateX(-4px); box-shadow: 0 0 10px var(--bf-accent-cyan);
         }
-
+        
         /* --- CERTIFICATION CARD --- */
         .cert-card {
             border-left: 3px solid var(--bf-border); transition: all 0.3s ease;
@@ -259,9 +259,9 @@
 <!-- Boot Sequence -->
 <div id="boot-screen">
     <div id="scanline-overlay"></div>
-    <div class="text-left font-mono max-w-2xl w-full p-8">
-        <div class="flex items-center space-x-6 mb-8">
-            <svg width="96" height="96" viewBox="0 0 24 24" class="logo-glitch" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="color: var(--bf-accent-cyan); filter: drop-shadow(0 0 15px var(--bf-accent-cyan));">
+    <div class="text-left font-mono max-w-2xl w-full p-4 sm:p-8">
+        <div class="flex flex-col sm:flex-row items-center text-center sm:text-left space-y-4 sm:space-y-0 sm:space-x-6 mb-8">
+            <svg width="96" height="96" viewBox="0 0 24 24" class="logo-glitch flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="color: var(--bf-accent-cyan); filter: drop-shadow(0 0 15px var(--bf-accent-cyan));">
                 <circle cx="12" cy="12" r="10"></circle>
                 <circle cx="12" cy="12" r="6"></circle>
                 <line x1="12" y1="2" x2="12" y2="8"></line>
@@ -270,12 +270,12 @@
                 <line x1="16" y1="12" x2="22" y2="12"></line>
             </svg>
             <div>
-                <h1 class="text-5xl font-bold tracking-widest glitch" data-text="G//P INTEL-SIG">G//P INTEL-SIG</h1>
-                <p class="text-xl text-gray-400 tracking-wider">PORTFOLIO INTERFACE</p>
+                <h1 class="text-4xl sm:text-5xl font-bold tracking-widest glitch" data-text="G//P INTEL-SIG">G//P INTEL-SIG</h1>
+                <p class="text-lg sm:text-xl text-gray-400 tracking-wider">PORTFOLIO INTERFACE</p>
             </div>
         </div>
 
-        <div id="boot-sequence" class="text-lg space-y-1 h-40">
+        <div id="boot-sequence" class="text-lg space-y-1 min-h-[10rem]">
             <!-- Boot text will be injected here by JS -->
         </div>
 
@@ -302,7 +302,7 @@
             G//P // INTEL_SIG
         </a>
         <div id="language-selector-container">
-            <select id="language-select" class="bg-transparent border p-2 rounded-none focus:outline-none focus:ring-1 focus:ring-[var(--bf-accent-cyan)]">
+             <select id="language-select" class="bg-transparent border p-2 rounded-none focus:outline-none focus:ring-1 focus:ring-[var(--bf-accent-cyan)]">
                 <option class="bg-[var(--bf-bg-dark)]" value="en">🇺🇸 English</option>
                 <option class="bg-[var(--bf-bg-dark)]" value="id">🇮🇩 Bahasa Indonesia</option>
                 <option class="bg-[var(--bf-bg-dark)]" value="hi">🇮🇳 Hindi</option>
@@ -330,20 +330,20 @@
         </ul>
 
         <p class="nav-header" data-translate-key="navHeaderMissions">MISSIONS</p>
-        <ul>
+         <ul>
             <li><a href="#projects" class="nav-link"><i data-lucide="folder-git-2"></i> <span data-translate-key="navProjects">Mission Logs</span></a></li>
         </ul>
 
         <p class="nav-header" data-translate-key="navHeaderCompetency">COMPETENCY</p>
         <ul>
-            <li><a href="#skills" class="nav-link"><i data-lucide="scan-line"></i> <span data-translate-key="navTechSkills">Technical Skills</span></a></li>
-            <li><a href="#certifications" class="nav-link"><i data-lucide="award"></i> <span data-translate-key="navCerts">Awards & Certs</span></a></li>
+             <li><a href="#skills" class="nav-link"><i data-lucide="scan-line"></i> <span data-translate-key="navTechSkills">Technical Skills</span></a></li>
+             <li><a href="#certifications" class="nav-link"><i data-lucide="award"></i> <span data-translate-key="navCerts">Awards & Certs</span></a></li>
         </ul>
 
         <p class="nav-header" data-translate-key="navHeaderComms">COMMS</p>
-        <ul>
+         <ul>
             <li><a href="#contact" class="nav-link"><i data-lucide="satellite-dish"></i> <span data-translate-key="navContact">Secure Channel</span></a></li>
-        </ul>
+         </ul>
     </aside>
 
     <!-- MAIN CONTENT -->
@@ -402,10 +402,10 @@
                 </div>
             </div>
         </section>
-
+        
         <!-- SERVICE RECORD SECTION -->
         <section id="service-record" class="content-section">
-            <div class="hud-panel p-8">
+             <div class="hud-panel p-8">
                 <h2 class="text-3xl font-bold mb-8 section-title" data-translate-key="serviceRecordTitle">Service Record</h2>
                 <div class="timeline">
                     <!-- Item 1 -->
@@ -422,7 +422,7 @@
                         <p class="text-sm text-[var(--bf-text-dark)] mb-2" data-translate-key="serviceRecord2Org">REPUBLIKORP & ASELSAN</p>
                         <p class="font-mono text-sm text-gray-400" data-translate-key="serviceRecord2Desc">Responsible for system architecture, implementation of critical modules, and integration for military coordination efficiency.</p>
                     </div>
-                    <!-- Item 3 -->
+                     <!-- Item 3 -->
                     <div class="timeline-item">
                         <p class="font-mono text-xs text-[var(--bf-accent-cyan)]" data-translate-key="serviceRecord3Date">2025 - PRESENT</p>
                         <h3 class="text-xl font-semibold text-white" data-translate-key="serviceRecord3Title">Caraka 22 Command Center</h3>
@@ -552,7 +552,7 @@
                             <p class="text-sm text-[var(--bf-text-dark)]" data-translate-key="cert1Issuer">PRAKARYA INTERNASIONAL VOCATIONAL HIGH SCHOOL, 2023</p>
                         </div>
                     </div>
-                    <div class="cert-card p-4 flex items-center gap-4">
+                     <div class="cert-card p-4 flex items-center gap-4">
                         <i data-lucide="award" class="w-10 h-10 text-[var(--bf-accent-cyan)]"></i>
                         <div>
                             <h3 class="text-lg font-semibold text-white" data-translate-key="cert2Title">Software Engineering Competence (BSNP) 0043/P/BSNP/1/2020</h3>
@@ -756,7 +756,7 @@
                 project5Title: "Exhibitor Indo Defence 2024", project5Description: "Bertindak sebagai perwakilan teknis utama dan exhibitor untuk Republikorp di Indo Defence 2024. Mendemonstrasikan sistem canggih kepada delegasi internasional dan pejabat militer.",
                 skillsTitle: "Keahlian Teknis", skillsLanguagesTitle: "Bahasa Pemrograman:", skillsFrameworksTitle: "Framework & Library:", skillsToolsTitle: "Database & Tools:", skillsMilitaryTitle: "Tujuan Militer:",
                 skillMilitaryTech: "Teknologi Militer", skillTacticalKnowledge: "Pengetahuan Taktikal", skillDataLink: "Taktikal Data Link", skillAgentSupport: "Dukungan Agen Cerdas", skillIntegration: "Integrasi Persenjataan & Logistik",
-                certsTitle: "Penghargaan & Sertifikasi",
+                certsTitle: "Penghargaan & Sertifikasi", 
                 cert1Title: "Siswa Terbaik Tahun Ini", cert1Issuer: "SMK PRAKARYA INTERNASIONAL, 2023",
                 cert2Title: "Kompetensi Rekayasa Perangkat Lunak (BSNP) 0043/P/BSNP/1/2020", cert2Issuer: "PT. LASKAR TEKNOLOGI MULIA (CYBERLABS), 2023",
                 contactTitle: "Kanal Komunikasi Aman", contactDescription: "Saya selalu terbuka untuk diskusi, kolaborasi, atau peluang baru. Jangan ragu untuk menghubungi saya!",
@@ -791,7 +791,7 @@
                 project5Title: "Indo Defence 2024 Exhibitor", project5Description: "Served as a key technical representative and exhibitor for Republikorp at Indo Defence 2024. Demonstrated advanced systems to international delegations and military officials.",
                 skillsTitle: "Technical Skills", skillsLanguagesTitle: "Programming Languages:", skillsFrameworksTitle: "Frameworks & Libraries:", skillsToolsTitle: "Databases & Tools:", skillsMilitaryTitle: "Military Purpose:",
                 skillMilitaryTech: "Military Technology", skillTacticalKnowledge: "Tactical Knowledge", skillDataLink: "Tactical Data Link", skillAgentSupport: "Intelligent Agent Support", skillIntegration: "Weaponry & Logistics Integration",
-                certsTitle: "Awards & Certifications",
+                certsTitle: "Awards & Certifications", 
                 cert1Title: "Best Student of The Year", cert1Issuer: "PRAKARYA INTERNASIONAL VOCATIONAL HIGH SCHOOL, 2023",
                 cert2Title: "Software Engineering Competence  (BSNP) 0043/P/BSNP/1/2020", cert2Issuer: "PT. LASKAR TEKNOLOGI MULIA (CYBERLABS), 2023 ",
                 contactTitle: "Secure Comms Channel", contactDescription: "I am always open to discussions, collaborations, or new opportunities. Feel free to reach out!",
@@ -1046,7 +1046,7 @@
         };
 
         let currentLanguage = localStorage.getItem('portfolioLanguage') || 'en';
-
+        
         function applyLanguage(langCode) {
             const lang = translations[langCode] || translations['en'];
             document.querySelectorAll('[data-translate-key]').forEach(element => {
@@ -1065,7 +1065,7 @@
             });
             document.title = lang.pageTitle;
             document.documentElement.lang = langCode;
-
+            
             // Sync both language selectors
             const langSelectorHeader = document.querySelector('#language-selector-container select');
             if(langSelectorHeader) langSelectorHeader.value = langCode;
@@ -1075,7 +1075,7 @@
 
         const langSelector = document.getElementById('language-select');
         langSelector.addEventListener('change', (e) => applyLanguage(e.target.value));
-
+        
         applyLanguage(currentLanguage);
 
 
@@ -1125,4 +1125,5 @@
 </script>
 </body>
 </html>
+
 
