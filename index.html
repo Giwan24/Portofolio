@@ -158,11 +158,16 @@
         @media (max-width: 1024px) {
             aside { grid-row: 2 / 3; }
             #main-nav ul { display: flex; flex-wrap: wrap; justify-content: center; }
+            #main-nav .nav-header { display: none; }
             main { grid-column: 1 / -1; grid-row: 3 / 4; }
         }
 
+        .nav-header {
+            font-size: 0.75rem; color: var(--bf-text-dark); margin-top: 1rem;
+            margin-bottom: 0.5rem; padding-left: 1rem; letter-spacing: 1px;
+        }
         .nav-link {
-            display: flex; align-items: center; gap: 12px; padding: 12px 16px; margin-bottom: 8px;
+            display: flex; align-items: center; gap: 12px; padding: 12px 16px; margin-bottom: 4px;
             color: var(--bf-text-dark); border-left: 3px solid transparent;
             transition: all 0.2s ease-in-out;
         }
@@ -225,6 +230,29 @@
         main::-webkit-scrollbar-track { background: transparent; }
         main::-webkit-scrollbar-thumb { background: var(--bf-border-active); border-radius: 4px; }
         main::-webkit-scrollbar-thumb:hover { background: #5fffe9; }
+
+        /* --- TIMELINE --- */
+        .timeline { position: relative; padding-left: 2rem; }
+        .timeline::before {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+            width: 2px; background: var(--bf-border);
+        }
+        .timeline-item { position: relative; margin-bottom: 2rem; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -2rem; top: 4px;
+            width: 10px; height: 10px; border-radius: 50%;
+            background: var(--bf-accent-cyan); border: 2px solid var(--bf-bg-dark);
+            transform: translateX(-4px); box-shadow: 0 0 10px var(--bf-accent-cyan);
+        }
+
+        /* --- CERTIFICATION CARD --- */
+        .cert-card {
+            border-left: 3px solid var(--bf-border); transition: all 0.3s ease;
+        }
+        .cert-card:hover {
+            border-left-color: var(--bf-accent-cyan); background-color: rgba(38, 255, 223, 0.05);
+            transform: translateX(5px);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -273,29 +301,48 @@
         <a href="#" class="font-bold text-xl md:text-2xl tracking-widest text-[var(--bf-accent-cyan)]" data-translate-key="brandName" style="text-shadow: 0 0 8px var(--bf-accent-cyan);">
             G//P // INTEL_SIG
         </a>
-        <div>
-            <select id="language-select" class="bg-transparent border-0 p-2 rounded-none text-sm font-mono focus:outline-none focus:ring-1 focus:ring-[var(--bf-accent-cyan)]">
-                <option class="bg-[var(--bf-bg-dark)]" value="en">🇺🇸 EN</option>
-                <option class="bg-[var(--bf-bg-dark)]" value="id">🇮🇩 ID</option>
-                <option class="bg-[var(--bf-bg-dark)]" value="hi">🇮🇳 HI</option>
-                <option class="bg-[var(--bf-bg-dark)]" value="zh">🇨🇳 ZH</option>
-                <option class="bg-[var(--bf-bg-dark)]" value="ko">🇰🇷 KO</option>
-                <option class="bg-[var(--bf-bg-dark)]" value="ar">🇸🇦 AR</option>
-                <option class="bg-[var(--bf-bg-dark)]" value="tr">🇹🇷 TR</option>
-                <option class="bg-[var(--bf-bg-dark)]" value="de">🇩🇪 DE</option>
-                <option class="bg-[var(--bf-bg-dark)]" value="ja">🇯🇵 JA</option>
+        <div id="language-selector-container">
+            <select id="language-select" class="bg-transparent border p-2 rounded-none focus:outline-none focus:ring-1 focus:ring-[var(--bf-accent-cyan)]">
+                <option class="bg-[var(--bf-bg-dark)]" value="en">🇺🇸 English</option>
+                <option class="bg-[var(--bf-bg-dark)]" value="id">🇮🇩 Bahasa Indonesia</option>
+                <option class="bg-[var(--bf-bg-dark)]" value="hi">🇮🇳 Hindi</option>
+                <option class="bg-[var(--bf-bg-dark)]" value="zh">🇨🇳 Chinese</option>
+                <option class="bg-[var(--bf-bg-dark)]" value="ko">🇰🇷 Korean</option>
+                <option class="bg-[var(--bf-bg-dark)]" value="ar">🇸🇦 Arabic</option>
+                <option class="bg-[var(--bf-bg-dark)]" value="tr">🇹🇷 Turkish</option>
+                <option class="bg-[var(--bf-bg-dark)]" value="de">🇩🇪 German</option>
+                <option class="bg-[var(--bf-bg-dark)]" value="ja">🇯🇵 Japanese</option>
             </select>
         </div>
     </header>
 
     <!-- SIDEBAR NAVIGATION -->
     <aside class="hud-panel p-4" id="main-nav">
+        <p class="nav-header" data-translate-key="navHeaderMain">MAIN</p>
         <ul>
             <li><a href="#home" class="nav-link active"><i data-lucide="layout-dashboard"></i> <span data-translate-key="navHome">Dashboard</span></a></li>
-            <li><a href="#about" class="nav-link"><i data-lucide="user"></i> <span data-translate-key="navAbout">Profil</span></a></li>
-            <li><a href="#projects" class="nav-link"><i data-lucide="folder-git-2"></i> <span data-translate-key="navProjects">Misi</span></a></li>
-            <li><a href="#skills" class="nav-link"><i data-lucide="scan-line"></i> <span data-translate-key="navSkills">Kompetensi</span></a></li>
-            <li><a href="#contact" class="nav-link"><i data-lucide="satellite-dish"></i> <span data-translate-key="navContact">Komunikasi</span></a></li>
+        </ul>
+
+        <p class="nav-header" data-translate-key="navHeaderProfile">OPERATIVE</p>
+        <ul>
+            <li><a href="#about" class="nav-link"><i data-lucide="user"></i> <span data-translate-key="navBioData">Bio Data</span></a></li>
+            <li><a href="#service-record" class="nav-link"><i data-lucide="history"></i> <span data-translate-key="navServiceRecord">Service Record</span></a></li>
+        </ul>
+
+        <p class="nav-header" data-translate-key="navHeaderMissions">MISSIONS</p>
+        <ul>
+            <li><a href="#projects" class="nav-link"><i data-lucide="folder-git-2"></i> <span data-translate-key="navProjects">Mission Logs</span></a></li>
+        </ul>
+
+        <p class="nav-header" data-translate-key="navHeaderCompetency">COMPETENCY</p>
+        <ul>
+            <li><a href="#skills" class="nav-link"><i data-lucide="scan-line"></i> <span data-translate-key="navTechSkills">Technical Skills</span></a></li>
+            <li><a href="#certifications" class="nav-link"><i data-lucide="award"></i> <span data-translate-key="navCerts">Awards & Certs</span></a></li>
+        </ul>
+
+        <p class="nav-header" data-translate-key="navHeaderComms">COMMS</p>
+        <ul>
+            <li><a href="#contact" class="nav-link"><i data-lucide="satellite-dish"></i> <span data-translate-key="navContact">Secure Channel</span></a></li>
         </ul>
     </aside>
 
@@ -339,10 +386,10 @@
             </div>
         </section>
 
-        <!-- ABOUT / PROFILE SECTION -->
+        <!-- ABOUT / BIO DATA SECTION -->
         <section id="about" class="content-section">
             <div class="hud-panel p-8">
-                <h2 class="text-3xl font-bold mb-8 section-title" data-translate-key="aboutTitle">Profil Intelijen</h2>
+                <h2 class="text-3xl font-bold mb-8 section-title" data-translate-key="aboutTitle">Bio Data</h2>
                 <div class="grid md:grid-cols-5 gap-10 items-center">
                     <div class="md:col-span-2">
                         <img src="giwan2.webp" alt="Ilustrasi Tentang Saya" class="w-full" style="clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%); border: 1px solid var(--bf-border);">
@@ -356,10 +403,40 @@
             </div>
         </section>
 
+        <!-- SERVICE RECORD SECTION -->
+        <section id="service-record" class="content-section">
+            <div class="hud-panel p-8">
+                <h2 class="text-3xl font-bold mb-8 section-title" data-translate-key="serviceRecordTitle">Service Record</h2>
+                <div class="timeline">
+                    <!-- Item 1 -->
+                    <div class="timeline-item">
+                        <p class="font-mono text-xs text-[var(--bf-accent-cyan)]" data-translate-key="serviceRecord1Date">JUNE 2025</p>
+                        <h3 class="text-xl font-semibold text-white" data-translate-key="serviceRecord1Title">Indo Defence 2024 Exhibitor</h3>
+                        <p class="text-sm text-[var(--bf-text-dark)] mb-2" data-translate-key="serviceRecord1Org">REPUBLIKORP</p>
+                        <p class="font-mono text-sm text-gray-400" data-translate-key="serviceRecord1Desc">Served as a key technical representative, demonstrating advanced defense systems to international delegations and military officials.</p>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="timeline-item">
+                        <p class="font-mono text-xs text-[var(--bf-accent-cyan)]" data-translate-key="serviceRecord2Date">2043 - PRESENT</p>
+                        <h3 class="text-xl font-semibold text-white" data-translate-key="serviceRecord2Title">Battlefield Management System</h3>
+                        <p class="text-sm text-[var(--bf-text-dark)] mb-2" data-translate-key="serviceRecord2Org">REPUBLIKORP & ASELSAN</p>
+                        <p class="font-mono text-sm text-gray-400" data-translate-key="serviceRecord2Desc">Responsible for system architecture, implementation of critical modules, and integration for military coordination efficiency.</p>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="timeline-item">
+                        <p class="font-mono text-xs text-[var(--bf-accent-cyan)]" data-translate-key="serviceRecord3Date">2025 - PRESENT</p>
+                        <h3 class="text-xl font-semibold text-white" data-translate-key="serviceRecord3Title">Caraka 22 Command Center</h3>
+                        <p class="text-sm text-[var(--bf-text-dark)] mb-2" data-translate-key="serviceRecord3Org">Indonesian Army</p>
+                        <p class="font-mono text-sm text-gray-400" data-translate-key="serviceRecord3Desc">Led the development of a dynamic, real-time situational awareness platform using JavaScript and the ArcGIS API.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- PROJECTS / MISSIONS SECTION -->
         <section id="projects" class="content-section">
             <div class="hud-panel p-8">
-                <h2 class="text-3xl font-bold mb-8 section-title" data-translate-key="projectsTitle">Log Misi</h2>
+                <h2 class="text-3xl font-bold mb-8 section-title" data-translate-key="projectsTitle">Mission Logs</h2>
                 <div class="grid md:grid-cols-2 gap-8">
                     <!-- Project 1 -->
                     <div class="project-card hud-panel p-0 overflow-hidden">
@@ -368,7 +445,7 @@
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-white" data-translate-key="project1Title">Battlefield Management System</h3>
-                            <p class="text-[var(--bf-text-dark)] text-sm mb-4 font-mono h-24" data-translate-key="project1Description"></p>
+                            <p class="text-[var(--bf-text-dark)] text-sm mb-4 font-mono min-h-[6rem]" data-translate-key="project1Description"></p>
                             <div class="flex flex-wrap gap-2 text-xs"><strong class="w-full text-[var(--bf-accent-cyan)] text-xs">TECH DEPLOYED:</strong> <span class="skill-tag px-3 py-1">Kotlin</span><span class="skill-tag px-3 py-1">Java</span><span class="skill-tag px-3 py-1">Arcgis</span><span class="skill-tag px-3 py-1">PostgreSQL</span></div>
                         </div>
                     </div>
@@ -379,7 +456,7 @@
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-white" data-translate-key="project4Title">Caraka 22 Command Center</h3>
-                            <p class="text-[var(--bf-text-dark)] text-sm mb-4 font-mono h-24" data-translate-key="project4Description"></p>
+                            <p class="text-[var(--bf-text-dark)] text-sm mb-4 font-mono min-h-[6rem]" data-translate-key="project4Description"></p>
                             <div class="flex flex-wrap gap-2 text-xs"><strong class="w-full text-[var(--bf-accent-cyan)] text-xs">TECH DEPLOYED:</strong> <span class="skill-tag px-3 py-1">JavaScript</span><span class="skill-tag px-3 py-1">ArcGIS API</span><span class="skill-tag px-3 py-1">PostgreSQL</span><span class="skill-tag px-3 py-1">PostGIS</span></div>
                         </div>
                     </div>
@@ -390,8 +467,8 @@
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-white" data-translate-key="project5Title">Indo Defence 2024 Exhibitor</h3>
-                            <p class="text-[var(--bf-text-dark)] text-sm mb-4 font-mono h-24" data-translate-key="project5Description"></p>
-                            <div class="flex flex-wrap gap-2 text-xs"><strong class="w-full text-[var(--bf-accent-cyan)] text-xs">TECH DEPLOYED:</strong> <span class="skill-tag px-3 py-1">Technical Rep</span><span class="skill-tag px-3 py-1">System Demo</span></div>
+                            <p class="text-[var(--bf-text-dark)] text-sm mb-4 font-mono min-h-[6rem]" data-translate-key="project5Description"></p>
+                            <div class="flex flex-wrap gap-2 text-xs"><strong class="w-full text-[var(--bf-accent-cyan)] text-xs">TECH DEPLOYED:</strong> <span class="skill-tag px-3 py-1">Technical Representative</span><span class="skill-tag px-3 py-1">System Demonstrations</span></div>
                         </div>
                     </div>
                     <!-- Project 2 -->
@@ -401,7 +478,7 @@
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-white" data-translate-key="project2Title">Waste Management System</h3>
-                            <p class="text-[var(--bf-text-dark)] text-sm mb-4 font-mono h-24" data-translate-key="project2Description"></p>
+                            <p class="text-[var(--bf-text-dark)] text-sm mb-4 font-mono min-h-[6rem]" data-translate-key="project2Description"></p>
                             <div class="flex flex-wrap gap-2 text-xs"><strong class="w-full text-[var(--bf-accent-cyan)] text-xs">TECH DEPLOYED:</strong> <span class="skill-tag px-3 py-1">Kotlin</span><span class="skill-tag px-3 py-1">Jetpack Compose</span><span class="skill-tag px-3 py-1">Laravel</span><span class="skill-tag px-3 py-1">MongoDB</span></div>
                         </div>
                     </div>
@@ -412,7 +489,7 @@
         <!-- SKILLS / COMPETENCY SECTION -->
         <section id="skills" class="content-section">
             <div class="hud-panel p-8">
-                <h2 class="text-3xl font-bold mb-8 section-title" data-translate-key="skillsTitle">Matriks Kompetensi</h2>
+                <h2 class="text-3xl font-bold mb-8 section-title" data-translate-key="skillsTitle">Technical Skills</h2>
                 <div class="grid md:grid-cols-2 gap-8 items-center">
                     <div>
                         <canvas id="skillsRadarChart"></canvas>
@@ -463,10 +540,33 @@
             </div>
         </section>
 
+        <!-- AWARDS & CERTIFICATIONS SECTION -->
+        <section id="certifications" class="content-section">
+            <div class="hud-panel p-8">
+                <h2 class="text-3xl font-bold mb-8 section-title" data-translate-key="certsTitle">Awards & Certifications</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="cert-card p-4 flex items-center gap-4">
+                        <i data-lucide="award" class="w-10 h-10 text-[var(--bf-accent-cyan)]"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold text-white" data-translate-key="cert1Title">Best Student of The Year</h3>
+                            <p class="text-sm text-[var(--bf-text-dark)]" data-translate-key="cert1Issuer">PRAKARYA INTERNASIONAL VOCATIONAL HIGH SCHOOL, 2023</p>
+                        </div>
+                    </div>
+                    <div class="cert-card p-4 flex items-center gap-4">
+                        <i data-lucide="award" class="w-10 h-10 text-[var(--bf-accent-cyan)]"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold text-white" data-translate-key="cert2Title">Software Engineering Competence (BSNP) 0043/P/BSNP/1/2020</h3>
+                            <p class="text-sm text-[var(--bf-text-dark)]" data-translate-key="cert2Issuer">PT. LASKAR TEKNOLOGI MULIA (CYBERLABS), 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- CONTACT SECTION -->
         <section id="contact" class="content-section">
             <div class="hud-panel p-8">
-                <h2 class="text-3xl font-bold mb-4 section-title" data-translate-key="contactTitle">Kanal Komunikasi Aman</h2>
+                <h2 class="text-3xl font-bold mb-4 section-title" data-translate-key="contactTitle">Secure Comms Channel</h2>
                 <p class="text-[var(--bf-text-dark)] mb-8 font-mono text-sm" data-translate-key="contactDescription">Terbuka untuk diskusi, kolaborasi, atau peluang baru.</p>
                 <form action="https://formspree.io/f/myzwaejz" method="POST" class="space-y-6">
                     <div class="grid md:grid-cols-2 gap-6">
@@ -506,7 +606,7 @@
 
         const bootMessages = [
             { text: "Booting kernel...", delay: 200 },
-            { text: "Loading geospatial modules... <span class='text-green-400'>OK</span>", delay: 500 },
+            { text: "Loading modules... <span class='text-green-400'>OK</span>", delay: 500 },
             { text: "Calibrating renderer... <span class='text-green-400'>OK</span>", delay: 300 },
             { text: "Establishing secure link... <span class='text-yellow-400'>ACTIVE</span>", delay: 800 },
             { text: "Verifying credentials... <span class='text-green-400'>AUTHORIZED</span>", delay: 600 },
@@ -630,216 +730,315 @@
         const translations = {
             id: {
                 pageTitle: "Portofolio Giwan Purnama - Software Engineer", brandName: "G//P // INTEL_SIG",
-                navHome: "Dashboard", navAbout: "Profil", navProjects: "Misi", navSkills: "Kompetensi", navContact: "Komunikasi",
+                navHeaderMain: "UTAMA", navHome: "Dashboard",
+                navHeaderProfile: "OPERATOR", navBioData: "Bio Data", navServiceRecord: "Riwayat Dinas",
+                navHeaderMissions: "MISI", navProjects: "Log Misi",
+                navHeaderCompetency: "KOMPETENSI", navTechSkills: "Keahlian Teknis", navCerts: "Penghargaan & Sertifikasi",
+                navHeaderComms: "KOMUNIKASI", navContact: "Kanal Aman",
                 heroGreeting: "SISTEM SIAP // SELAMAT DATANG, OPERATOR",
                 heroSubtitle: "Software Engineer // Tactical Tech",
                 heroDescription: "Menciptakan solusi perangkat lunak yang inovatif dan efisien untuk memecahkan masalah kompleks di dunia nyata, dengan fokus pada teknologi pertahanan dan sistem intelijen.",
                 heroButton: "Lihat Misi",
                 profileStatus: "STATUS: ", profileClearance: "IZIN: ",
                 statusFirewall: "Status Firewall:", statusDataLink: "Data Link:", statusNetworkSync: "Sinkronisasi Jaringan:",
-                aboutTitle: "Profil Intelijen",
+                aboutTitle: "Bio Data",
                 aboutParagraph1: "Saya Giwan Purnama, seorang Software Engineer dengan spesialisasi dalam pengembangan sistem pertahanan dan intelijen geospasial. Berbekal penghargaan sebagai Siswa Terbaik dari SMK Prakarya Internasional dan saat ini sedang melanjutkan studi di Universitas Terbuka, saya mendedikasikan keahlian saya untuk menciptakan solusi teknologi canggih yang menjawab tantangan strategis.",
                 aboutParagraph2: "Pengalaman saya terbentang dari merancang arsitektur Battle Management System (BMS) yang kompleks bersama REPUBLIKORP & ASELSAN, hingga memimpin pengembangan Command Center dinamis untuk misi Caraka 22. Saya mahir dalam mengintegrasikan berbagai teknologi, termasuk ArcGIS API dan backend PostgreSQL/PostGIS, untuk menyediakan kesadaran situasional secara real-time yang krusial di lapangan.",
                 aboutParagraph3: "Setiap proyek, baik itu sistem militer maupun aplikasi sipil seperti Waste Management System, saya dekati dengan pola pikir analitis untuk memecahkan masalah inti. Saya berkembang dalam lingkungan kolaboratif, menerjemahkan kebutuhan operasional menjadi perangkat lunak yang andal dan efisien, serta memastikan setiap solusi memberikan dampak strategis yang terukur.",
+                serviceRecordTitle: "Riwayat Dinas",
+                serviceRecord1Date: "JUNI 2024", serviceRecord1Title: "Exhibitor Indo Defence 2024", serviceRecord1Org: "REPUBLIKORP", serviceRecord1Desc: "Berperan sebagai perwakilan teknis utama, mendemonstrasikan sistem pertahanan canggih kepada delegasi internasional dan pejabat militer.",
+                serviceRecord2Date: "2024 - SEKARANG", serviceRecord2Title: "Battlefield Management System", serviceRecord2Org: "REPUBLIKORP & ASELSAN", serviceRecord2Desc: "Bertanggung jawab atas arsitektur sistem, implementasi modul kritis, dan integrasi untuk efisiensi koordinasi militer.",
+                serviceRecord3Date: "2025 - SEKARANG", serviceRecord3Title: "Command Center Caraka 22", serviceRecord3Org: "TNI Angkatan Darat", serviceRecord3Desc: "Memimpin pengembangan platform kesadaran situasional dinamis dan real-time menggunakan JavaScript dan ArcGIS API.",
                 projectsTitle: "Log Misi",
                 project1Title: "Battlefield Management System", project1Description: `Mengembangkan Battle Management System bersama REPUBLIKORP & ASELSAN. Bertanggung jawab atas arsitektur, implementasi modul kritis, dan integrasi sistem untuk efisiensi koordinasi militer.`,
                 project2Title: "Waste Management System", project2Description: `Mengembangkan aplikasi Waste Management System bersama PT Indocement. Aplikasi ini mengoptimalkan rute pengumpulan sampah, memantau volume, dan meningkatkan efisiensi daur ulang.`,
                 project4Title: "Caraka 22 Command Center", project4Description: "Memimpin pengembangan command center geospasial untuk Caraka 22. Merancang platform kesadaran situasional dinamis secara real-time menggunakan JavaScript dan ArcGIS API, terintegrasi dengan backend PostgreSQL/PostGIS.",
                 project5Title: "Exhibitor Indo Defence 2024", project5Description: "Bertindak sebagai perwakilan teknis utama dan exhibitor untuk Republikorp di Indo Defence 2024. Mendemonstrasikan sistem canggih kepada delegasi internasional dan pejabat militer.",
-                skillsTitle: "Matriks Kompetensi", skillsLanguagesTitle: "Bahasa Pemrograman:", skillsFrameworksTitle: "Framework & Library:", skillsToolsTitle: "Database & Tools:", skillsMilitaryTitle: "Tujuan Militer:",
+                skillsTitle: "Keahlian Teknis", skillsLanguagesTitle: "Bahasa Pemrograman:", skillsFrameworksTitle: "Framework & Library:", skillsToolsTitle: "Database & Tools:", skillsMilitaryTitle: "Tujuan Militer:",
                 skillMilitaryTech: "Teknologi Militer", skillTacticalKnowledge: "Pengetahuan Taktikal", skillDataLink: "Taktikal Data Link", skillAgentSupport: "Dukungan Agen Cerdas", skillIntegration: "Integrasi Persenjataan & Logistik",
+                certsTitle: "Penghargaan & Sertifikasi",
+                cert1Title: "Siswa Terbaik Tahun Ini", cert1Issuer: "SMK PRAKARYA INTERNASIONAL, 2023",
+                cert2Title: "Kompetensi Rekayasa Perangkat Lunak (BSNP) 0043/P/BSNP/1/2020", cert2Issuer: "PT. LASKAR TEKNOLOGI MULIA (CYBERLABS), 2023",
                 contactTitle: "Kanal Komunikasi Aman", contactDescription: "Saya selalu terbuka untuk diskusi, kolaborasi, atau peluang baru. Jangan ragu untuk menghubungi saya!",
                 contactNameLabel: "Nama Lengkap", contactEmailLabel: "Alamat Email", contactSubjectLabel: "Subjek", contactMessageLabel: "Pesan Anda...", contactSubmitButton: "Kirim Transmisi",
                 footerCopyright: "© 2025 Giwan Purnama. Hak Cipta Dilindungi.",
             },
             en: {
                 pageTitle: "Giwan Purnama Portfolio - Software Engineer", brandName: "G//P // INTEL_SIG",
-                navHome: "Dashboard", navAbout: "Profile", navProjects: "Missions", navSkills: "Competency", navContact: "Comms",
+                navHeaderMain: "MAIN", navHome: "Dashboard",
+                navHeaderProfile: "OPERATIVE", navBioData: "Bio Data", navServiceRecord: "Service Record",
+                navHeaderMissions: "MISSIONS", navProjects: "Mission Logs",
+                navHeaderCompetency: "COMPETENCY", navTechSkills: "Technical Skills", navCerts: "Awards & Certs",
+                navHeaderComms: "COMMS", navContact: "Secure Channel",
                 heroGreeting: "SYSTEM READY // WELCOME, OPERATIVE",
                 heroName: "Giwan Purnama", heroSubtitle: "Software Engineer // Tactical Tech",
                 heroDescription: "Crafting innovative and efficient software solutions to solve complex real-world problems, with a focus on defense technology and intelligence systems.",
                 heroButton: "View Missions",
                 profileStatus: "STATUS: ", profileClearance: "CLEARANCE: ",
                 statusFirewall: "Firewall Status:", statusDataLink: "Data Link:", statusNetworkSync: "Network Sync:",
-                aboutTitle: "Intelligence Profile",
+                aboutTitle: "Bio Data",
                 aboutParagraph1: "I am Giwan Purnama, a Software Engineer specializing in the development of defense systems and geospatial intelligence. Armed with the Best Student award from Prakarya Internasional Vocational School and currently pursuing my degree at Universitas Terbuka, I dedicate my skills to creating advanced technology solutions that address strategic challenges.",
                 aboutParagraph2: "My experience ranges from architecting complex Battle Management Systems (BMS) with REPUBLIKORP & ASELSAN to leading the development of a dynamic Command Center for the Caraka 22 mission. I am proficient in integrating diverse technologies, including the ArcGIS API and PostgreSQL/PostGIS backends, to provide crucial real-time situational awareness in the field.",
                 aboutParagraph3: "I approach every project, whether a military system or a civilian application like the Waste Management System, with an analytical mindset to solve core problems. I thrive in collaborative environments, translating operational needs into reliable and efficient software, and ensuring every solution delivers a measurable strategic impact.",
+                serviceRecordTitle: "Service Record",
+                serviceRecord1Date: "JUNE 2025", serviceRecord1Title: "Indo Defence 2024 Exhibitor", serviceRecord1Org: "REPUBLIKORP", serviceRecord1Desc: "Served as a key technical representative, demonstrating advanced defense systems to international delegations and military officials.",
+                serviceRecord2Date: "2024 - PRESENT", serviceRecord2Title: "Battlefield Management System", serviceRecord2Org: "REPUBLIKORP & ASELSAN", serviceRecord2Desc: "Responsible for system architecture, implementation of critical modules, and integration for military coordination efficiency.",
+                serviceRecord3Date: "2025 - PRESENT", serviceRecord3Title: "Caraka 22 Command Center", serviceRecord3Org: "Indonesian Army", serviceRecord3Desc: "Led the development of a dynamic, real-time situational awareness platform using JavaScript and the ArcGIS API.",
                 projectsTitle: "Mission Logs",
                 project1Title: "Battlefield Management System", project1Description: `Developed a Battle Management System with REPUBLIKORP & ASELSAN. Responsible for architecture, critical module implementation, and system integration for military coordination efficiency.`,
                 project2Title: "Waste Management System", project2Description: `Developed a Waste Management System app with PT Indocement. The application optimizes waste collection routes, monitors volume, and improves recycling efficiency.`,
                 project4Title: "Caraka 22 Command Center", project4Description: "Led the development of the geospatial command center for Caraka 22. Engineered a dynamic, real-time situational awareness platform using JavaScript and the ArcGIS API, integrated with a PostgreSQL/PostGIS backend.",
                 project5Title: "Indo Defence 2024 Exhibitor", project5Description: "Served as a key technical representative and exhibitor for Republikorp at Indo Defence 2024. Demonstrated advanced systems to international delegations and military officials.",
-                skillsTitle: "Competency Matrix", skillsLanguagesTitle: "Programming Languages:", skillsFrameworksTitle: "Frameworks & Libraries:", skillsToolsTitle: "Databases & Tools:", skillsMilitaryTitle: "Military Purpose:",
+                skillsTitle: "Technical Skills", skillsLanguagesTitle: "Programming Languages:", skillsFrameworksTitle: "Frameworks & Libraries:", skillsToolsTitle: "Databases & Tools:", skillsMilitaryTitle: "Military Purpose:",
                 skillMilitaryTech: "Military Technology", skillTacticalKnowledge: "Tactical Knowledge", skillDataLink: "Tactical Data Link", skillAgentSupport: "Intelligent Agent Support", skillIntegration: "Weaponry & Logistics Integration",
+                certsTitle: "Awards & Certifications",
+                cert1Title: "Best Student of The Year", cert1Issuer: "PRAKARYA INTERNASIONAL VOCATIONAL HIGH SCHOOL, 2023",
+                cert2Title: "Software Engineering Competence  (BSNP) 0043/P/BSNP/1/2020", cert2Issuer: "PT. LASKAR TEKNOLOGI MULIA (CYBERLABS), 2023 ",
                 contactTitle: "Secure Comms Channel", contactDescription: "I am always open to discussions, collaborations, or new opportunities. Feel free to reach out!",
                 contactNameLabel: "Full Name", contactEmailLabel: "Email Address", contactSubjectLabel: "Subject", contactMessageLabel: "Your Message...", contactSubmitButton: "Send Transmission",
                 footerCopyright: "© 2025 Giwan Purnama. All Rights Reserved.",
             },
             hi: {
                 pageTitle: "गिवान पुरनामा पोर्टफोलियो - सॉफ्टवेयर इंजीनियर", brandName: "जी//पी // इंटेल_सिग",
-                navHome: "डैशबोर्ड", navAbout: "प्रोफ़ाइल", navProjects: "मिशन", navSkills: "क्षमता", navContact: "संचार",
+                navHeaderMain: "मुख्य", navHome: "डैशबोर्ड",
+                navHeaderProfile: "ऑपरेटिव", navBioData: "बायो डेटा", navServiceRecord: "सेवा रिकॉर्ड",
+                navHeaderMissions: "मिशन", navProjects: "मिशन लॉग",
+                navHeaderCompetency: "क्षमता", navTechSkills: "तकनीकी कौशल", navCerts: "पुरस्कार और प्रमाणपत्र",
+                navHeaderComms: "संचार", navContact: "सुरक्षित चैनल",
                 heroGreeting: "सिस्टम तैयार // आपका स्वागत है, ऑपरेटिव",
                 heroSubtitle: "सॉफ्टवेयर इंजीनियर // टैक्टिकल टेक",
                 heroDescription: "रक्षा प्रौद्योगिकी और खुफिया प्रणालियों पर ध्यान देने के साथ, जटिल वास्तविक दुनिया की समस्याओं को हल करने के लिए अभिनव और कुशल सॉफ्टवेयर समाधान तैयार करना।",
                 heroButton: "मिशन देखें",
                 profileStatus: "स्थिति: ", profileClearance: "निकासी: ",
                 statusFirewall: "फ़ायरवॉल स्थिति:", statusDataLink: "डेटा लिंक:", statusNetworkSync: "नेटवर्क सिंक:",
-                aboutTitle: "खुफिया प्रोफ़ाइल",
+                aboutTitle: "बायो डेटा",
                 aboutParagraph1: "मैं गिवान पुरनामा हूं, जो रक्षा प्रणालियों और भू-स्थानिक खुफिया के विकास में विशेषज्ञता रखने वाला एक सॉफ्टवेयर इंजीनियर हूं। प्रकार्य इंटरनैशनल वोकेशनल स्कूल से सर्वश्रेष्ठ छात्र पुरस्कार से सम्मानित और वर्तमान में यूनिवर्सिटास टेरबुका में अपनी डिग्री प्राप्त कर रहा हूं, मैं रणनीतिक चुनौतियों का समाधान करने वाले उन्नत प्रौद्योगिकी समाधान बनाने के लिए अपने कौशल को समर्पित करता हूं।",
-                aboutParagraph2: "मेरा अनुभव REPUBLIKORP और ASELSAN के साथ जटिल बैटल मैनेजमेंट सिस्टम (BMS) की वास्तुकला से लेकर काराका 22 मिशन के लिए एक गतिशील कमांड सेंटर के विकास का नेतृत्व करने तक है। मैं क्षेत्र में महत्वपूर्ण वास्तविक समय स्थितिजन्य जागरूकता प्रदान करने के लिए ArcGIS API और PostgreSQL/PostGIS बैकएंड सहित विविध तकनीकों को एकीकृत करने में कुशल हूं।",
+                aboutParagraph2: "मेरा अनुभव REPUBLIKORP और ASELSAN के साथ जटिल बैटल मैनेजमेंट सिस्टम (BMS) की वास्तुकला से लेकर काराका 22 मिशन के लिए एक गतिशील कमांड सेंटर के विकास का नेतृत्व करने तक है। मैं क्षेत्र में महत्वपूर्ण वास्तविक समय स्थितिजन्य जागरूकता प्रदान करने के لیے ArcGIS API और PostgreSQL/PostGIS बैकएंड सहित विविध तकनीकों को एकीकृत करने में कुशल हूं।",
                 aboutParagraph3: "मैं हर परियोजना, चाहे वह एक सैन्य प्रणाली हो या अपशिष्ट प्रबंधन प्रणाली जैसा नागरिक अनुप्रयोग, को मुख्य समस्याओं को हल करने के लिए एक विश्लेषणात्मक मानसिकता के साथ देखता हूं। मैं सहयोगी वातावरण में पनपता हूं, परिचालन आवश्यकताओं को विश्वसनीय और कुशल सॉफ्टवेयर में अनुवादित करता हूं, और यह सुनिश्चित करता हूं कि हर समाधान एक औसत दर्जे का रणनीतिक प्रभाव डाले।",
+                serviceRecordTitle: "सेवा रिकॉर्ड",
+                serviceRecord1Date: "जून 2025", serviceRecord1Title: "इंडो डिफेंस 2024 प्रदर्शक", serviceRecord1Org: "रिपब्लिकॉर्प", serviceRecord1Desc: "एक प्रमुख तकनीकी प्रतिनिधि के रूप में कार्य किया, अंतरराष्ट्रीय प्रतिनिधिमंडलों और सैन्य अधिकारियों को उन्नत रक्षा प्रणालियों का प्रदर्शन किया।",
+                serviceRecord2Date: "2024 - वर्तमान", serviceRecord2Title: "बैटल मैनेजमेंट सिस्टम", serviceRecord2Org: "रिपब्लिकॉर्प और एसेलसन", serviceRecord2Desc: "सैन्य समन्वय दक्षता के लिए सिस्टम आर्किटेक्चर, महत्वपूर्ण मॉड्यूल के कार्यान्वयन और एकीकरण के लिए जिम्मेदार।",
+                serviceRecord3Date: "2025 - वर्तमान", serviceRecord3Title: "काराका 22 कमांड सेंटर", serviceRecord3Org: "इंडोनेशियाई सेना", serviceRecord3Desc: "जावास्क्रिप्ट और ArcGIS API का उपयोग करके एक गतिशील, वास्तविक समय स्थितिजन्य जागरूकता मंच के विकास का नेतृत्व किया।",
                 projectsTitle: "मिशन लॉग",
                 project1Title: "बैटल मैनेजमेंट सिस्टम", project1Description: "REPUBLIKORP और ASELSAN के साथ एक बैटल मैनेजमेंट सिस्टम विकसित किया। सैन्य समन्वय दक्षता के लिए वास्तुकला, महत्वपूर्ण मॉड्यूल कार्यान्वयन और सिस्टम एकीकरण के लिए जिम्मेदार।",
                 project2Title: "अपशिष्ट प्रबंधन प्रणाली", project2Description: "PT इंडोमेंट के साथ एक अपशिष्ट प्रबंधन प्रणाली ऐप विकसित किया। एप्लिकेशन कचरा संग्रहण मार्गों को अनुकूलित करता है, मात्रा की निगरानी करता है, और रीसाइक्लिंग दक्षता में सुधार करता है।",
                 project4Title: "काराका 22 कमांड सेंटर", project4Description: "काराका 22 के लिए भू-स्थानिक कमांड सेंटर के विकास का नेतृत्व किया। जावास्क्रिप्ट और आर्कजीआईएस एपीआई का उपयोग करके एक गतिशील, वास्तविक समय स्थितिजन्य जागरूकता मंच तैयार किया, जो पोस्टग्रेएसक्यूएल/पोस्टजीआईएस बैकएंड के साथ एकीकृत है।",
                 project5Title: "इंडो डिफेंस 2024 प्रदर्शक", project5Description: "इंडो डिफेंस 2024 में रिपब्लिकॉर्प के लिए एक प्रमुख तकनीकी प्रतिनिधि और प्रदर्शक के रूप में कार्य किया। अंतरराष्ट्रीय प्रतिनिधिमंडलों और सैन्य अधिकारियों को उन्नत प्रणालियों का प्रदर्शन किया।",
-                skillsTitle: "क्षमता मैट्रिक्स", skillsLanguagesTitle: "प्रोग्रामिंग भाषाएं:", skillsFrameworksTitle: "फ्रेमवर्क और लाइब्रेरी:", skillsToolsTitle: "डेटाबेस और उपकरण:", skillsMilitaryTitle: "सैन्य उद्देश्य:",
+                skillsTitle: "तकनीकी कौशल", skillsLanguagesTitle: "प्रोग्रामिंग भाषाएं:", skillsFrameworksTitle: "फ्रेमवर्क और लाइब्रेरी:", skillsToolsTitle: "डेटाबेस और उपकरण:", skillsMilitaryTitle: "सैन्य उद्देश्य:",
                 skillMilitaryTech: "सैन्य प्रौद्योगिकी", skillTacticalKnowledge: "सामरिक ज्ञान", skillDataLink: "सामरिक डेटा लिंक", skillAgentSupport: "इंटेलिजेंट एजेंट सपोर्ट", skillIntegration: "हथियार और रसद एकीकरण",
+                certsTitle: "पुरस्कार और प्रमाणपत्र",
+                cert1Title: "वर्ष का सर्वश्रेष्ठ छात्र", cert1Issuer: "प्रकार्य इंटरनैशनल वोकेशनल हाई स्कूल, 2023",
+                cert2Title: "सॉफ्टवेयर इंजीनियरिंग क्षमता (BSNP) 0043/P/BSNP/1/2020", cert2Issuer: "पीटी. लस्कर टेक्नोलॉजी मुलिया (साइबरलैब्स), 2023",
                 contactTitle: "सुरक्षित संचार चैनल", contactDescription: "मैं हमेशा चर्चाओं, सहयोगों या नए अवसरों के लिए खुला हूं। बेझझक संपर्क करें!",
                 contactNameLabel: "पूरा नाम", contactEmailLabel: "ईमेल पता", contactSubjectLabel: "विषय", contactMessageLabel: "आपका संदेश...", contactSubmitButton: "संचरण भेजें",
                 footerCopyright: "© 2025 गिवान पुरनामा। सर्वाधिकार सुरक्षित।",
             },
             zh: {
                 pageTitle: "吉万·普尔纳马作品集 - 软件工程师", brandName: "吉//普 // 情报信号",
-                navHome: "仪表板", navAbout: "个人资料", navProjects: "任务", navSkills: "能力", navContact: "通讯",
+                navHeaderMain: "主要", navHome: "仪表板",
+                navHeaderProfile: "操作员", navBioData: "生物数据", navServiceRecord: "服务记录",
+                navHeaderMissions: "任务", navProjects: "任务日志",
+                navHeaderCompetency: "能力", navTechSkills: "技术技能", navCerts: "奖项与证书",
+                navHeaderComms: "通讯", navContact: "安全通道",
                 heroGreeting: "系统准备就绪 // 欢迎，操作员",
                 heroSubtitle: "软件工程师 // 战术技术",
                 heroDescription: "专注于国防技术和情报系统，打造创新高效的软件解决方案，解决复杂的现实世界问题。",
                 heroButton: "查看任务",
                 profileStatus: "状态: ", profileClearance: "许可: ",
                 statusFirewall: "防火墙状态:", statusDataLink: "数据链:", statusNetworkSync: "网络同步:",
-                aboutTitle: "情报资料",
+                aboutTitle: "生物数据",
                 aboutParagraph1: "我是吉万·普尔纳马，一名专注于国防系统和地理空间情报开发的软件工程师。我曾荣获Prakarya Internasional职业学校最佳学生奖，目前正在开放大学攻读学位，我致力于利用我的技能创造先进的技术解决方案，以应对战略挑战。",
                 aboutParagraph2: "我的经验范围广泛，从与REPUBLIKORP和ASELSAN合作构建复杂的战斗管理系统（BMS），到领导为Caraka 22任务开发动态指挥中心。我精通集成多种技术，包括ArcGIS API和PostgreSQL/PostGIS后端，以提供现场至关重要的实时态势感知。",
                 aboutParagraph3: "我以分析的心态对待每一个项目，无论是军事系统还是像废物管理系统这样的民用应用，以解决核心问题。我在协作环境中茁壮成长，将运营需求转化为可靠高效的软件，并确保每个解决方案都能带来可衡量的战略影响。",
+                serviceRecordTitle: "服务记录",
+                serviceRecord1Date: "2025年6月", serviceRecord1Title: "2024年印尼防务展参展商", serviceRecord1Org: "REPUBLIKORP", serviceRecord1Desc: "担任主要技术代表，向国际代表团和军方官员展示先进的国防系统。",
+                serviceRecord2Date: "2024年至今", serviceRecord2Title: "战斗管理系统", serviceRecord2Org: "REPUBLIKORP & ASELSAN", serviceRecord2Desc: "负责系统架构、关键模块实施和集成，以提高军事协调效率。",
+                serviceRecord3Date: "2025年至今", serviceRecord3Title: "Caraka 22 指挥中心", serviceRecord3Org: "印尼陆军", serviceRecord3Desc: "领导使用JavaScript和ArcGIS API开发动态实时态势感知平台。",
                 projectsTitle: "任务日志",
                 project1Title: "战斗管理系统", project1Description: "与REPUBLIKORP和ASELSAN合作开发战斗管理系统。负责架构、关键模块实施和系统集成，以提高军事协调效率。",
                 project2Title: "废物管理系统", project2Description: "与PT Indocement合作开发废物管理系统应用程序。该应用程序优化了废物收集路线，监控了废物量，并提高了回收效率。",
                 project4Title: "Caraka 22 指挥中心", project4Description: "领导了Caraka 22地理空间指挥中心的开发。使用JavaScript和ArcGIS API设计了一个动态的实时态势感知平台，并与PostgreSQL/PostGIS后端集成。",
                 project5Title: "2024年印尼防务展参展商", project5Description: "在2024年印尼防务展上担任Republikorp的主要技术代表和参展商。向国际代表团和军方官员展示了先进系统。",
-                skillsTitle: "能力矩阵", skillsLanguagesTitle: "编程语言：", skillsFrameworksTitle: "框架与库：", skillsToolsTitle: "数据库与工具：", skillsMilitaryTitle: "军事用途：",
+                skillsTitle: "技术技能", skillsLanguagesTitle: "编程语言：", skillsFrameworksTitle: "框架与库：", skillsToolsTitle: "数据库与工具：", skillsMilitaryTitle: "军事用途：",
                 skillMilitaryTech: "军事技术", skillTacticalKnowledge: "战术知识", skillDataLink: "战术数据链", skillAgentSupport: "智能代理支持", skillIntegration: "武器与后勤整合",
+                certsTitle: "奖项与证书",
+                cert1Title: "年度最佳学生", cert1Issuer: "Prakarya Internasional职业高中，2023年",
+                cert2Title: "软件工程能力 (BSNP) 0043/P/BSNP/1/2020", cert2Issuer: "PT. LASKAR TEKNOLOGI MULIA (CYBERLABS)，2023年",
                 contactTitle: "安全通讯频道", contactDescription: "我随时欢迎讨论、合作或新的机会。请随时与我联系！",
                 contactNameLabel: "全名", contactEmailLabel: "电子邮件地址", contactSubjectLabel: "主题", contactMessageLabel: "您的信息...", contactSubmitButton: "发送传输",
                 footerCopyright: "© 2025 吉万·普尔纳马。版权所有。",
             },
             ko: {
                 pageTitle: "기완 푸르나마 포트폴리오 - 소프트웨어 엔지니어", brandName: "G//P // 인텔_시그널",
-                navHome: "대시보드", navAbout: "프로필", navProjects: "임무", navSkills: "역량", navContact: "통신",
+                navHeaderMain: "메인", navHome: "대시보드",
+                navHeaderProfile: "요원", navBioData: "바이오 데이터", navServiceRecord: "복무 기록",
+                navHeaderMissions: "임무", navProjects: "임무 기록",
+                navHeaderCompetency: "역량", navTechSkills: "기술적 능력", navCerts: "수상 및 인증",
+                navHeaderComms: "통신", navContact: "보안 채널",
                 heroGreeting: "시스템 준비 완료 // 환영합니다, 요원",
                 heroSubtitle: "소프트웨어 엔지니어 // 전술 기술",
                 heroDescription: "국방 기술 및 정보 시스템에 중점을 두고 복잡한 실제 문제를 해결하기 위한 혁신적이고 효율적인 소프트웨어 솔루션을 제작합니다.",
                 heroButton: "임무 보기",
                 profileStatus: "상태: ", profileClearance: "허가: ",
                 statusFirewall: "방화벽 상태:", statusDataLink: "데이터 링크:", statusNetworkSync: "네트워크 동기화:",
-                aboutTitle: "정보 프로필",
+                aboutTitle: "바이오 데이터",
                 aboutParagraph1: "저는 국방 시스템 및 지리 공간 정보 개발을 전문으로 하는 소프트웨어 엔지니어 기완 푸르나마입니다. 프라카르야 국제 직업학교에서 최우수 학생 상을 받았으며 현재 오픈 대학교에서 학위를 이수하고 있으며, 전략적 과제를 해결하는 고급 기술 솔루션을 만드는 데 제 기술을 바칩니다.",
                 aboutParagraph2: "제 경험은 REPUBLIKORP 및 ASELSAN과 함께 복잡한 전투 관리 시스템(BMS)을 설계하는 것부터 카라카 22 임무를 위한 동적 지휘 센터 개발을 주도하는 것까지 다양합니다. 저는 ArcGIS API 및 PostgreSQL/PostGIS 백엔드를 포함한 다양한 기술을 통합하여 현장에서 중요한 실시간 상황 인식을 제공하는 데 능숙합니다.",
                 aboutParagraph3: "저는 군사 시스템이든 폐기물 관리 시스템과 같은 민간 응용 프로그램이든 모든 프로젝트에 분석적인 사고 방식으로 접근하여 핵심 문제를 해결합니다. 저는 협업 환경에서 성장하며 운영 요구 사항을 신뢰할 수 있고 효율적인 소프트웨어로 변환하고 모든 솔루션이 측정 가능한 전략적 영향을 미치도록 보장합니다.",
+                serviceRecordTitle: "복무 기록",
+                serviceRecord1Date: "2025년 6월", serviceRecord1Title: "인도 디펜스 2024 전시업체", serviceRecord1Org: "REPUBLIKORP", serviceRecord1Desc: "주요 기술 대표로 활동하며 국제 대표단과 군 관계자에게 첨단 국방 시스템을 시연했습니다.",
+                serviceRecord2Date: "2024년 - 현재", serviceRecord2Title: "전투 관리 시스템", serviceRecord2Org: "REPUBLIKORP & ASELSAN", serviceRecord2Desc: "군사 조정 효율성을 위한 시스템 아키텍처, 중요 모듈 구현 및 통합을 담당합니다.",
+                serviceRecord3Date: "2025년 - 현재", serviceRecord3Title: "카라카 22 지휘 센터", serviceRecord3Org: "인도네시아 육군", serviceRecord3Desc: "JavaScript 및 ArcGIS API를 사용하여 동적 실시간 상황 인식 플랫폼 개발을 주도했습니다.",
                 projectsTitle: "임무 기록",
                 project1Title: "전투 관리 시스템", project1Description: "REPUBLIKORP 및 ASELSAN과 함께 전투 관리 시스템을 개발했습니다. 군사 조정 효율성을 위한 아키텍처, 중요 모듈 구현 및 시스템 통합을 담당했습니다.",
                 project2Title: "폐기물 관리 시스템", project2Description: "PT Indocement와 함께 폐기물 관리 시스템 앱을 개발했습니다. 이 애플리케이션은 폐기물 수거 경로를 최적화하고, 양을 모니터링하며, 재활용 효율성을 향상시킵니다.",
                 project4Title: "카라카 22 지휘 센터", project4Description: "카라카 22의 지리공간 지휘 센터 개발을 주도했습니다. JavaScript 및 ArcGIS API를 사용하여 동적 실시간 상황 인식 플랫폼을 설계했으며 PostgreSQL/PostGIS 백엔드와 통합했습니다.",
                 project5Title: "인도 디펜스 2024 전시업체", project5Description: "인도 디펜스 2024에서 리퍼블릭코프의 핵심 기술 대표 및 전시업체로 활동했습니다. 국제 대표단 및 군 관계자에게 고급 시스템을 시연했습니다.",
-                skillsTitle: "역량 매트릭스", skillsLanguagesTitle: "프로그래밍 언어:", skillsFrameworksTitle: "프레임워크 및 라이브러리:", skillsToolsTitle: "데이터베이스 및 도구:", skillsMilitaryTitle: "군사 목적:",
+                skillsTitle: "기술적 능력", skillsLanguagesTitle: "프로그래밍 언어:", skillsFrameworksTitle: "프레임워크 및 라이브러리:", skillsToolsTitle: "데이터베이스 및 도구:", skillsMilitaryTitle: "군사 목적:",
                 skillMilitaryTech: "군사 기술", skillTacticalKnowledge: "전술 지식", skillDataLink: "전술 데이터 링크", skillAgentSupport: "지능형 에이전트 지원", skillIntegration: "무기 및 군수 통합",
+                certsTitle: "수상 및 인증",
+                cert1Title: "올해의 최우수 학생", cert1Issuer: "프라카르야 국제 직업 고등학교, 2023",
+                cert2Title: "소프트웨어 공학 역량 (BSNP) 0043/P/BSNP/1/2020", cert2Issuer: "PT. LASKAR TEKNOLOGI MULIA (CYBERLABS), 2023",
                 contactTitle: "보안 통신 채널", contactDescription: "저는 언제나 토론, 협업 또는 새로운 기회에 열려 있습니다. 언제든지 연락주세요!",
                 contactNameLabel: "전체 이름", contactEmailLabel: "이메일 주소", contactSubjectLabel: "제목", contactMessageLabel: "메시지...", contactSubmitButton: "전송 보내기",
                 footerCopyright: "© 2025 기완 푸르나마. 모든 권리 보유.",
             },
             ar: {
                 pageTitle: "ملف أعمال جيوان بورناما - مهندس برمجيات", brandName: "ج//ب // إنتل_سيج",
-                navHome: "لوحة التحكم", navAbout: "الملف الشخصي", navProjects: "المهام", navSkills: "الكفاءة", navContact: "الاتصالات",
+                navHeaderMain: "الرئيسي", navHome: "لوحة التحكم",
+                navHeaderProfile: "العميل", navBioData: "بيانات حيوية", navServiceRecord: "سجل الخدمة",
+                navHeaderMissions: "المهام", navProjects: "سجلات المهام",
+                navHeaderCompetency: "الكفاءة", navTechSkills: "المهارات التقنية", navCerts: "الجوائز والشهادات",
+                navHeaderComms: "الاتصالات", navContact: "قناة آمنة",
                 heroGreeting: "النظام جاهز // مرحبًا أيها العميل",
                 heroSubtitle: "مهندس برمجيات // تكنولوجيا تكتيكية",
                 heroDescription: "صياغة حلول برمجية مبتكرة وفعالة لحل مشاكل العالم الحقيقي المعقدة، مع التركيز على تكنولوجيا الدفاع وأنظمة الاستخبارات.",
                 heroButton: "عرض المهام",
                 profileStatus: "الحالة: ", profileClearance: "التصريح: ",
                 statusFirewall: "حالة جدار الحماية:", statusDataLink: "وصلة البيانات:", statusNetworkSync: "مزامنة الشبكة:",
-                aboutTitle: "ملف الاستخبارات",
+                aboutTitle: "بيانات حيوية",
                 aboutParagraph1: "أنا جيوان بورناما، مهندس برمجيات متخصص في تطوير أنظمة الدفاع والذكاء الجغرافي المكاني. مسلحًا بجائزة أفضل طالب من مدرسة براكاريا الدولية المهنية وأتابع حاليًا دراستي في جامعة تيربوكا، أكرس مهاراتي لإنشاء حلول تقنية متقدمة تواجه التحديات الاستراتيجية.",
                 aboutParagraph2: "تتراوح خبرتي من تصميم أنظمة إدارة المعارك المعقدة (BMS) مع REPUBLIKORP و ASELSAN إلى قيادة تطوير مركز قيادة ديناميكي لمهمة Caraka 22. أنا بارع في دمج التقنيات المتنوعة، بما في ذلك ArcGIS API وخلفيات PostgreSQL/PostGIS، لتوفير وعي ظرفي حاسم في الوقت الفعلي في الميدان.",
                 aboutParagraph3: "أتعامل مع كل مشروع، سواء كان نظامًا عسكريًا أو تطبيقًا مدنيًا مثل نظام إدارة النفايات، بعقلية تحليلية لحل المشكلات الأساسية. أزدهر في البيئات التعاونية، وأترجم الاحتياجات التشغيلية إلى برامج موثوقة وفعالة، وأضمن أن كل حل يقدم تأثيرًا استراتيجيًا قابلاً للقياس.",
+                serviceRecordTitle: "سجل الخدمة",
+                serviceRecord1Date: "يونيو 2025", serviceRecord1Title: "العارض في معرض إندو ديفينس 2024", serviceRecord1Org: "REPUBLIKORP", serviceRecord1Desc: "عمل كممثل فني رئيسي، حيث عرض أنظمة دفاعية متقدمة للوفود الدولية والمسؤولين العسكريين.",
+                serviceRecord2Date: "2024 - الآن", serviceRecord2Title: "نظام إدارة المعركة", serviceRecord2Org: "REPUBLIKORP & ASELSAN", serviceRecord2Desc: "مسؤول عن بنية النظام، وتنفيذ الوحدات الحرجة، والتكامل من أجل كفاءة التنسيق العسكري.",
+                serviceRecord3Date: "2025 - الآن", serviceRecord3Title: "مركز قيادة كاراكا 22", serviceRecord3Org: "الجيش الإندونيسي", serviceRecord3Desc: "قاد تطوير منصة ديناميكية للوعي الظرفي في الوقت الفعلي باستخدام JavaScript و ArcGIS API.",
                 projectsTitle: "سجلات المهام",
                 project1Title: "نظام إدارة المعركة", project1Description: "قمت بتطوير نظام إدارة المعركة مع REPUBLIKORP و ASELSAN. مسؤول عن الهندسة المعمارية، وتنفيذ الوحدات الحرجة، وتكامل النظام لكفاءة التنسيق العسكري.",
                 project2Title: "نظام إدارة النفايات", project2Description: "قمت بتطوير تطبيق نظام إدارة النفايات مع PT Indocement. يعمل التطبيق على تحسين مسارات جمع النفايات ومراقبة الحجم وتحسين كفاءة إعادة التدوير.",
                 project4Title: "مركز قيادة كاراكا 22", project4Description: "قاد تطوير مركز القيادة الجيومكانية لـ كارا카 22. صمم منصة ديناميكية للوعي الظرفي في الوقت الفعلي باستخدام JavaScript و ArcGIS API، متكاملة مع خلفية PostgreSQL/PostGIS.",
                 project5Title: "العارض في معرض إندو ديفينس 2024", project5Description: "عمل كممثل فني رئيسي وعارض لشركة Republikorp في معرض إندو ديفينس 2024. عرض أنظمة متقدمة للوفود الدولية والمسؤولين العسكريين.",
-                skillsTitle: "مصفوفة الكفاءة", skillsLanguagesTitle: "لغات البرمجة:", skillsFrameworksTitle: "أطر العمل والمكتبات:", skillsToolsTitle: "قواعد البيانات والأدوات:", skillsMilitaryTitle: "الغرض العسكري:",
+                skillsTitle: "المهارات التقنية", skillsLanguagesTitle: "لغات البرمجة:", skillsFrameworksTitle: "أطر العمل والمكتبات:", skillsToolsTitle: "قواعد البيانات والأدوات:", skillsMilitaryTitle: "الغرض العسكري:",
                 skillMilitaryTech: "تكنولوجيا عسكرية", skillTacticalKnowledge: "معرفة تكتيكية", skillDataLink: "رابط بيانات تكتيكي", skillAgentSupport: "دعم الوكيل الذكي", skillIntegration: "تكامل الأسلحة والخدمات اللوجستية",
+                certsTitle: "الجوائز والشهادات",
+                cert1Title: "أفضل طالب في العام", cert1Issuer: "مدرسة براكاريا الدولية المهنية الثانوية، 2023",
+                cert2Title: "كفاءة هندسة البرمجيات (BSNP) 0043/P/BSNP/1/2020", cert2Issuer: "PT. LASKAR TEKNOLOGI MULIA (CYBERLABS), 2023",
                 contactTitle: "قناة اتصالات آمنة", contactDescription: "أنا منفتح دائمًا للمناقشات أو التعاون أو الفرص الجديدة. لا تتردد في التواصل!",
                 contactNameLabel: "الاسم الكامل", contactEmailLabel: "عنوان البريد الإلكتروني", contactSubjectLabel: "الموضوع", contactMessageLabel: "رسالتك...", contactSubmitButton: "إرسال الإرسال",
                 footerCopyright: "© 2025 جيوان بورناما. جميع الحقوق محفوظة.",
             },
             tr: {
                 pageTitle: "Giwan Purnama Portföyü - Yazılım Mühendisi", brandName: "G//P // INTEL_SIG",
-                navHome: "Kontrol Paneli", navAbout: "Profil", navProjects: "Görevler", navSkills: "Yetkinlik", navContact: "İletişim",
+                navHeaderMain: "ANA", navHome: "Kontrol Paneli",
+                navHeaderProfile: "OPERATİF", navBioData: "Biyo Veri", navServiceRecord: "Hizmet Kaydı",
+                navHeaderMissions: "GÖREVLER", navProjects: "Görev Kayıtları",
+                navHeaderCompetency: "YETKİNLİK", navTechSkills: "Teknik Yetenekler", navCerts: "Ödüller ve Sertifikalar",
+                navHeaderComms: "İLETİŞİM", navContact: "Güvenli Kanal",
                 heroGreeting: "SİSTEM HAZIR // HOŞ GELDİNİZ, OPERATÖR",
                 heroSubtitle: "Yazılım Mühendisi // Taktik Teknoloji",
                 heroDescription: "Savunma teknolojisi ve istihbarat sistemlerine odaklanarak karmaşık gerçek dünya sorunlarını çözmek için yenilikçi ve verimli yazılım çözümleri oluşturmak.",
                 heroButton: "Görevleri Görüntüle",
                 profileStatus: "DURUM: ", profileClearance: "YETKİ: ",
                 statusFirewall: "Güvenlik Duvarı Durumu:", statusDataLink: "Veri Bağlantısı:", statusNetworkSync: "Ağ Senkronizasyonu:",
-                aboutTitle: "İstihbarat Profili",
+                aboutTitle: "Biyo Veri",
                 aboutParagraph1: "Ben Giwan Purnama, savunma sistemleri ve coğrafi uzamsal istihbarat geliştirme konusunda uzmanlaşmış bir Yazılım Mühendisiyim. Prakarya Uluslararası Meslek Lisesi'nden En İyi Öğrenci ödülüyle donanmış ve şu anda Universitas Terbuka'da eğitimime devam ederken, stratejik zorlukları ele alan gelişmiş teknoloji çözümleri oluşturmaya becerilerimi adıyorum.",
                 aboutParagraph2: "Deneyimim, REPUBLIKORP & ASELSAN ile karmaşık Savaş Yönetim Sistemleri (BMS) mimarisinden, Caraka 22 görevi için dinamik bir Komuta Merkezi geliştirilmesine liderlik etmeye kadar uzanmaktadır. Sahada kritik gerçek zamanlı durumsal farkındalık sağlamak için ArcGIS API ve PostgreSQL/PostGIS arka uçları da dahil olmak üzere çeşitli teknolojileri entegre etme konusunda yetkinim.",
                 aboutParagraph3: "Askeri bir sistem veya Atık Yönetim Sistemi gibi sivil bir uygulama olsun, her projeye temel sorunları çözmek için analitik bir zihniyetle yaklaşıyorum. İşbirliğine dayalı ortamlarda gelişiyor, operasyonel ihtiyaçları güvenilir ve verimli yazılımlara dönüştürüyor ve her çözümün ölçülebilir bir stratejik etki sağlamasını sağlıyorum.",
+                serviceRecordTitle: "Hizmet Kaydı",
+                serviceRecord1Date: "HAZİRAN 2025", serviceRecord1Title: "Indo Defence 2024 Katılımcısı", serviceRecord1Org: "REPUBLIKORP", serviceRecord1Desc: "Uluslararası heyetlere ve askeri yetkililere gelişmiş savunma sistemlerini sergileyen kilit bir teknik temsilci olarak görev yaptı.",
+                serviceRecord2Date: "2024 - GÜNÜMÜZ", serviceRecord2Title: "Savaş Yönetim Sistemi", serviceRecord2Org: "REPUBLIKORP & ASELSAN", serviceRecord2Desc: "Askeri koordinasyon verimliliği için sistem mimarisi, kritik modüllerin uygulanması ve entegrasyonundan sorumlu.",
+                serviceRecord3Date: "2025 - GÜNÜMÜZ", serviceRecord3Title: "Caraka 22 Komuta Merkezi", serviceRecord3Org: "Endonezya Ordusu", serviceRecord3Desc: "JavaScript ve ArcGIS API kullanarak dinamik, gerçek zamanlı bir durumsal farkındalık platformunun geliştirilmesine öncülük etti.",
                 projectsTitle: "Görev Kayıtları",
                 project1Title: "Savaş Yönetim Sistemi", project1Description: "REPUBLIKORP ve ASELSAN ile bir Savaş Yönetim Sistemi geliştirdi. Askeri koordinasyon verimliliği için mimari, kritik modül uygulaması ve sistem entegrasyonundan sorumlu.",
                 project2Title: "Atık Yönetim Sistemi", project2Description: "PT Indocement ile bir Atık Yönetim Sistemi uygulaması geliştirdi. Uygulama, atık toplama rotalarını optimize eder, hacmi izler ve geri dönüşüm verimliliğini artırır.",
                 project4Title: "Caraka 22 Komuta Merkezi", project4Description: "Caraka 22 için coğrafi komuta merkezinin geliştirilmesine öncük etti. JavaScript ve ArcGIS API'si kullanılarak dinamik, gerçek zamanlı durumsal farkındalık platformu tasarlandı ve PostgreSQL/PostGIS arka ucuyla entegre edildi.",
                 project5Title: "Indo Defence 2024 Katılımcısı", project5Description: "Indo Defence 2024'te Republikorp için kilit bir teknik temsilci ve katılımcı olarak görev yaptı. Uluslararası heyetlere ve askeri yetkililere gelişmiş sistemleri sergiledi.",
-                skillsTitle: "Yetkinlik Matrisi", skillsLanguagesTitle: "Programlama Dilleri:", skillsFrameworksTitle: "Çerçeveler ve Kütüphaneler:", skillsToolsTitle: "Veritabanları ve Araçlar:", skillsMilitaryTitle: "Askeri Amaçlı:",
+                skillsTitle: "Teknik Yetenekler", skillsLanguagesTitle: "Programlama Dilleri:", skillsFrameworksTitle: "Çerçeveler ve Kütüphaneler:", skillsToolsTitle: "Veritabanları ve Araçlar:", skillsMilitaryTitle: "Askeri Amaçlı:",
                 skillMilitaryTech: "Askeri Teknoloji", skillTacticalKnowledge: "Taktik Bilgi", skillDataLink: "Taktik Veri Bağlantısı", skillAgentSupport: "Akıllı Ajan Desteği", skillIntegration: "Silah ve Lojistik Entegrasyonu",
+                certsTitle: "Ödüller ve Sertifikalar",
+                cert1Title: "Yılın En İyi Öğrencisi", cert1Issuer: "PRAKARYA INTERNASIONAL MESLEK LİSESİ, 2023",
+                cert2Title: "Yazılım Mühendisliği Yetkinliği (BSNP) 0043/P/BSNP/1/2020", cert2Issuer: "PT. LASKAR TEKNOLOGI MULIA (CYBERLABS), 2023",
                 contactTitle: "Güvenli İletişim Kanalı", contactDescription: "Tartışmalara, işbirliklerine veya yeni fırsatlara her zaman açığım. Ulaşmaktan çekinmeyin!",
                 contactNameLabel: "Tam Ad", contactEmailLabel: "E-posta Adresi", contactSubjectLabel: "Konu", contactMessageLabel: "Mesajınız...", contactSubmitButton: "İletimi Gönder",
                 footerCopyright: "© 2025 Giwan Purnama. Tüm Hakları Saklıdır.",
             },
             de: {
                 pageTitle: "Giwan Purnama Portfolio - Software-Ingenieur", brandName: "G//P // INTEL_SIG",
-                navHome: "Dashboard", navAbout: "Profil", navProjects: "Missionen", navSkills: "Kompetenz", navContact: "Kommunikation",
+                navHeaderMain: "HAUPTMENÜ", navHome: "Dashboard",
+                navHeaderProfile: "OPERATIV", navBioData: "Biografische Daten", navServiceRecord: "Dienstakte",
+                navHeaderMissions: "MISSIONEN", navProjects: "Missionsprotokolle",
+                navHeaderCompetency: "KOMPETENZ", navTechSkills: "Technische Fähigkeiten", navCerts: "Auszeichnungen & Zertifikate",
+                navHeaderComms: "KOMMUNIKATION", navContact: "Sicherer Kanal",
                 heroGreeting: "SYSTEM BEREIT // WILLKOMMEN, OPERATOR",
                 heroSubtitle: "Software-Ingenieur // Taktische Technologie",
                 heroDescription: "Erstellung innovativer und effizienter Softwarelösungen zur Lösung komplexer realer Probleme mit Schwerpunkt auf Verteidigungstechnologie und Nachrichtensystemen.",
                 heroButton: "Missionen anzeigen",
                 profileStatus: "STATUS: ", profileClearance: "FREIGABE: ",
                 statusFirewall: "Firewall-Status:", statusDataLink: "Datenverbindung:", statusNetworkSync: "Netzwerksynchronisation:",
-                aboutTitle: "Geheimdienstprofil",
+                aboutTitle: "Biografische Daten",
                 aboutParagraph1: "Ich bin Giwan Purnama, ein Software-Ingenieur, der sich auf die Entwicklung von Verteidigungssystemen und geopatialer Intelligenz spezialisiert hat. Ausgezeichnet mit dem Preis für den besten Schüler der Prakarya Internasional Berufsschule und derzeit mein Studium an der Universitas Terbuka fortsetzend, widme ich meine Fähigkeiten der Schaffung fortschrittlicher Technologielösungen, die strategische Herausforderungen bewältigen.",
                 aboutParagraph2: "Meine Erfahrung reicht von der Architektur komplexer Battle Management Systems (BMS) mit REPUBLIKORP & ASELSAN bis zur Leitung der Entwicklung eines dynamischen Kommandozentrums für die Mission Caraka 22. Ich bin versiert in der Integration verschiedener Technologien, einschließlich der ArcGIS API und PostgreSQL/PostGIS-Backends, um eine entscheidende Echtzeit-Lageerkennung im Feld zu ermöglichen.",
                 aboutParagraph3: "Ich gehe jedes Projekt, ob es sich um ein militärisches System oder eine zivile Anwendung wie das Abfallmanagementsystem handelt, mit einer analytischen Denkweise an, um Kernprobleme zu lösen. Ich gedeihe in kollaborativen Umgebungen, übersetze operative Anforderungen in zuverlässige und effiziente Software und stelle sicher, dass jede Lösung eine messbare strategische Wirkung erzielt.",
+                serviceRecordTitle: "Dienstakte",
+                serviceRecord1Date: "JUNI 2025", serviceRecord1Title: "Aussteller Indo Defence 2024", serviceRecord1Org: "REPUBLIKORP", serviceRecord1Desc: "Diente als wichtiger technischer Vertreter und demonstrierte fortschrittliche Verteidigungssysteme vor internationalen Delegationen und Militärbeamten.",
+                serviceRecord2Date: "2024 - HEUTE", serviceRecord2Title: "Kampfmanagementsystem", serviceRecord2Org: "REPUBLIKORP & ASELSAN", serviceRecord2Desc: "Verantwortlich für Systemarchitektur, Implementierung kritischer Module und Integration zur Effizienz der militärischen Koordination.",
+                serviceRecord3Date: "2025 - HEUTE", serviceRecord3Title: "Caraka 22 Kommandozentrale", serviceRecord3Org: "Indonesische Armee", serviceRecord3Desc: "Leitete die Entwicklung einer dynamischen Echtzeit-Lageerkennungsplattform mit JavaScript und der ArcGIS API.",
                 projectsTitle: "Missionsprotokolle",
                 project1Title: "Kampfmanagementsystem", project1Description: "Entwickelte ein Kampfmanagementsystem mit REPUBLIKORP & ASELSAN. Verantwortlich für Architektur, Implementierung kritischer Module und Systemintegration für die Effizienz der militärischen Koordination.",
                 project2Title: "Abfallwirtschaftssystem", project2Description: "Entwickelte eine Abfallwirtschaftssystem-App mit PT Indocement. Die Anwendung optimiert die Abfallsammelrouten, überwacht das Volumen und verbessert die Recycling-Effizienz.",
                 project4Title: "Caraka 22 Kommandozentrale", project4Description: "Leitete die Entwicklung der geospatialen Kommandozentrale für Caraka 22. Entwickelte eine dynamische Echtzeit-Lageerkennungsplattform mit JavaScript und der ArcGIS API, integriert mit einem PostgreSQL/PostGIS-Backend.",
                 project5Title: "Aussteller Indo Defence 2024", project5Description: "Diente als wichtiger technischer Vertreter und Aussteller für Republikorp auf der Indo Defence 2024. Demonstrierte fortschrittliche Systeme vor internationalen Delegationen und Militärbeamten.",
-                skillsTitle: "Kompetenzmatrix", skillsLanguagesTitle: "Programmiersprachen:", skillsFrameworksTitle: "Frameworks & Bibliotheken:", skillsToolsTitle: "Datenbanken & Tools:", skillsMilitaryTitle: "Militärischer Zweck:",
+                skillsTitle: "Technische Fähigkeiten", skillsLanguagesTitle: "Programmiersprachen:", skillsFrameworksTitle: "Frameworks & Bibliotheken:", skillsToolsTitle: "Datenbanken & Tools:", skillsMilitaryTitle: "Militärischer Zweck:",
                 skillMilitaryTech: "Militärtechnologie", skillTacticalKnowledge: "Taktisches Wissen", skillDataLink: "Taktische Datenverbindung", skillAgentSupport: "Unterstützung durch intelligente Agenten", skillIntegration: "Waffen- und Logistikintegration",
+                certsTitle: "Auszeichnungen & Zertifikate",
+                cert1Title: "Bester Schüler des Jahres", cert1Issuer: "PRAKARYA INTERNASIONAL BERUFSHOCHSCHULE, 2023",
+                cert2Title: "Software Engineering Kompetenz (BSNP) 0043/P/BSNP/1/2020", cert2Issuer: "PT. LASKAR TEKNOLOGI MULIA (CYBERLABS), 2023",
                 contactTitle: "Sicherer Kommunikationskanal", contactDescription: "Ich bin immer offen für Diskussionen, Kooperationen oder neue Möglichkeiten. Zögern Sie nicht, sich zu melden!",
                 contactNameLabel: "Vollständiger Name", contactEmailLabel: "E-Mail-Adresse", contactSubjectLabel: "Betreff", contactMessageLabel: "Ihre Nachricht...", contactSubmitButton: "Übertragung senden",
                 footerCopyright: "© 2025 Giwan Purnama. Alle Rechte vorbehalten.",
             },
             ja: {
                 pageTitle: "ギワン・プルナマ ポートフォリオ - ソフトウェアエンジニア", brandName: "G//P // インテルSIG",
-                navHome: "ダッシュボード", navAbout: "プロフィール", navProjects: "ミッション", navSkills: "能力", navContact: "通信",
+                navHeaderMain: "メイン", navHome: "ダッシュボード",
+                navHeaderProfile: "オペレーター", navBioData: "バイオデータ", navServiceRecord: "勤務記録",
+                navHeaderMissions: "ミッション", navProjects: "ミッションログ",
+                navHeaderCompetency: "能力", navTechSkills: "技術スキル", navCerts: "受賞と認定",
+                navHeaderComms: "通信", navContact: "セキュアチャネル",
                 heroGreeting: "システム準備完了 // ようこそ、オペレーター",
                 heroSubtitle: "ソフトウェアエンジニア // 戦術技術",
                 heroDescription: "防衛技術とインテリジェンスシステムに焦点を当て、複雑な現実世界の問題を解決するための革新的で効率的なソフトウェアソリューションを作成します。",
                 heroButton: "ミッションを見る",
                 profileStatus: "ステータス: ", profileClearance: "クリアランス: ",
                 statusFirewall: "ファイアウォールステータス:", statusDataLink: "データリンク:", statusNetworkSync: "ネットワーク同期:",
-                aboutTitle: "インテリジェンスプロフィール",
+                aboutTitle: "バイオデータ",
                 aboutParagraph1: "私はギワン・プルナマ、防衛システムと地理空間インテリジェンスの開発を専門とするソフトウェアエンジニアです。プラカルヤ国際専門学校から最優秀学生賞を受賞し、現在テルブカ大学で学位取得を目指しており、戦略的課題に対処する高度な技術ソリューションの作成にスキルを捧げています。",
                 aboutParagraph2: "私の経験は、REPUBLIKORP & ASELSANとの複雑な戦闘管理システム（BMS）の設計から、Caraka 22ミッションのための動的なコマンドセンターの開発を主導することまで多岐にわたります。ArcGIS APIやPostgreSQL/PostGISバックエンドなど、さまざまな技術を統合して、現場で重要なリアルタイムの状況認識を提供することに習熟しています。",
                 aboutParagraph3: "私は、軍事システムであれ、廃棄物管理システムのような民間アプリケーションであれ、すべてのプロジェクトに分析的な考え方でアプローチし、核心的な問題を解決します。私は協調的な環境で成長し、運用上のニーズを信頼性が高く効率的なソフトウェアに変換し、すべてのソリューションが測定可能な戦略的影響をもたらすことを保証します。",
+                serviceRecordTitle: "勤務記録",
+                serviceRecord1Date: "2025年6月", serviceRecord1Title: "インドディフェンス2024出展者", serviceRecord1Org: "REPUBLIKORP", serviceRecord1Desc: "主要な技術代表として、国際代表団や軍関係者に高度な防衛システムを実演しました。",
+                serviceRecord2Date: "2024年–現在", serviceRecord2Title: "戦闘管理システム", serviceRecord2Org: "REPUBLIKORP & ASELSAN", serviceRecord2Desc: "軍事調整効率のためのシステムアーキテクチャ、重要モジュールの実装、および統合を担当。",
+                serviceRecord3Date: "2025年–現在", serviceRecord3Title: "カラカ22コマンドセンター", serviceRecord3Org: "インドネシア陸軍", serviceRecord3Desc: "JavaScriptとArcGIS APIを使用した動的リアルタイム状況認識プラットフォームの開発を主導しました。",
                 projectsTitle: "ミッションログ",
                 project1Title: "戦闘管理システム", project1Description: "REPUBLIKORPとASELSANと共同で戦闘管理システムを開発しました。軍事調整効率のためのアーキテクチャ、重要モジュールの実装、システム統合を担当しました。",
                 project2Title: "廃棄物管理システム", project2Description: "PT Indocementと共同で廃棄物管理システムアプリを開発しました。このアプリケーションは、廃棄物収集ルートを最適化し、量を監視し、リサイクル効率を向上させます。",
                 project4Title: "カラカ22コマンドセンター", project4Description: "カラカ22の地理空間コマンドセンターの開発を主導しました。JavaScriptとArcGIS APIを使用して動的なリアルタイム状況認識プラットフォームを設計し、PostgreSQL/PostGISバックエンドと統合しました。",
                 project5Title: "インドディフェンス2024出展者", project5Description: "インドディフェンス2024でRepublikorpの主要な技術代表および出展者として務めました。国際代表団や軍関係者に高度なシステムを実演しました。",
-                skillsTitle: "能力マトリックス", skillsLanguagesTitle: "プログラミング言語：", skillsFrameworksTitle: "フレームワークとライブラリ：", skillsToolsTitle: "データベースとツール：", skillsMilitaryTitle: "軍事目的：",
+                skillsTitle: "技術スキル", skillsLanguagesTitle: "プログラミング言語：", skillsFrameworksTitle: "フレームワークとライブラリ：", skillsToolsTitle: "データベースとツール：", skillsMilitaryTitle: "軍事目的：",
                 skillMilitaryTech: "軍事技術", skillTacticalKnowledge: "戦術知識", skillDataLink: "戦術データリンク", skillAgentSupport: "インテリジェントエージェントサポート", skillIntegration: "兵器とロジスティクスの統合",
+                certsTitle: "受賞と認定",
+                cert1Title: "年間最優秀学生", cert1Issuer: "プラカルヤ国際職業高等学校、2023年",
+                cert2Title: "ソフトウェア工学能力 (BSNP) 0043/P/BSNP/1/2020", cert2Issuer: "PT. LASKAR TEKNOLOGI MULIA (CYBERLABS)、2023年",
                 contactTitle: "安全な通信チャネル", contactDescription: "ディスカッション、コラボレーション、新しい機会についていつでも歓迎します。お気軽にご連絡ください！",
                 contactNameLabel: "フルネーム", contactEmailLabel: "メールアドレス", contactSubjectLabel: "件名", contactMessageLabel: "メッセージ...", contactSubmitButton: "送信を送信",
                 footerCopyright: "© 2025 ギワン・プルナマ。無断複写・転載を禁じます。",
@@ -847,12 +1046,13 @@
         };
 
         let currentLanguage = localStorage.getItem('portfolioLanguage') || 'en';
+
         function applyLanguage(langCode) {
             const lang = translations[langCode] || translations['en'];
             document.querySelectorAll('[data-translate-key]').forEach(element => {
                 const key = element.getAttribute('data-translate-key');
                 if (lang[key]) {
-                    if (key.includes('Paragraph') || key.includes('Description') || key === 'heroName') { // heroName handled by typing effect
+                    if (key.includes('Paragraph') || key.includes('Description') || key === 'heroName' || key.includes('Desc')) {
                         if (key !== 'heroName') element.innerHTML = lang[key];
                     } else {
                         element.textContent = lang[key];
@@ -865,11 +1065,19 @@
             });
             document.title = lang.pageTitle;
             document.documentElement.lang = langCode;
-            document.getElementById('language-select').value = langCode;
+
+            // Sync both language selectors
+            const langSelectorHeader = document.querySelector('#language-selector-container select');
+            if(langSelectorHeader) langSelectorHeader.value = langCode;
+
             localStorage.setItem('portfolioLanguage', langCode);
         }
+
+        const langSelector = document.getElementById('language-select');
+        langSelector.addEventListener('change', (e) => applyLanguage(e.target.value));
+
         applyLanguage(currentLanguage);
-        document.getElementById('language-select').addEventListener('change', (e) => applyLanguage(e.target.value));
+
 
         // --- Skills Radar Chart ---
         function createSkillsChart() {
