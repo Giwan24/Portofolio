@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-translate-key="pageTitle">Giwan Purnama // Intel Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,129 +13,64 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
+    <!-- Chart.js for Skills Radar -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <link rel="icon" href="https://placehold.co/600x600/025159/26FFDF?text=GP&font=Chakra+Petch" type="image/x-icon">
-    
+
     <style>
-        /* --- BATTLEFIELD 2042 THEME --- */
+        /* --- INTEL HUD THEME --- */
         :root {
             --bf-bg-dark: #011C26;
-            --bf-bg-panel: #025159;
+            --bf-bg-panel: rgba(0, 0, 0, 0.3);
             --bf-accent-cyan: #26FFDF;
+            --bf-accent-bg: rgba(38, 255, 222, 0.5);
             --bf-accent-orange: #F26A1B;
-            --bf-accent-red: #FF2C10;
             --bf-text-light: #E0F2F1;
-            --bf-text-dark: #B0BEC5;
+            --bf-text-dark: #8ca5a3;
             --bf-border: rgba(38, 255, 223, 0.3);
-            --bf-border-active: rgba(38, 255, 223, 0.8);
+            --bf-border-active: #26FFDF;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Chakra Petch', sans-serif;
             background-color: var(--bf-bg-dark);
-            color: var(--bf-text-light);
-            text-transform: uppercase;
-            overflow-x: hidden;
-        }
-        
-        /* --- ATMOSPHERIC EFFECTS --- */
-        #scanline-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(255,255,255,0.02) 50%, rgba(0,0,0,0) 100%);
-            background-size: 100% 4px;
-            animation: scanline 10s linear infinite;
-            pointer-events: none;
-            z-index: 30; /* DIUBAH: Agar di bawah navbar */
-        }
-        @keyframes scanline {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 100vh; }
-        }
-        #vignette-effect {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            box-shadow: inset 0 0 25vw rgba(0, 0, 0, 0.9);
-            z-index: 30; /* DIUBAH: Agar di bawah navbar */
-        }
-
-        /* --- UI ELEMENTS --- */
-        .glass-ui {
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--bf-border);
-            clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 0 100%);
-            transition: background 0.3s ease, border-color 0.3s ease;
-        }
-
-        /* --- HEADER & NAVIGATION --- */
-        .header {
-            background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(2, 81, 89, 0.25), rgba(0, 0, 0, 0.5));
-            backdrop-filter: blur(10px);
-        }
-        .nav-link {
-            position: relative;
-            color: var(--bf-text-dark);
-            padding: 8px 12px;
-            transition: color 0.2s ease, text-shadow 0.2s ease;
-        }
-        .nav-link:hover, .nav-link-active {
-            color: var(--bf-accent-cyan);
-            text-shadow: 0 0 8px var(--bf-accent-cyan);
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--bf-accent-cyan);
-            box-shadow: 0 0 8px var(--bf-accent-cyan);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s ease-in-out;
-        }
-        .nav-link:hover::after, .nav-link-active::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-        
-        #mobile-menu {
-             background: rgba(0, 0, 0, 0.7);
-             backdrop-filter: blur(10px);
-             border: 1px solid var(--bf-border);
-             border-top: none;
-        }
-
-        /* --- SECTIONS & TITLES --- */
-        .section-title {
-            color: var(--bf-accent-cyan);
-            text-shadow: 0 0 10px var(--bf-accent-cyan);
-            letter-spacing: 1.5px;
-        }
-        .section-title::before {
-            content: '// ';
-            opacity: 0.7;
-        }
-        
-        /* --- HERO SECTION BACKGROUND --- */
-        #hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: url('https://thumbs.dreamstime.com/b/blue-city-area-background-map-streets-skyline-urban-panorama-cartography-illustration-widescreen-proportion-digital-flat-top-view-293885220.jpg'); /* DIUBAH: URL Gambar Baru */
+            background-image: linear-gradient(rgba(1, 28, 38, 0.85), rgba(1, 28, 38, 0.85)), url('https://e0.pxfuel.com/wallpapers/637/566/desktop-wallpaper-world-map-black-digital-world-map.jpg');
             background-size: cover;
             background-position: center;
-            opacity: 0.35;
-            filter: grayscale(1) brightness(0.4) sepia(1) hue-rotate(150deg) saturate(600%); /* DIUBAH: Filter disesuaikan */
-            z-index: -1;
+            background-attachment: fixed;
+            color: var(--bf-text-light);
+            text-transform: uppercase;
+            overflow: hidden; /* Hide scrollbars during boot */
+            animation: backgroundGridAnimation 30s linear infinite;
+        }
+        @keyframes backgroundGridAnimation {
+            0% { background-position: 0 0; }
+            100% { background-position: -200px -200px; }
         }
 
-        /* --- HERO SECTION & GLITCH EFFECT --- */
+        /* --- ATMOSPHERIC EFFECTS --- */
+        .atmospherics { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; }
+        #scanline-overlay {
+            background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(255,255,255,0.02) 50%, rgba(0,0,0,0) 100%);
+            background-size: 100% 4px; animation: scanline 10s linear infinite;
+        }
+        @keyframes scanline { 0% { background-position: 0 0; } 100% { background-position: 0 100vh; } }
+        #vignette-effect { box-shadow: inset 0 0 20vw rgba(0, 0, 0, 0.9); }
+
+        /* --- BOOT SEQUENCE (WELCOME SCREEN STYLE) --- */
+        #boot-screen {
+            position: fixed; z-index: 99999; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #000;
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column; color: var(--bf-accent-bg);
+            opacity: 1; transition: opacity 1s ease-in-out;
+            font-family: 'Roboto Mono', monospace;
+        }
+        #boot-screen.fade-out { opacity: 0; }
+
         .glitch {
             position: relative;
             animation: glitch-skew 1s infinite linear alternate-reverse;
@@ -144,478 +79,534 @@
             content: attr(data-text);
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bf-bg-dark);
+            background: #000;
             overflow: hidden;
             clip: rect(0, 900px, 0, 0);
         }
         .glitch::before {
             left: 2px;
-            text-shadow: -2px 0 var(--bf-accent-red);
+            text-shadow: -2px 0 #ff2c10;
             animation: glitch-anim-1 2s infinite linear alternate-reverse;
         }
         .glitch::after {
             left: -2px;
-            text-shadow: -2px 0 var(--bf-accent-cyan), 2px 2px var(--bf-accent-red);
+            text-shadow: -2px 0 #26ffdf, 2px 2px #ff2c10;
             animation: glitch-anim-2 3s infinite linear alternate-reverse;
         }
         @keyframes glitch-skew { 0% { transform: skewX(0deg); } 10% { transform: skewX(2deg); } 20% { transform: skewX(-1deg); } 30% { transform: skewX(0.5deg); } 40% { transform: skewX(0deg); } 100% { transform: skewX(0deg); } }
         @keyframes glitch-anim-1 { 0% { clip: rect(25px, 9999px, 89px, 0); } 20% { clip: rect(78px, 9999px, 93px, 0); } 40% { clip: rect(43px, 9999px, 73px, 0); } 60% { clip: rect(60px, 9999px, 80px, 0); } 80% { clip: rect(10px, 9999px, 85px, 0); } 100% { clip: rect(50px, 9999px, 70px, 0); } }
         @keyframes glitch-anim-2 { 0% { clip: rect(68px, 9999px, 11px, 0); } 20% { clip: rect(29px, 9999px, 88px, 0); } 40% { clip: rect(78px, 9999px, 3px, 0); } 60% { clip: rect(8px, 9999px, 49px, 0); } 80% { clip: rect(33px, 9999px, 71px, 0); } 100% { clip: rect(83px, 9999px, 5px, 0); } }
 
-        .hero-button {
+        .logo-glitch { animation: logo-flicker 3s linear infinite; }
+        @keyframes logo-flicker { 0%, 100% { opacity: 1; } 50.2% { opacity: 0.7; transform: skewX(5deg); } 50.5% { opacity: 1; transform: skewX(0); } }
+
+        #boot-sequence .boot-text {
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #loading-bar {
+            width: 0%;
+            box-shadow: 0 0 8px var(--bf-accent-cyan), 0 0 16px var(--bf-accent-cyan);
+            transition: width 4s cubic-bezier(0.4, 1, 0.8, 1);
+        }
+
+        /* --- UI ELEMENTS & ANIMATIONS --- */
+        .hud-panel {
+            background: var(--bf-bg-panel); border: none; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
+            animation: panelHum 10s ease-in-out infinite alternate;
+        }
+        @keyframes panelHum {
+            from { box-shadow: 0 0 5px rgba(38, 255, 223, 0.0); }
+            to { box-shadow: 0 0 15px rgba(38, 255, 223, 0.1); }
+        }
+        .section-title {
+            color: var(--bf-accent-cyan); text-shadow: 0 0 10px var(--bf-accent-cyan);
+            letter-spacing: 1.5px; display: inline-block; padding: 4px 12px;
             background-color: rgba(38, 255, 223, 0.1);
-            border: 1px solid var(--bf-accent-cyan);
-            color: var(--bf-accent-cyan);
-            font-weight: 600;
-            transition: all 0.2s ease;
             clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
         }
-        .hero-button:hover {
-            background-color: var(--bf-accent-cyan);
-            color: var(--bf-bg-dark);
-            box-shadow: 0 0 12px var(--bf-accent-cyan), 0 0 20px var(--bf-accent-cyan);
-            transform: translateY(-2px);
+        .section-title::before { content: '// '; opacity: 0.7; }
+
+        .status-indicator {
+            display: inline-block; padding: 2px 8px;
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+        @keyframes statusPulse {
+            0%, 100% { background-color: transparent; }
+            50% { background-color: rgba(38, 255, 223, 0.1); }
         }
 
-        /* --- PROJECT CARDS --- */
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 0 25px rgba(38, 255, 223, 0.2);
-            border-color: var(--bf-border-active);
+        /* --- MAIN LAYOUT --- */
+        .main-grid {
+            display: grid; grid-template-columns: 240px 1fr; grid-template-rows: auto 1fr auto;
+            min-height: 100vh; gap: 1rem; padding: 1rem;
+            opacity: 0; transition: opacity 0.5s ease-in;
+        }
+        @media (max-width: 1024px) { .main-grid { grid-template-columns: 1fr; grid-template-rows: auto auto 1fr auto; } }
+
+        header { grid-column: 1 / -1; }
+        aside { grid-row: 2 / 3; }
+        main { grid-column: 2 / 3; grid-row: 2 / 3; overflow-y: auto; overflow-x: hidden; }
+        footer { grid-column: 1 / -1; }
+
+        @media (max-width: 1024px) {
+            aside { grid-row: 2 / 3; }
+            #main-nav ul { display: flex; flex-wrap: wrap; justify-content: center; }
+            main { grid-column: 1 / -1; grid-row: 3 / 4; }
         }
 
-        /* --- SKILL TAGS --- */
+        .nav-link {
+            display: flex; align-items: center; gap: 12px; padding: 12px 16px; margin-bottom: 8px;
+            color: var(--bf-text-dark); border-left: 3px solid transparent;
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-link:hover { color: var(--bf-text-light); background: rgba(38, 255, 223, 0.1); }
+        .nav-link.active {
+            color: var(--bf-accent-cyan); border-left-color: var(--bf-border-active);
+            background: rgba(38, 255, 223, 0.1); text-shadow: 0 0 8px var(--bf-accent-cyan);
+            animation: activeFlicker 3s linear infinite;
+        }
+        @keyframes activeFlicker {
+            0%, 100% { text-shadow: 0 0 8px var(--bf-accent-cyan); color: var(--bf-accent-cyan); }
+            50% { text-shadow: 0 0 12px #fff; color: #fff; }
+        }
+
+        .content-section { display: none; animation: fadeIn 0.5s ease-in-out; }
+        .content-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        .typing-cursor {
+            display: inline-block; width: 2px; height: 1.2em;
+            background-color: var(--bf-accent-cyan); animation: blink 0.7s infinite;
+            margin-left: 4px; box-shadow: 0 0 5px var(--bf-accent-cyan);
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .system-status-check { opacity: 0; transform: translateX(-10px); transition: all 0.3s ease-out; }
+
+        /* --- STYLES FOR PROJECT CARDS, FORMS, ETC. --- */
+        .hero-button {
+            background-color: transparent; border: 1px solid var(--bf-accent-cyan); color: var(--bf-accent-cyan);
+            font-weight: 600; transition: all 0.2s ease;
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+        }
+        .hero-button:hover { background-color: var(--bf-accent-cyan); color: var(--bf-bg-dark); box-shadow: 0 0 12px var(--bf-accent-cyan); }
+        .profile-card img { filter: grayscale(1) contrast(1.2) brightness(0.9) sepia(1) hue-rotate(130deg) saturate(500%); }
+
+        .project-card { transition: all 0.3s ease; }
+        .project-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 0 25px rgba(38, 255, 223, 0.2); }
+        .project-card .project-image-container img { transition: transform 0.3s ease; }
+        .project-card:hover .project-image-container img { transform: scale(1.05); }
+
         .skill-tag {
-            background: rgba(1, 28, 38, 0.9);
-            border: 1px solid var(--bf-border);
-            color: var(--bf-text-dark);
-            clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+            background: rgba(1, 28, 38, 0.9); border: 1px solid var(--bf-border);
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
             transition: all 0.2s ease;
         }
-        .skill-tag:hover {
-            background-color: var(--bf-accent-cyan);
-            color: var(--bf-bg-dark);
-            border-color: var(--bf-accent-cyan);
-            transform: scale(1.05);
-            box-shadow: 0 0 8px var(--bf-accent-cyan);
+        .skill-tag:hover { background-color: var(--bf-accent-cyan); color: var(--bf-bg-dark); transform: scale(1.05); }
+        input, textarea, select {
+            background-color: rgba(1, 28, 38, 0.9); border: 1px solid transparent;
+            border-bottom: 1px solid var(--bf-border); color: var(--bf-text-light);
+            padding: 10px; transition: all 0.2s ease;
+            font-family: 'Roboto Mono', monospace; text-transform: none;
         }
-        
-        /* --- CONTACT FORM & INPUTS --- */
-        input[type="text"], input[type="email"], textarea, select {
-            background-color: rgba(1, 28, 38, 0.9);
-            border: 1px solid var(--bf-border);
-            color: var(--bf-text-light);
-            padding: 10px;
-            transition: all 0.2s ease;
-            font-family: 'Roboto Mono', monospace;
-            text-transform: none;
-        }
-        input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focus {
-            outline: none;
-            border-color: var(--bf-accent-cyan);
-            box-shadow: 0 0 8px var(--bf-accent-cyan);
-        }
-        select {
-            -webkit-appearance: none;
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2326FFDF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 0.7rem center;
-            background-size: 1.2em;
-        }
-        
-        /* -- Language Selector Custom Style -- */
-        .language-selector {
-            background-color: transparent;
-            border: 1px solid var(--bf-border);
-            color: var(--bf-text-light);
-            transition: all 0.2s ease;
-        }
-        .language-selector:hover {
-            border-color: var(--bf-accent-cyan);
-        }
-        .language-selector option {
-            background-color: var(--bf-bg-dark);
-            color: var(--bf-text-light);
-        }
+        input:focus, textarea:focus, select:focus { outline: none; border-color: var(--bf-accent-cyan); box-shadow: 0 0 8px var(--bf-accent-cyan); }
+        .social-icon { color: var(--bf-text-dark); transition: all 0.2s ease; }
+        .social-icon:hover { color: var(--bf-accent-cyan); transform: translateY(-3px); filter: drop-shadow(0 0 8px var(--bf-accent-cyan)); }
 
-        /* --- FOOTER & SOCIAL ICONS --- */
-        footer {
-            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
-        }
-        .social-icon {
-            color: var(--bf-text-dark);
-            transition: all 0.2s ease;
-        }
-        .social-icon:hover {
-            color: var(--bf-accent-cyan);
-            transform: translateY(-3px) scale(1.1);
-            filter: drop-shadow(0 0 8px var(--bf-accent-cyan));
-        }
-
-        /* --- FADE-IN ANIMATION --- */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* --- SCROLLBAR --- */
+        main::-webkit-scrollbar { width: 8px; }
+        main::-webkit-scrollbar-track { background: transparent; }
+        main::-webkit-scrollbar-thumb { background: var(--bf-border-active); border-radius: 4px; }
+        main::-webkit-scrollbar-thumb:hover { background: #5fffe9; }
     </style>
 </head>
 <body class="antialiased">
-    <!-- Atmospheric overlays -->
+<!-- Boot Sequence -->
+<div id="boot-screen">
     <div id="scanline-overlay"></div>
-    <div id="vignette-effect"></div>
-
-    <header class="header fixed w-full z-40"> <!-- z-index dinaikkan -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex items-center">
-                    <a href="#" class="font-bold text-2xl tracking-widest text-[var(--bf-accent-cyan)]" data-translate-key="brandName" style="text-shadow: 0 0 8px var(--bf-accent-cyan);">Giwan Purnama</a>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4"> 
-                        <a href="#hero" class="nav-link nav-link-active" data-translate-key="navHome">Home</a>
-                        <a href="#about" class="nav-link" data-translate-key="navAbout">Tentang Saya</a>
-                        <a href="#projects" class="nav-link" data-translate-key="navProjects">Proyek</a>
-                        <a href="#skills" class="nav-link" data-translate-key="navSkills">Keahlian</a>
-                        <a href="#contact" class="nav-link" data-translate-key="navContact">Kontak</a>
-                        
-                        <div class="pl-4">
-                             <select id="language-select" class="language-selector p-2 rounded-none text-sm font-mono">
-                                <option value="en">🇺🇸 EN</option>
-                                <option value="id">🇮🇩 ID</option>
-                                <option value="hi">🇮🇳 HI</option>
-                                <option value="zh">🇨🇳 ZH</option>
-                                <option value="ko">🇰🇷 KO</option>
-                                <option value="ar">🇸🇦 AR</option>
-                                <option value="tr">🇹🇷 TR</option>
-                                <option value="de">🇩🇪 DE</option>
-                                <option value="ja">🇯🇵 JA</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button" class="text-[var(--bf-text-light)] hover:text-[var(--bf-accent-cyan)] focus:outline-none p-2 rounded-md">
-                        <i data-lucide="menu" class="h-6 w-6"></i>
-                    </button>
-                </div>
+    <div class="text-left font-mono max-w-2xl w-full p-8">
+        <div class="flex items-center space-x-6 mb-8">
+            <svg width="96" height="96" viewBox="0 0 24 24" class="logo-glitch" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="color: var(--bf-accent-cyan); filter: drop-shadow(0 0 15px var(--bf-accent-cyan));">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <line x1="12" y1="2" x2="12" y2="8"></line>
+                <line x1="12" y1="16" x2="12" y2="22"></line>
+                <line x1="2" y1="12" x2="8" y2="12"></line>
+                <line x1="16" y1="12" x2="22" y2="12"></line>
+            </svg>
+            <div>
+                <h1 class="text-5xl font-bold tracking-widest glitch" data-text="G//P INTEL-SIG">G//P INTEL-SIG</h1>
+                <p class="text-xl text-gray-400 tracking-wider">PORTFOLIO INTERFACE</p>
             </div>
         </div>
-        <div id="mobile-menu" class="md-hidden hidden">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#hero" class="block nav-link text-center py-2 px-3 text-base" data-translate-key="navHome">Home</a>
-                <a href="#about" class="block nav-link text-center py-2 px-3 text-base" data-translate-key="navAbout">Tentang Saya</a>
-                <a href="#projects" class="block nav-link text-center py-2 px-3 text-base" data-translate-key="navProjects">Proyek</a>
-                <a href="#skills" class="block nav-link text-center py-2 px-3 text-base" data-translate-key="navSkills">Keahlian</a>
-                <a href="#contact" class="block nav-link text-center py-2 px-3 text-base" data-translate-key="navContact">Kontak</a>
-                 <div class="relative mt-2 p-2">
-                     <select id="language-select-mobile" class="language-selector w-full text-center p-2 text-sm font-mono">
-                        <option value="en">🇺🇸 English</option>
-                        <option value="id">🇮🇩 Bahasa Indonesia</option>
-                        <option value="hi">🇮🇳 हिंदी (Hindi)</option>
-                        <option value="zh">🇨🇳 中文 (Chinese)</option>
-                        <option value="ko">🇰🇷 한국어 (Korean)</option>
-                        <option value="ar">🇸🇦 العربية (Arabic)</option>
-                        <option value="tr">🇹🇷 Türkçe (Turkish)</option>
-                        <option value="de">🇩🇪 Deutsch (German)</option>
-                        <option value="ja">🇯🇵 日本語 (Japanese)</option>
-                    </select>
-                </div>
+
+        <div id="boot-sequence" class="text-lg space-y-1 h-40">
+            <!-- Boot text will be injected here by JS -->
+        </div>
+
+        <div class="mt-8">
+            <div class="w-full bg-cyan-400/10 h-1">
+                <div id="loading-bar" class="bg-[var(--bf-accent-cyan)] h-1"></div>
             </div>
+            <p id="loading-status" class="text-center mt-2 text-gray-400 tracking-widest text-sm">// INITIALIZING INTERFACE...</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- Atmospheric overlays -->
+<div class="atmospherics">
+    <div id="scanline-overlay"></div>
+    <div id="vignette-effect"></div>
+</div>
+
+<div class="main-grid max-w-screen-2xl mx-auto">
+    <!-- HEADER -->
+    <header class="hud-panel flex justify-between items-center p-4">
+        <a href="#" class="font-bold text-xl md:text-2xl tracking-widest text-[var(--bf-accent-cyan)]" data-translate-key="brandName" style="text-shadow: 0 0 8px var(--bf-accent-cyan);">
+            G//P // INTEL_SIG
+        </a>
+        <div>
+            <select id="language-select" class="bg-transparent border-0 p-2 rounded-none text-sm font-mono focus:outline-none focus:ring-1 focus:ring-[var(--bf-accent-cyan)]">
+                <option class="bg-[var(--bf-bg-dark)]" value="en">🇺🇸 EN</option>
+                <option class="bg-[var(--bf-bg-dark)]" value="id">🇮🇩 ID</option>
+                <option class="bg-[var(--bf-bg-dark)]" value="hi">🇮🇳 HI</option>
+                <option class="bg-[var(--bf-bg-dark)]" value="zh">🇨🇳 ZH</option>
+                <option class="bg-[var(--bf-bg-dark)]" value="ko">🇰🇷 KO</option>
+                <option class="bg-[var(--bf-bg-dark)]" value="ar">🇸🇦 AR</option>
+                <option class="bg-[var(--bf-bg-dark)]" value="tr">🇹🇷 TR</option>
+                <option class="bg-[var(--bf-bg-dark)]" value="de">🇩🇪 DE</option>
+                <option class="bg-[var(--bf-bg-dark)]" value="ja">🇯🇵 JA</option>
+            </select>
         </div>
     </header>
 
-    <main class="relative z-10">
-        <section id="hero" class="relative isolate min-h-screen flex items-center justify-center text-center px-4 pt-20"> <!-- DIUBAH: Menambahkan 'isolate' untuk memperbaiki bug background -->
-            <div class="max-w-4xl mx-auto">
-                <img src="giwan.jpg" alt="Foto Giwan Purnama" class="w-40 h-40 mx-auto rounded-full mb-8 border-2 border-[var(--bf-accent-cyan)]" style="box-shadow: 0 0 20px var(--bf-accent-cyan), 0 0 40px rgba(38, 255, 223, 0.5);">
-                <h1 class="text-5xl md:text-7xl font-bold mb-4 glitch" data-text="GIWAN PURNAMA" data-translate-key="heroName">Giwan Purnama</h1>
-                <p class="text-2xl md:text-3xl font-light mb-8 text-[var(--bf-text-dark)] tracking-widest" data-translate-key="heroSubtitle">Software Engineer</p>
-                <p class="text-lg max-w-2xl mx-auto mb-10 font-mono text-base" data-translate-key="heroDescription">
-                    Saya adalah seorang software engineer yang bersemangat dalam menciptakan solusi perangkat lunak yang inovatif dan efisien untuk memecahkan masalah dunia nyata.
-                </p>
-                <a href="#projects" class="hero-button text-white font-semibold py-3 px-8 text-lg inline-flex items-center" data-translate-key="heroButton">
-                    Lihat Proyek Saya <i data-lucide="arrow-down-right" class="ml-2 h-5 w-5"></i>
-                </a>
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="hud-panel p-4" id="main-nav">
+        <ul>
+            <li><a href="#home" class="nav-link active"><i data-lucide="layout-dashboard"></i> <span data-translate-key="navHome">Dashboard</span></a></li>
+            <li><a href="#about" class="nav-link"><i data-lucide="user"></i> <span data-translate-key="navAbout">Profil</span></a></li>
+            <li><a href="#projects" class="nav-link"><i data-lucide="folder-git-2"></i> <span data-translate-key="navProjects">Misi</span></a></li>
+            <li><a href="#skills" class="nav-link"><i data-lucide="scan-line"></i> <span data-translate-key="navSkills">Kompetensi</span></a></li>
+            <li><a href="#contact" class="nav-link"><i data-lucide="satellite-dish"></i> <span data-translate-key="navContact">Komunikasi</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- HOME / DASHBOARD SECTION -->
+        <section id="home" class="content-section active">
+            <div class="grid lg:grid-cols-3 gap-6 h-full">
+                <div class="lg:col-span-2 hud-panel p-8 flex flex-col justify-center">
+                    <div>
+                        <p class="text-lg text-[var(--bf-accent-cyan)] font-mono" data-translate-key="heroGreeting">SYSTEM READY // WELCOME, OPERATIVE</p>
+                        <h1 class="text-5xl md:text-7xl font-bold my-4">
+                            <span id="typed-name"></span><span class="typing-cursor"></span>
+                        </h1>
+                        <p class="text-xl md:text-2xl text-[var(--bf-text-dark)] tracking-widest" data-translate-key="heroSubtitle">Software Engineer // Tactical Tech</p>
+                    </div>
+                    <div class="mt-8 font-mono text-sm text-[var(--bf-text-dark)] space-y-4">
+                        <p data-translate-key="heroDescription">Menciptakan solusi perangkat lunak yang inovatif dan efisien untuk memecahkan masalah kompleks di dunia nyata, dengan fokus pada teknologi pertahanan dan sistem intelijen.</p>
+                        <div class="mt-4 space-y-2">
+                            <p class="system-status-check"><i data-lucide="shield-check" class="inline-block h-4 w-4 mr-2 text-green-400"></i><span data-translate-key="statusFirewall">Firewall Status:</span> <span class="text-green-400 status-indicator">SECURE</span></p>
+                            <p class="system-status-check"><i data-lucide="bar-chart-2" class="inline-block h-4 w-4 mr-2 text-cyan-400"></i><span data-translate-key="statusDataLink">Data Link:</span> <span class="text-cyan-400 status-indicator">STABLE</span></p>
+                            <p class="system-status-check"><i data-lucide="git-fork" class="inline-block h-4 w-4 mr-2 text-yellow-400"></i><span data-translate-key="statusNetworkSync">Network Sync:</span> <span class="text-yellow-400 status-indicator">SYNCHRONIZED</span></p>
+                        </div>
+                    </div>
+                    <div class="mt-10">
+                        <a href="#projects" class="hero-button text-white font-semibold py-3 px-8 text-lg inline-flex items-center nav-trigger" data-translate-key="heroButton">
+                            Lihat Misi <i data-lucide="arrow-right" class="ml-2 h-5 w-5"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hud-panel p-4 profile-card flex flex-col items-center justify-center">
+                    <img src="giwan.jpg" alt="Foto Giwan Purnama" class="w-40 h-40 rounded-full border-2 border-[var(--bf-accent-cyan)]" style="box-shadow: 0 0 20px var(--bf-accent-cyan);">
+                    <p class="mt-4 text-xl font-semibold" data-translate-key="heroName">Giwan Purnama</p>
+                    <p class="text-[var(--bf-text-dark)] text-sm">
+                        <span data-translate-key="profileStatus"></span><span class="text-[var(--bf-accent-cyan)]">ACTIVE</span>
+                    </p>
+                    <p class="text-[var(--bf-text-dark)] text-sm">
+                        <span data-translate-key="profileClearance"></span><span class="text-[var(--bf-accent-cyan)]">LEVEL 5</span>
+                    </p>
+                </div>
             </div>
         </section>
 
-        <section id="about" class="py-20 px-4 fade-in-section">
-            <div class="max-w-5xl mx-auto">
-                <h2 class="text-4xl font-bold text-center mb-12 section-title" data-translate-key="aboutTitle">Tentang Saya</h2>
-                <div class="glass-ui p-8 md:p-12">
-                    <div class="grid md:grid-cols-5 gap-12 items-center">
-                        <div class="md:col-span-2">
-                            <img src="giwan2.webp" alt="Ilustrasi Tentang Saya" class="w-full" style="clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%); border: 1px solid var(--bf-border);">
-                        </div>
-                        <div class="md:col-span-3 text-lg leading-relaxed font-mono text-sm text-[var(--bf-text-dark)] space-y-4">
-                            <p data-translate-key="aboutParagraph1"></p>
-                            <p data-translate-key="aboutParagraph2"></p>
-                            <p data-translate-key="aboutParagraph3"></p>
-                        </div>
+        <!-- ABOUT / PROFILE SECTION -->
+        <section id="about" class="content-section">
+            <div class="hud-panel p-8">
+                <h2 class="text-3xl font-bold mb-8 section-title" data-translate-key="aboutTitle">Profil Intelijen</h2>
+                <div class="grid md:grid-cols-5 gap-10 items-center">
+                    <div class="md:col-span-2">
+                        <img src="giwan2.webp" alt="Ilustrasi Tentang Saya" class="w-full" style="clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%); border: 1px solid var(--bf-border);">
+                    </div>
+                    <div class="md:col-span-3 font-mono text-sm text-[var(--bf-text-dark)] space-y-4">
+                        <p data-translate-key="aboutParagraph1"></p>
+                        <p data-translate-key="aboutParagraph2"></p>
+                        <p data-translate-key="aboutParagraph3"></p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="projects" class="py-20 px-4 fade-in-section">
-            <div class="max-w-7xl mx-auto">
-                <h2 class="text-4xl font-bold text-center mb-12 section-title" data-translate-key="projectsTitle">Proyek Unggulan</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-                    <!-- Project Card 1 -->
-                    <div class="project-card glass-ui">
-                        <div class="overflow-hidden">
-                            <img src="bms.jpg" alt="Battle Management System" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105">
+        <!-- PROJECTS / MISSIONS SECTION -->
+        <section id="projects" class="content-section">
+            <div class="hud-panel p-8">
+                <h2 class="text-3xl font-bold mb-8 section-title" data-translate-key="projectsTitle">Log Misi</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Project 1 -->
+                    <div class="project-card hud-panel p-0 overflow-hidden">
+                        <div class="project-image-container overflow-hidden aspect-video">
+                            <img src="bms.jpg" alt="Battlefield Management System" class="w-full h-full object-cover">
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-white" data-translate-key="project1Title">Battle Management System</h3>
-                            <p class="text-[var(--bf-text-dark)] text-sm mb-6 font-mono h-24" data-translate-key="project1Description"></p> <!-- Margin bottom ditambah -->
-                            <div class="flex flex-wrap gap-2 text-xs">
-                                <span class="skill-tag px-3 py-1">Kotlin</span>
-                                <span class="skill-tag px-3 py-1">Java</span>
-                                <span class="skill-tag px-3 py-1">Arcgis</span>
-                                <span class="skill-tag px-3 py-1">PostgreSQL</span>
-                            </div>
+                            <h3 class="text-xl font-semibold mb-2 text-white" data-translate-key="project1Title">Battlefield Management System</h3>
+                            <p class="text-[var(--bf-text-dark)] text-sm mb-4 font-mono h-24" data-translate-key="project1Description"></p>
+                            <div class="flex flex-wrap gap-2 text-xs"><strong class="w-full text-[var(--bf-accent-cyan)] text-xs">TECH DEPLOYED:</strong> <span class="skill-tag px-3 py-1">Kotlin</span><span class="skill-tag px-3 py-1">Java</span><span class="skill-tag px-3 py-1">Arcgis</span><span class="skill-tag px-3 py-1">PostgreSQL</span></div>
                         </div>
                     </div>
-                    <!-- Project Card 4 -->
-                    <div class="project-card glass-ui">
-                        <div class="overflow-hidden">
-                            <img src="caraka.jpg" alt="Caraka 22 Command Center" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105">
+                    <!-- Project 4 -->
+                    <div class="project-card hud-panel p-0 overflow-hidden">
+                        <div class="project-image-container overflow-hidden aspect-video">
+                            <img src="caraka.jpg" alt="Caraka 22 Command Center" class="w-full h-full object-cover">
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-white" data-translate-key="project4Title">Caraka 22 Command Center</h3>
-                            <p class="text-[var(--bf-text-dark)] text-sm mb-6 font-mono h-24" data-translate-key="project4Description"></p> <!-- Margin bottom ditambah -->
-                            <div class="flex flex-wrap gap-2 text-xs">
-                                <span class="skill-tag px-3 py-1">JavaScript</span>
-                                <span class="skill-tag px-3 py-1">ArcGIS API</span>
-                                <span class="skill-tag px-3 py-1">PostgreSQL</span>
-                                <span class="skill-tag px-3 py-1">PostGIS</span>
-                            </div>
+                            <p class="text-[var(--bf-text-dark)] text-sm mb-4 font-mono h-24" data-translate-key="project4Description"></p>
+                            <div class="flex flex-wrap gap-2 text-xs"><strong class="w-full text-[var(--bf-accent-cyan)] text-xs">TECH DEPLOYED:</strong> <span class="skill-tag px-3 py-1">JavaScript</span><span class="skill-tag px-3 py-1">ArcGIS API</span><span class="skill-tag px-3 py-1">PostgreSQL</span><span class="skill-tag px-3 py-1">PostGIS</span></div>
                         </div>
                     </div>
-                    <!-- Project Card 5 -->
-                    <div class="project-card glass-ui">
-                        <div class="overflow-hidden">
-                            <img src="indodefence.jpg" alt="Indo Defence 2024 Expo" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105">
+                    <!-- Project 5 -->
+                    <div class="project-card hud-panel p-0 overflow-hidden">
+                        <div class="project-image-container overflow-hidden aspect-video">
+                            <img src="indodefence.jpg" alt="Indo Defence 2024 Exhibitor" class="w-full h-full object-cover">
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-white" data-translate-key="project5Title">Indo Defence 2024 Exhibitor</h3>
-                            <p class="text-[var(--bf-text-dark)] text-sm mb-6 font-mono h-24" data-translate-key="project5Description"></p> <!-- Margin bottom ditambah -->
-                            <div class="flex flex-wrap gap-2 text-xs">
-                                <span class="skill-tag px-3 py-1">Technical Representative</span>
-                                <span class="skill-tag px-3 py-1">System Demonstration</span>
-                            </div>
+                            <p class="text-[var(--bf-text-dark)] text-sm mb-4 font-mono h-24" data-translate-key="project5Description"></p>
+                            <div class="flex flex-wrap gap-2 text-xs"><strong class="w-full text-[var(--bf-accent-cyan)] text-xs">TECH DEPLOYED:</strong> <span class="skill-tag px-3 py-1">Technical Rep</span><span class="skill-tag px-3 py-1">System Demo</span></div>
                         </div>
                     </div>
-                    <!-- Project Card 2 -->
-                    <div class="project-card glass-ui">
-                       <div class="overflow-hidden">
-                            <img src="wms.jpg" alt="Waste Management System" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105">
+                    <!-- Project 2 -->
+                    <div class="project-card hud-panel p-0 overflow-hidden">
+                        <div class="project-image-container overflow-hidden aspect-video">
+                            <img src="wms.jpg" alt="Waste Management System" class="w-full h-full object-cover">
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-white" data-translate-key="project2Title">Waste Management System</h3>
-                            <p class="text-[var(--bf-text-dark)] text-sm mb-6 font-mono h-24" data-translate-key="project2Description"></p> <!-- Margin bottom ditambah -->
-                           <div class="flex flex-wrap gap-2 text-xs">
+                            <p class="text-[var(--bf-text-dark)] text-sm mb-4 font-mono h-24" data-translate-key="project2Description"></p>
+                            <div class="flex flex-wrap gap-2 text-xs"><strong class="w-full text-[var(--bf-accent-cyan)] text-xs">TECH DEPLOYED:</strong> <span class="skill-tag px-3 py-1">Kotlin</span><span class="skill-tag px-3 py-1">Jetpack Compose</span><span class="skill-tag px-3 py-1">Laravel</span><span class="skill-tag px-3 py-1">MongoDB</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS / COMPETENCY SECTION -->
+        <section id="skills" class="content-section">
+            <div class="hud-panel p-8">
+                <h2 class="text-3xl font-bold mb-8 section-title" data-translate-key="skillsTitle">Matriks Kompetensi</h2>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <canvas id="skillsRadarChart"></canvas>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-lg font-semibold text-[var(--bf-accent-cyan)]" data-translate-key="skillsMilitaryTitle">Military Purpose:</h3>
+                            <div class="flex flex-wrap gap-2 mt-2">
+                                <span class="skill-tag px-3 py-1" data-translate-key="skillMilitaryTech">Military Technology</span>
+                                <span class="skill-tag px-3 py-1" data-translate-key="skillTacticalKnowledge">Tactical Knowledge</span>
+                                <span class="skill-tag px-3 py-1" data-translate-key="skillDataLink">Tactical Data Link</span>
+                                <span class="skill-tag px-3 py-1" data-translate-key="skillAgentSupport">Intelligent Agent Support</span>
+                                <span class="skill-tag px-3 py-1" data-translate-key="skillIntegration">Weaponry & Logistics Integration</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-[var(--bf-accent-cyan)]" data-translate-key="skillsLanguagesTitle">Programming Languages:</h3>
+                            <div class="flex flex-wrap gap-2 mt-2">
                                 <span class="skill-tag px-3 py-1">Kotlin</span>
+                                <span class="skill-tag px-3 py-1">Java</span>
+                                <span class="skill-tag px-3 py-1">JavaScript</span>
+                                <span class="skill-tag px-3 py-1">PHP</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-[var(--bf-accent-cyan)]" data-translate-key="skillsFrameworksTitle">Frameworks & Libraries:</h3>
+                            <div class="flex flex-wrap gap-2 mt-2">
+                                <span class="skill-tag px-3 py-1">Kotlin Gradle</span>
                                 <span class="skill-tag px-3 py-1">Jetpack Compose</span>
+                                <span class="skill-tag px-3 py-1">Vue.js</span>
                                 <span class="skill-tag px-3 py-1">Laravel</span>
+                                <span class="skill-tag px-3 py-1">JavaFX</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-[var(--bf-accent-cyan)]" data-translate-key="skillsToolsTitle">Databases & Tools:</h3>
+                            <div class="flex flex-wrap gap-2 mt-2">
                                 <span class="skill-tag px-3 py-1">MongoDB</span>
+                                <span class="skill-tag px-3 py-1">PostgreSQL</span>
+                                <span class="skill-tag px-3 py-1">PostGIS</span>
+                                <span class="skill-tag px-3 py-1">ArcGIS</span>
+                                <span class="skill-tag px-3 py-1">Git & GitHub</span>
+                                <span class="skill-tag px-3 py-1">Docker</span>
                             </div>
-                        </div>
-                    </div>
-                    <!-- Project Card 3 -->
-                    <div class="project-card glass-ui">
-                       <div class="overflow-hidden">
-                            <img src="meta-ads.jpg" alt="SEO & Meta Ads" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105">
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-white" data-translate-key="project3Title">SEO & Meta Advertisement Analyst</h3>
-                            <p class="text-[var(--bf-text-dark)] text-sm mb-6 font-mono h-24" data-translate-key="project3Description"></p> <!-- Margin bottom ditambah -->
-                            <div class="flex flex-wrap gap-2 text-xs">
-                                <span class="skill-tag px-3 py-1">Meta Ads</span>
-                                <span class="skill-tag px-3 py-1">Google Adsense</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <section id="skills" class="py-20 px-4 fade-in-section">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-4xl font-bold text-center mb-12 section-title" data-translate-key="skillsTitle">Keahlian Teknis</h2>
-                <div class="glass-ui p-8 md:p-12 space-y-8">
-                    <!-- DIUBAH: Urutan Military Purpose dipindahkan ke atas -->
-                    <div>
-                        <h3 class="text-xl font-semibold text-[var(--bf-accent-cyan)] mb-4 text-center" data-translate-key="skillsMilitaryTitle">Military Purpose:</h3>
-                        <div class="flex flex-wrap justify-center gap-3">
-                            <span class="skill-tag px-4 py-2" data-translate-key="skillMilitaryTech">Teknologi Militer</span>
-                            <span class="skill-tag px-4 py-2" data-translate-key="skillTacticalKnowledge">Pengetahuan Taktikal</span>
-                            <span class="skill-tag px-4 py-2" data-translate-key="skillDataLink">Taktikal Data Link</span>
-                            <span class="skill-tag px-4 py-2" data-translate-key="skillAgentSupport">Intelligent Agent Support</span>
-                            <span class="skill-tag px-4 py-2" data-translate-key="skillIntegration">Integrasi Persenjataan & Logistik</span>
-                        </div>
-                    </div>
-                    <div class="border-t border-[var(--bf-border)] my-6"></div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-[var(--bf-accent-cyan)] mb-4 text-center" data-translate-key="skillsLanguagesTitle">Bahasa Pemrograman:</h3>
-                        <div class="flex flex-wrap justify-center gap-3">
-                            <span class="skill-tag px-4 py-2">Kotlin</span>
-                            <span class="skill-tag px-4 py-2">Java</span>
-                            <span class="skill-tag px-4 py-2">JavaScript</span>
-                            <span class="skill-tag px-4 py-2">PHP</span>
-                        </div>
-                    </div>
-                    <div class="border-t border-[var(--bf-border)] my-6"></div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-[var(--bf-accent-cyan)] mb-4 text-center" data-translate-key="skillsFrameworksTitle">Framework & Library:</h3>
-                        <div class="flex flex-wrap justify-center gap-3">
-                            <span class="skill-tag px-4 py-2">Kotlin Gradle</span>
-                            <span class="skill-tag px-4 py-2">Jetpack Compose</span>
-                            <span class="skill-tag px-4 py-2">Vue.js</span>
-                            <span class="skill-tag px-4 py-2">Laravel</span>
-                            <span class="skill-tag px-4 py-2">JavaFX</span>
-                        </div>
-                    </div>
-                    <div class="border-t border-[var(--bf-border)] my-6"></div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-[var(--bf-accent-cyan)] mb-4 text-center" data-translate-key="skillsToolsTitle">Database & Tools:</h3>
-                        <div class="flex flex-wrap justify-center gap-3">
-                            <span class="skill-tag px-4 py-2">MongoDB</span>
-                            <span class="skill-tag px-4 py-2">PostgreSQL</span>
-                            <span class="skill-tag px-4 py-2">PostGIS</span>
-                            <span class="skill-tag px-4 py-2">ArcGIS</span>
-                            <span class="skill-tag px-4 py-2">Git & GitHub</span>
-                            <span class="skill-tag px-4 py-2">Docker</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="py-20 px-4 fade-in-section">
-            <div class="max-w-3xl mx-auto">
-                <h2 class="text-4xl font-bold text-center mb-6 section-title" data-translate-key="contactTitle">Hubungi Saya</h2>
-                <p class="text-center text-[var(--bf-text-dark)] mb-10 text-base font-mono" data-translate-key="contactDescription">
-                    Terbuka untuk diskusi, kolaborasi, atau peluang baru.
-                </p>
-                <form action="https://formspree.io/f/myzwaejz" method="POST" class="glass-ui p-8 space-y-6">
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-[var(--bf-text-dark)]" data-translate-key="contactNameLabel">Nama Lengkap</label>
-                        <input type="text" name="name" id="name" required class="mt-1 block w-full">
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="content-section">
+            <div class="hud-panel p-8">
+                <h2 class="text-3xl font-bold mb-4 section-title" data-translate-key="contactTitle">Kanal Komunikasi Aman</h2>
+                <p class="text-[var(--bf-text-dark)] mb-8 font-mono text-sm" data-translate-key="contactDescription">Terbuka untuk diskusi, kolaborasi, atau peluang baru.</p>
+                <form action="https://formspree.io/f/myzwaejz" method="POST" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <input type="text" name="name" placeholder="Nama Lengkap" required data-translate-placeholder="contactNameLabel">
+                        <input type="email" name="email" placeholder="Alamat Email" required data-translate-placeholder="contactEmailLabel">
                     </div>
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-[var(--bf-text-dark)]" data-translate-key="contactEmailLabel">Alamat Email</label>
-                        <input type="email" name="email" id="email" required class="mt-1 block w-full">
-                    </div>
-                    <div>
-                        <label for="subject" class="block text-sm font-medium text-[var(--bf-text-dark)]" data-translate-key="contactSubjectLabel">Subjek</label>
-                        <input type="text" name="subject" id="subject" required class="mt-1 block w-full">
-                    </div>
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-[var(--bf-text-dark)]" data-translate-key="contactMessageLabel">Pesan</label>
-                        <textarea id="message" name="message" rows="4" required class="mt-1 block w-full"></textarea>
-                    </div>
-                    <div>
-                        <button type="submit" class="w-full flex justify-center py-3 px-4 hero-button text-sm font-medium" data-translate-key="contactSubmitButton">
-                            Kirim Pesan
-                        </button>
-                    </div>
+                    <input type="text" name="subject" placeholder="Subjek" required class="w-full" data-translate-placeholder="contactSubjectLabel">
+                    <textarea name="message" rows="5" placeholder="Pesan Anda..." required class="w-full" data-translate-placeholder="contactMessageLabel"></textarea>
+                    <button type="submit" class="w-full justify-center py-3 px-4 hero-button text-sm font-medium" data-translate-key="contactSubmitButton">
+                        Kirim Transmisi
+                    </button>
                 </form>
-                <div id="form-feedback" class="mt-4 text-center font-mono text-sm"></div> 
-                <div class="mt-12 text-center">
-                    <p class="text-[var(--bf-text-dark)] mb-2" data-translate-key="contactOrReachOut">Atau hubungi saya melalui:</p>
-                    <a href="mailto:giwan24april@gmail.com" class="text-[var(--bf-accent-cyan)] hover:underline text-lg font-mono">giwan24april@gmail.com</a>
-                    <div class="flex justify-center space-x-8 mt-6">
-                        <a href="https://www.linkedin.com/in/giwan-purnama-79724b22a" class="social-icon" target="_blank"><i data-lucide="linkedin" class="h-7 w-7"></i></a>
-                        <a href="https://github.com/Giwan24" class="social-icon" target="_blank"><i data-lucide="github" class="h-7 w-7"></i></a>
-                        <a href="https://www.instagram.com/giwan_24/" class="social-icon" target="_blank"><i data-lucide="instagram" class="h-7 w-7"></i></a>
-                        <a href="https://wa.me/6285795921074" class="social-icon" target="_blank"><i data-lucide="send" class="h-7 w-7"></i></a>
-                    </div>
-                </div>
+                <div id="form-feedback" class="mt-4 text-center font-mono text-sm"></div>
             </div>
         </section>
     </main>
 
-    <footer class="border-t border-[var(--bf-border)] text-[var(--bf-text-dark)] py-8 text-center mt-10">
-        <p class="font-mono text-sm" data-translate-key="footerCopyright">Copyright 2025 Giwan Purnama. All rights reserved.</p>
+    <!-- FOOTER -->
+    <footer class="hud-panel p-4 flex justify-between items-center text-sm">
+        <p class="font-mono text-[var(--bf-text-dark)]" data-translate-key="footerCopyright">© 2025 Giwan Purnama</p>
+        <div class="flex items-center space-x-6">
+            <a href="https://www.linkedin.com/in/giwan-purnama-79724b22a" class="social-icon" target="_blank"><i data-lucide="linkedin" class="h-5 w-5"></i></a>
+            <a href="https://github.com/Giwan24" class="social-icon" target="_blank"><i data-lucide="github" class="h-5 w-5"></i></a>
+            <a href="https://www.instagram.com/giwan_24/" class="social-icon" target="_blank"><i data-lucide="instagram" class="h-5 w-5"></i></a>
+            <a href="https://wa.me/6285795921074" class="social-icon" target="_blank"><i data-lucide="send" class="h-5 w-5"></i></a>
+        </div>
     </footer>
-    
-    <script>
-        // Initialize Lucide Icons
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const bootScreen = document.getElementById('boot-screen');
+        const mainGrid = document.querySelector('.main-grid');
+        const bootSequenceContainer = document.getElementById('boot-sequence');
+        const loadingBar = document.getElementById('loading-bar');
+        const loadingStatus = document.getElementById('loading-status');
+
+        const bootMessages = [
+            { text: "Booting kernel...", delay: 200 },
+            { text: "Loading geospatial modules... <span class='text-green-400'>OK</span>", delay: 500 },
+            { text: "Calibrating renderer... <span class='text-green-400'>OK</span>", delay: 300 },
+            { text: "Establishing secure link... <span class='text-yellow-400'>ACTIVE</span>", delay: 800 },
+            { text: "Verifying credentials... <span class='text-green-400'>AUTHORIZED</span>", delay: 600 },
+            { text: "Finalizing UI... Welcome, <span class='text-white'>Operative</span>.", delay: 400 }
+        ];
+
+        let totalDelay = 500;
+        setTimeout(() => { loadingBar.style.width = '100%'; }, 100);
+
+        bootMessages.forEach((msg, index) => {
+            totalDelay += msg.delay;
+            setTimeout(() => {
+                const p = document.createElement('p');
+                p.innerHTML = `<span class='text-gray-500'>></span> ${msg.text}`;
+                p.className = 'boot-text';
+                bootSequenceContainer.appendChild(p);
+                if (index < bootMessages.length - 1) {
+                    loadingStatus.textContent = `// ${msg.text.split('...')[0].toUpperCase()}...`;
+                }
+            }, totalDelay);
+        });
+
+        const hideWelcomeScreenDelay = totalDelay + 1500;
+        setTimeout(() => {
+            loadingStatus.textContent = '// BOOT SEQUENCE COMPLETE';
+        }, totalDelay + 200);
+
+        setTimeout(() => {
+            bootScreen.classList.add('fade-out');
+            mainGrid.style.opacity = '1';
+            setTimeout(() => {
+                bootScreen.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                document.body.style.overflowX = 'hidden';
+                initDashboardAnimations();
+            }, 1000);
+        }, hideWelcomeScreenDelay);
+
         lucide.createIcons();
-        
-        // --- Mobile Menu Toggle ---
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
 
-        // --- Smooth Scrolling & Active Nav Link ---
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
+        function initDashboardAnimations() {
+            const nameToType = "GIWAN PURNAMA";
+            const typedNameElement = document.getElementById('typed-name');
+            let i = 0;
+            function typeName() {
+                if (typedNameElement && i < nameToType.length) {
+                    typedNameElement.innerHTML += nameToType.charAt(i);
+                    i++;
+                    setTimeout(typeName, 100);
                 }
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    const offsetTop = targetElement.offsetTop - 80; // Header height offset
-                     window.scrollTo({ top: offsetTop, behavior: 'smooth' });
-                }
-            });
-        });
-        
-        // document.getElementById('currentYear').textContent = new Date().getFullYear();
+            }
+            typeName();
 
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('a.nav-link');
-
-        function updateActiveLink() {
-            let current = 'hero';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 90) { 
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('nav-link-active');
-                if (link.getAttribute('href').substring(1) === current) {
-                    link.classList.add('nav-link-active');
-                }
+            const statusChecks = document.querySelectorAll('.system-status-check');
+            statusChecks.forEach((check, index) => {
+                setTimeout(() => {
+                    check.style.opacity = '1';
+                    check.style.transform = 'translateX(0)';
+                    lucide.createIcons();
+                }, index * 200);
             });
         }
-        window.addEventListener('scroll', updateActiveLink);
-        window.addEventListener('load', updateActiveLink); 
-        
-        // --- Animate On Scroll (Fade-in) ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                }
-            });
-        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.fade-in-section').forEach(section => {
-            observer.observe(section);
+        const navLinks = document.querySelectorAll('.nav-link, .nav-trigger');
+        const contentSections = document.querySelectorAll('.content-section');
+
+        function switchSection(targetId) {
+            contentSections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            const targetSection = document.querySelector(targetId);
+            const targetLink = document.querySelector(`.nav-link[href="${targetId}"]`);
+
+            if (targetSection) targetSection.classList.add('active');
+            if (targetLink) targetLink.classList.add('active');
+
+            if (targetId === '#skills') {
+                if(window.skillsRadarChart instanceof Chart) window.skillsRadarChart.destroy();
+                createSkillsChart();
+            }
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                switchSection(targetId);
+                window.history.pushState(null, '', targetId);
+            });
         });
 
-        // --- Formspree Logic ---
+        const initialSection = window.location.hash || '#home';
+        switchSection(initialSection);
+
         const contactForm = document.querySelector('#contact form');
         const formFeedback = document.getElementById('form-feedback');
-
         contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             formFeedback.innerHTML = `<span class="text-[var(--bf-text-dark)]">Mengirim...</span>`;
@@ -636,134 +627,294 @@
             setTimeout(() => { formFeedback.innerHTML = ''; }, 5000);
         });
 
-        // --- Language Logic ---
         const translations = {
             id: {
-                pageTitle: "Portofolio Giwan Purnama - Software Engineer", brandName: "Giwan Purnama", navHome: "Beranda", navAbout: "Tentang Saya", navProjects: "Proyek", navSkills: "Keahlian", navContact: "Kontak", heroName: "Giwan Purnama", heroSubtitle: "Software Engineer", heroDescription: "Saya adalah seorang software engineer yang bersemangat dalam menciptakan solusi perangkat lunak yang inovatif dan efisien untuk memecahkan masalah dunia nyata.", heroButton: "Lihat Proyek Saya", aboutTitle: "Tentang Saya", aboutParagraph1: "Halo! Saya Giwan Purnama, seorang Software Engineer yang bersemangat, meraih predikat Siswa Terbaik di SMK Prakarya Internasional tahun 2023, dan kini sedang menempuh pendidikan sarjana di Universitas Terbuka (lulus 2027). Saya memiliki keahlian yang kompeten di bidang Teknologi & Informatika.", aboutParagraph2: "Secara lebih spesifik, saya adalah seorang ahli di bidang Rekayasa Perangkat Lunak. Berdasarkan pengalaman saya, saya mampu menganalisis dan memecahkan berbagai masalah kompleks, mengubah tantangan menjadi solusi inovatif yang efisien.", aboutParagraph3: "Saya sangat percaya pada kekuatan kolaborasi tim dan kemampuan untuk bekerja sama dalam menetapkan serta mencapai tujuan yang harus diselesaikan, memastikan setiap proyek berjalan lancar dan menghasilkan dampak positif. 🏆✨", projectsTitle: "Proyek Unggulan", 
+                pageTitle: "Portofolio Giwan Purnama - Software Engineer", brandName: "G//P // INTEL_SIG",
+                navHome: "Dashboard", navAbout: "Profil", navProjects: "Misi", navSkills: "Kompetensi", navContact: "Komunikasi",
+                heroGreeting: "SISTEM SIAP // SELAMAT DATANG, OPERATOR",
+                heroSubtitle: "Software Engineer // Tactical Tech",
+                heroDescription: "Menciptakan solusi perangkat lunak yang inovatif dan efisien untuk memecahkan masalah kompleks di dunia nyata, dengan fokus pada teknologi pertahanan dan sistem intelijen.",
+                heroButton: "Lihat Misi",
+                profileStatus: "STATUS: ", profileClearance: "IZIN: ",
+                statusFirewall: "Status Firewall:", statusDataLink: "Data Link:", statusNetworkSync: "Sinkronisasi Jaringan:",
+                aboutTitle: "Profil Intelijen",
+                aboutParagraph1: "Saya Giwan Purnama, seorang Software Engineer dengan spesialisasi dalam pengembangan sistem pertahanan dan intelijen geospasial. Berbekal penghargaan sebagai Siswa Terbaik dari SMK Prakarya Internasional dan saat ini sedang melanjutkan studi di Universitas Terbuka, saya mendedikasikan keahlian saya untuk menciptakan solusi teknologi canggih yang menjawab tantangan strategis.",
+                aboutParagraph2: "Pengalaman saya terbentang dari merancang arsitektur Battle Management System (BMS) yang kompleks bersama REPUBLIKORP & ASELSAN, hingga memimpin pengembangan Command Center dinamis untuk misi Caraka 22. Saya mahir dalam mengintegrasikan berbagai teknologi, termasuk ArcGIS API dan backend PostgreSQL/PostGIS, untuk menyediakan kesadaran situasional secara real-time yang krusial di lapangan.",
+                aboutParagraph3: "Setiap proyek, baik itu sistem militer maupun aplikasi sipil seperti Waste Management System, saya dekati dengan pola pikir analitis untuk memecahkan masalah inti. Saya berkembang dalam lingkungan kolaboratif, menerjemahkan kebutuhan operasional menjadi perangkat lunak yang andal dan efisien, serta memastikan setiap solusi memberikan dampak strategis yang terukur.",
+                projectsTitle: "Log Misi",
                 project1Title: "Battlefield Management System", project1Description: `Mengembangkan Battle Management System bersama REPUBLIKORP & ASELSAN. Bertanggung jawab atas arsitektur, implementasi modul kritis, dan integrasi sistem untuk efisiensi koordinasi militer.`,
-                project2Title: "Waste Management System", project2Description: `Mengembangkan aplikasi Waste Management System bersama PT Indocement. Aplikasi ini mengoptimalkan rute pengumpulan sampah, memantau volume, dan meningkatkan efisiensi daur ulang.`, 
-                project3Title: "SEO & Meta Advertisement Analyst", project3Description: `Freelancer sebagai SEO dan Analyst Meta Advertisement di Consultant.ID. Melakukan riset kata kunci, optimasi konten, analisis performa iklan, dan menyusun strategi kampanye digital.`, 
+                project2Title: "Waste Management System", project2Description: `Mengembangkan aplikasi Waste Management System bersama PT Indocement. Aplikasi ini mengoptimalkan rute pengumpulan sampah, memantau volume, dan meningkatkan efisiensi daur ulang.`,
                 project4Title: "Caraka 22 Command Center", project4Description: "Memimpin pengembangan command center geospasial untuk Caraka 22. Merancang platform kesadaran situasional dinamis secara real-time menggunakan JavaScript dan ArcGIS API, terintegrasi dengan backend PostgreSQL/PostGIS.",
                 project5Title: "Exhibitor Indo Defence 2024", project5Description: "Bertindak sebagai perwakilan teknis utama dan exhibitor untuk Republikorp di Indo Defence 2024. Mendemonstrasikan sistem canggih kepada delegasi internasional dan pejabat militer.",
-                skillsTitle: "Keahlian Teknis", skillsLanguagesTitle: "Bahasa Pemrograman:", skillsFrameworksTitle: "Framework & Library:", skillsToolsTitle: "Database & Tools:", skillsMilitaryTitle: "Tujuan Militer:",
-                skillMilitaryTech: "Teknologi Militer", skillTacticalKnowledge: "Pengetahuan Taktikal", skillDataLink: "Taktikal Data Link", skillAgentSupport: "Intelligent Agent Support", skillIntegration: "Integrasi Persenjataan & Logistik",
-                contactTitle: "Hubungi Saya", contactDescription: "Saya selalu terbuka untuk diskusi, kolaborasi, atau peluang baru. Jangan ragu untuk menghubungi saya!", contactNameLabel: "Nama Lengkap", contactEmailLabel: "Alamat Email", contactSubjectLabel: "Subjek", contactMessageLabel: "Pesan", contactSubmitButton: "Kirim Pesan", contactOrReachOut: "Atau hubungi saya melalui:", footerCopyright: "Copyright 2025 Giwan Purnama. Semua hak dilindungi.",
+                skillsTitle: "Matriks Kompetensi", skillsLanguagesTitle: "Bahasa Pemrograman:", skillsFrameworksTitle: "Framework & Library:", skillsToolsTitle: "Database & Tools:", skillsMilitaryTitle: "Tujuan Militer:",
+                skillMilitaryTech: "Teknologi Militer", skillTacticalKnowledge: "Pengetahuan Taktikal", skillDataLink: "Taktikal Data Link", skillAgentSupport: "Dukungan Agen Cerdas", skillIntegration: "Integrasi Persenjataan & Logistik",
+                contactTitle: "Kanal Komunikasi Aman", contactDescription: "Saya selalu terbuka untuk diskusi, kolaborasi, atau peluang baru. Jangan ragu untuk menghubungi saya!",
+                contactNameLabel: "Nama Lengkap", contactEmailLabel: "Alamat Email", contactSubjectLabel: "Subjek", contactMessageLabel: "Pesan Anda...", contactSubmitButton: "Kirim Transmisi",
+                footerCopyright: "© 2025 Giwan Purnama. Hak Cipta Dilindungi.",
             },
             en: {
-                pageTitle: "Giwan Purnama Portfolio - Software Engineer", brandName: "Giwan Purnama", navHome: "Home", navAbout: "About Me", navProjects: "Projects", navSkills: "Skills", navContact: "Contact", heroName: "Giwan Purnama", heroSubtitle: "Software Engineer", heroDescription: "I am a software engineer passionate about creating innovative and efficient software solutions to solve real-world problems.", heroButton: "View My Projects", aboutTitle: "About Me", aboutParagraph1: "Hello! I'm Giwan Purnama, a passionate Software Engineer, awarded as The Best Student of Prakarya Internasional Vocational School in 2023, and currently pursuing my Bachelor's degree at Universitas Terbuka (expected graduation 2027). I possess competent expertise in the fields of Technology & Informatics.", aboutParagraph2: "More precisely, I am an expert as a Software Engineer. Based on my experience, I can analyze and solve various complex problems, transforming challenges into innovative and efficient solutions.", aboutParagraph3: "I strongly believe in the power of team collaboration and the ability to work together to set and achieve defined goals, ensuring every project runs smoothly and delivers positive impact. 🏆✨", projectsTitle: "Featured Projects",
+                pageTitle: "Giwan Purnama Portfolio - Software Engineer", brandName: "G//P // INTEL_SIG",
+                navHome: "Dashboard", navAbout: "Profile", navProjects: "Missions", navSkills: "Competency", navContact: "Comms",
+                heroGreeting: "SYSTEM READY // WELCOME, OPERATIVE",
+                heroName: "Giwan Purnama", heroSubtitle: "Software Engineer // Tactical Tech",
+                heroDescription: "Crafting innovative and efficient software solutions to solve complex real-world problems, with a focus on defense technology and intelligence systems.",
+                heroButton: "View Missions",
+                profileStatus: "STATUS: ", profileClearance: "CLEARANCE: ",
+                statusFirewall: "Firewall Status:", statusDataLink: "Data Link:", statusNetworkSync: "Network Sync:",
+                aboutTitle: "Intelligence Profile",
+                aboutParagraph1: "I am Giwan Purnama, a Software Engineer specializing in the development of defense systems and geospatial intelligence. Armed with the Best Student award from Prakarya Internasional Vocational School and currently pursuing my degree at Universitas Terbuka, I dedicate my skills to creating advanced technology solutions that address strategic challenges.",
+                aboutParagraph2: "My experience ranges from architecting complex Battle Management Systems (BMS) with REPUBLIKORP & ASELSAN to leading the development of a dynamic Command Center for the Caraka 22 mission. I am proficient in integrating diverse technologies, including the ArcGIS API and PostgreSQL/PostGIS backends, to provide crucial real-time situational awareness in the field.",
+                aboutParagraph3: "I approach every project, whether a military system or a civilian application like the Waste Management System, with an analytical mindset to solve core problems. I thrive in collaborative environments, translating operational needs into reliable and efficient software, and ensuring every solution delivers a measurable strategic impact.",
+                projectsTitle: "Mission Logs",
                 project1Title: "Battlefield Management System", project1Description: `Developed a Battle Management System with REPUBLIKORP & ASELSAN. Responsible for architecture, critical module implementation, and system integration for military coordination efficiency.`,
                 project2Title: "Waste Management System", project2Description: `Developed a Waste Management System app with PT Indocement. The application optimizes waste collection routes, monitors volume, and improves recycling efficiency.`,
-                project3Title: "SEO & Meta Advertisement Analyst", project3Description: `Freelanced as an SEO and Meta Advertisement Analyst at Consultant.ID. Conducted keyword research, content optimization, ad performance analysis, and formulated digital campaign strategies.`,
                 project4Title: "Caraka 22 Command Center", project4Description: "Led the development of the geospatial command center for Caraka 22. Engineered a dynamic, real-time situational awareness platform using JavaScript and the ArcGIS API, integrated with a PostgreSQL/PostGIS backend.",
                 project5Title: "Indo Defence 2024 Exhibitor", project5Description: "Served as a key technical representative and exhibitor for Republikorp at Indo Defence 2024. Demonstrated advanced systems to international delegations and military officials.",
-                skillsTitle: "Technical Skills", skillsLanguagesTitle: "Programming Languages:", skillsFrameworksTitle: "Frameworks & Libraries:", skillsToolsTitle: "Databases & Tools:", skillsMilitaryTitle: "Military Purpose:",
+                skillsTitle: "Competency Matrix", skillsLanguagesTitle: "Programming Languages:", skillsFrameworksTitle: "Frameworks & Libraries:", skillsToolsTitle: "Databases & Tools:", skillsMilitaryTitle: "Military Purpose:",
                 skillMilitaryTech: "Military Technology", skillTacticalKnowledge: "Tactical Knowledge", skillDataLink: "Tactical Data Link", skillAgentSupport: "Intelligent Agent Support", skillIntegration: "Weaponry & Logistics Integration",
-                contactTitle: "Contact Me", contactDescription: "I am always open to discussions, collaborations, or new opportunities. Feel free to reach out!", contactNameLabel: "Full Name", contactEmailLabel: "Email Address", contactSubjectLabel: "Subject", contactMessageLabel: "Message", contactSubmitButton: "Send Message", contactOrReachOut: "Or reach me via:", footerCopyright: "Copyright 2025 Giwan Purnama. All rights reserved.",
+                contactTitle: "Secure Comms Channel", contactDescription: "I am always open to discussions, collaborations, or new opportunities. Feel free to reach out!",
+                contactNameLabel: "Full Name", contactEmailLabel: "Email Address", contactSubjectLabel: "Subject", contactMessageLabel: "Your Message...", contactSubmitButton: "Send Transmission",
+                footerCopyright: "© 2025 Giwan Purnama. All Rights Reserved.",
             },
             hi: {
-                pageTitle: "गिवान पुरनामा पोर्टफोलियो - सॉफ्टवेयर इंजीनियर", brandName: "गिवान पुरनामा", navHome: "होम", navAbout: "मेरे बारे में", navProjects: "परियोजनाएं", navSkills: "कौशल", navContact: "संपर्क", heroName: "गिवान पुरनामा", heroSubtitle: "सॉफ्टवेयर इंजीनियर", heroDescription: "मैं वास्तविक दुनिया की समस्याओं को हल करने के लिए अभिनव और कुशल सॉफ्टवेयर समाधान बनाने के शौकीन एक सॉफ्टवेयर इंजीनियर हूं।", heroButton: "मेरी परियोजनाएं देखें", aboutTitle: "मेरे بارے में", aboutParagraph1: "नमस्ते! मैं गिवान पुरनामा हूं, एक उत्साही सॉफ्टवेयर इंजीनियर, जिसे 2023 में प्रकार्य इंटरनैशनल वोकेशनल स्कूल का सर्वश्रेष्ठ छात्र चुना गया, और वर्तमान में यूनिवर्सिटास टेरबुका में अपनी स्नातक की डिग्री प्राप्त कर रहा हूं (अपेक्षित स्नातक 2027)। मेरे पास प्रौद्योगिकी और सूचना विज्ञान के क्षेत्र में सक्षम विशेषज्ञता है।", aboutParagraph2: "अधिक सटीक रूप से, मैं एक सॉफ्टवेयर इंजीनियर के रूप में एक विशेषज्ञ हूं। मेरे अनुभव के आधार पर, मैं विभिन्न जटिल समस्याओं का विश्लेषण और समाधान कर सकता हूं, चुनौतियों को अभिनव और कुशल समाधानों में बदल सकता हूं।", aboutParagraph3: "मैं टीम सहयोग की शक्ति और निर्धारित लक्ष्यों को निर्धारित करने और प्राप्त करने के लिए मिलकर काम करने की क्षमता में दृढ़ता से विश्वास करता हूं, यह सुनिश्चित करता हूं कि हर परियोजना सुचारू रूप से चले और सकारात्मक प्रभाव डाले। 🏆✨", projectsTitle: "विशेष रुप से प्रदर्शित परियोजनाएं",
+                pageTitle: "गिवान पुरनामा पोर्टफोलियो - सॉफ्टवेयर इंजीनियर", brandName: "जी//पी // इंटेल_सिग",
+                navHome: "डैशबोर्ड", navAbout: "प्रोफ़ाइल", navProjects: "मिशन", navSkills: "क्षमता", navContact: "संचार",
+                heroGreeting: "सिस्टम तैयार // आपका स्वागत है, ऑपरेटिव",
+                heroSubtitle: "सॉफ्टवेयर इंजीनियर // टैक्टिकल टेक",
+                heroDescription: "रक्षा प्रौद्योगिकी और खुफिया प्रणालियों पर ध्यान देने के साथ, जटिल वास्तविक दुनिया की समस्याओं को हल करने के लिए अभिनव और कुशल सॉफ्टवेयर समाधान तैयार करना।",
+                heroButton: "मिशन देखें",
+                profileStatus: "स्थिति: ", profileClearance: "निकासी: ",
+                statusFirewall: "फ़ायरवॉल स्थिति:", statusDataLink: "डेटा लिंक:", statusNetworkSync: "नेटवर्क सिंक:",
+                aboutTitle: "खुफिया प्रोफ़ाइल",
+                aboutParagraph1: "मैं गिवान पुरनामा हूं, जो रक्षा प्रणालियों और भू-स्थानिक खुफिया के विकास में विशेषज्ञता रखने वाला एक सॉफ्टवेयर इंजीनियर हूं। प्रकार्य इंटरनैशनल वोकेशनल स्कूल से सर्वश्रेष्ठ छात्र पुरस्कार से सम्मानित और वर्तमान में यूनिवर्सिटास टेरबुका में अपनी डिग्री प्राप्त कर रहा हूं, मैं रणनीतिक चुनौतियों का समाधान करने वाले उन्नत प्रौद्योगिकी समाधान बनाने के लिए अपने कौशल को समर्पित करता हूं।",
+                aboutParagraph2: "मेरा अनुभव REPUBLIKORP और ASELSAN के साथ जटिल बैटल मैनेजमेंट सिस्टम (BMS) की वास्तुकला से लेकर काराका 22 मिशन के लिए एक गतिशील कमांड सेंटर के विकास का नेतृत्व करने तक है। मैं क्षेत्र में महत्वपूर्ण वास्तविक समय स्थितिजन्य जागरूकता प्रदान करने के लिए ArcGIS API और PostgreSQL/PostGIS बैकएंड सहित विविध तकनीकों को एकीकृत करने में कुशल हूं।",
+                aboutParagraph3: "मैं हर परियोजना, चाहे वह एक सैन्य प्रणाली हो या अपशिष्ट प्रबंधन प्रणाली जैसा नागरिक अनुप्रयोग, को मुख्य समस्याओं को हल करने के लिए एक विश्लेषणात्मक मानसिकता के साथ देखता हूं। मैं सहयोगी वातावरण में पनपता हूं, परिचालन आवश्यकताओं को विश्वसनीय और कुशल सॉफ्टवेयर में अनुवादित करता हूं, और यह सुनिश्चित करता हूं कि हर समाधान एक औसत दर्जे का रणनीतिक प्रभाव डाले।",
+                projectsTitle: "मिशन लॉग",
                 project1Title: "बैटल मैनेजमेंट सिस्टम", project1Description: "REPUBLIKORP और ASELSAN के साथ एक बैटल मैनेजमेंट सिस्टम विकसित किया। सैन्य समन्वय दक्षता के लिए वास्तुकला, महत्वपूर्ण मॉड्यूल कार्यान्वयन और सिस्टम एकीकरण के लिए जिम्मेदार।",
                 project2Title: "अपशिष्ट प्रबंधन प्रणाली", project2Description: "PT इंडोमेंट के साथ एक अपशिष्ट प्रबंधन प्रणाली ऐप विकसित किया। एप्लिकेशन कचरा संग्रहण मार्गों को अनुकूलित करता है, मात्रा की निगरानी करता है, और रीसाइक्लिंग दक्षता में सुधार करता है।",
-                project3Title: "एसईओ और मेटा विज्ञापन विश्लेषक", project3Description: "Consultant.ID पर एक एसईओ और मेटा विज्ञापन विश्लेषक के रूप में स्वतंत्र काम किया। कीवर्ड अनुसंधान, सामग्री अनुकूलन, विज्ञापन प्रदर्शन विश्लेषण और डिजिटल अभियान रणनीतियां तैयार कीं।",
                 project4Title: "काराका 22 कमांड सेंटर", project4Description: "काराका 22 के लिए भू-स्थानिक कमांड सेंटर के विकास का नेतृत्व किया। जावास्क्रिप्ट और आर्कजीआईएस एपीआई का उपयोग करके एक गतिशील, वास्तविक समय स्थितिजन्य जागरूकता मंच तैयार किया, जो पोस्टग्रेएसक्यूएल/पोस्टजीआईएस बैकएंड के साथ एकीकृत है।",
                 project5Title: "इंडो डिफेंस 2024 प्रदर्शक", project5Description: "इंडो डिफेंस 2024 में रिपब्लिकॉर्प के लिए एक प्रमुख तकनीकी प्रतिनिधि और प्रदर्शक के रूप में कार्य किया। अंतरराष्ट्रीय प्रतिनिधिमंडलों और सैन्य अधिकारियों को उन्नत प्रणालियों का प्रदर्शन किया।",
-                skillsTitle: "तकनीकी कौशल", skillsLanguagesTitle: "प्रोग्रामिंग भाषाएं:", skillsFrameworksTitle: "फ्रेमवर्क और लाइब्रेरी:", skillsToolsTitle: "डेटाबेस और उपकरण:", skillsMilitaryTitle: "सैन्य उद्देश्य:",
+                skillsTitle: "क्षमता मैट्रिक्स", skillsLanguagesTitle: "प्रोग्रामिंग भाषाएं:", skillsFrameworksTitle: "फ्रेमवर्क और लाइब्रेरी:", skillsToolsTitle: "डेटाबेस और उपकरण:", skillsMilitaryTitle: "सैन्य उद्देश्य:",
                 skillMilitaryTech: "सैन्य प्रौद्योगिकी", skillTacticalKnowledge: "सामरिक ज्ञान", skillDataLink: "सामरिक डेटा लिंक", skillAgentSupport: "इंटेलिजेंट एजेंट सपोर्ट", skillIntegration: "हथियार और रसद एकीकरण",
-                contactTitle: "मुझसे संपर्क करें", contactDescription: "मैं हमेशा चर्चाओं, सहयोगों या नए अवसरों के लिए खुला हूं। बेझିझक संपर्क करें!", contactNameLabel: "पूरा नाम", contactEmailLabel: "ईमेल पता", contactSubjectLabel: "विषय", contactMessageLabel: "संदेश", contactSubmitButton: "संदेश भेजें", contactOrReachOut: "या मुझसे संपर्क करें:", footerCopyright: "Copyright 2025 गिवान पुरनामा। सर्वाधिकार सुरक्षित।",
+                contactTitle: "सुरक्षित संचार चैनल", contactDescription: "मैं हमेशा चर्चाओं, सहयोगों या नए अवसरों के लिए खुला हूं। बेझझक संपर्क करें!",
+                contactNameLabel: "पूरा नाम", contactEmailLabel: "ईमेल पता", contactSubjectLabel: "विषय", contactMessageLabel: "आपका संदेश...", contactSubmitButton: "संचरण भेजें",
+                footerCopyright: "© 2025 गिवान पुरनामा। सर्वाधिकार सुरक्षित।",
             },
             zh: {
-                pageTitle: "吉万·普尔纳马作品集 - 软件工程师", brandName: "吉万·普尔纳马", navHome: "首页", navAbout: "关于我", navProjects: "项目", navSkills: "技能", navContact: "联系", heroName: "吉万·普尔纳马", heroSubtitle: "软件工程师", heroDescription: "我是一名充满热情的软件工程师，致力于创造创新高效的软件解决方案，以解决现实世界中的问题。", heroButton: "查看我的项目", aboutTitle: "关于我", aboutParagraph1: "你好！我是吉万·普尔纳马，一名充满激情的软件工程师，2023年荣获Prakarya Internasional职业学校最佳学生奖，目前正在开放大学攻读学士学位（预计2027年毕业）。我在技术与信息学领域拥有扎实的专业知识。", aboutParagraph2: "更准确地说，我是一名专家级的软件工程师。根据我的经验，我能够分析和解决各种复杂问题，将挑战转化为创新高效的解决方案。", aboutParagraph3: "我坚信团队协作的力量，以及共同设定和实现既定目标的能力，确保每个项目顺利进行并产生积极影响。🏆✨", projectsTitle: "精选项目",
+                pageTitle: "吉万·普尔纳马作品集 - 软件工程师", brandName: "吉//普 // 情报信号",
+                navHome: "仪表板", navAbout: "个人资料", navProjects: "任务", navSkills: "能力", navContact: "通讯",
+                heroGreeting: "系统准备就绪 // 欢迎，操作员",
+                heroSubtitle: "软件工程师 // 战术技术",
+                heroDescription: "专注于国防技术和情报系统，打造创新高效的软件解决方案，解决复杂的现实世界问题。",
+                heroButton: "查看任务",
+                profileStatus: "状态: ", profileClearance: "许可: ",
+                statusFirewall: "防火墙状态:", statusDataLink: "数据链:", statusNetworkSync: "网络同步:",
+                aboutTitle: "情报资料",
+                aboutParagraph1: "我是吉万·普尔纳马，一名专注于国防系统和地理空间情报开发的软件工程师。我曾荣获Prakarya Internasional职业学校最佳学生奖，目前正在开放大学攻读学位，我致力于利用我的技能创造先进的技术解决方案，以应对战略挑战。",
+                aboutParagraph2: "我的经验范围广泛，从与REPUBLIKORP和ASELSAN合作构建复杂的战斗管理系统（BMS），到领导为Caraka 22任务开发动态指挥中心。我精通集成多种技术，包括ArcGIS API和PostgreSQL/PostGIS后端，以提供现场至关重要的实时态势感知。",
+                aboutParagraph3: "我以分析的心态对待每一个项目，无论是军事系统还是像废物管理系统这样的民用应用，以解决核心问题。我在协作环境中茁壮成长，将运营需求转化为可靠高效的软件，并确保每个解决方案都能带来可衡量的战略影响。",
+                projectsTitle: "任务日志",
                 project1Title: "战斗管理系统", project1Description: "与REPUBLIKORP和ASELSAN合作开发战斗管理系统。负责架构、关键模块实施和系统集成，以提高军事协调效率。",
                 project2Title: "废物管理系统", project2Description: "与PT Indocement合作开发废物管理系统应用程序。该应用程序优化了废物收集路线，监控了废物量，并提高了回收效率。",
-                project3Title: "SEO与Meta广告分析师", project3Description: "在Consultant.ID担任自由职业的SEO和Meta广告分析师。进行关键词研究、内容优化、广告性能分析，并制定数字营销活动策略。",
                 project4Title: "Caraka 22 指挥中心", project4Description: "领导了Caraka 22地理空间指挥中心的开发。使用JavaScript和ArcGIS API设计了一个动态的实时态势感知平台，并与PostgreSQL/PostGIS后端集成。",
                 project5Title: "2024年印尼防务展参展商", project5Description: "在2024年印尼防务展上担任Republikorp的主要技术代表和参展商。向国际代表团和军方官员展示了先进系统。",
-                skillsTitle: "技术技能", skillsLanguagesTitle: "编程语言：", skillsFrameworksTitle: "框架与库：", skillsToolsTitle: "数据库与工具：", skillsMilitaryTitle: "军事用途：",
+                skillsTitle: "能力矩阵", skillsLanguagesTitle: "编程语言：", skillsFrameworksTitle: "框架与库：", skillsToolsTitle: "数据库与工具：", skillsMilitaryTitle: "军事用途：",
                 skillMilitaryTech: "军事技术", skillTacticalKnowledge: "战术知识", skillDataLink: "战术数据链", skillAgentSupport: "智能代理支持", skillIntegration: "武器与后勤整合",
-                contactTitle: "联系我", contactDescription: "我随时欢迎讨论、合作或新的机会。请随时与我联系！", contactNameLabel: "全名", contactEmailLabel: "电子邮件地址", contactSubjectLabel: "主题", contactMessageLabel: "信息", contactSubmitButton: "发送信息", contactOrReachOut: "或通过以下方式联系我：", footerCopyright: "Copyright 2025 吉万·普尔纳马。版权所有。",
+                contactTitle: "安全通讯频道", contactDescription: "我随时欢迎讨论、合作或新的机会。请随时与我联系！",
+                contactNameLabel: "全名", contactEmailLabel: "电子邮件地址", contactSubjectLabel: "主题", contactMessageLabel: "您的信息...", contactSubmitButton: "发送传输",
+                footerCopyright: "© 2025 吉万·普尔纳马。版权所有。",
             },
             ko: {
-                pageTitle: "기완 푸르나마 포트폴리오 - 소프트웨어 엔지니어", brandName: "기완 푸르나마", navHome: "홈", navAbout: "내 소개", navProjects: "프로젝트", navSkills: "기술", navContact: "연락처", heroName: "기완 푸르나마", heroSubtitle: "소프트웨어 엔지니어", heroDescription: "저는 현실 세계의 문제를 해결하기 위해 혁신적이고 효율적인 소프트웨어 솔루션을 만드는 데 열정적인 소프트웨어 엔지니어입니다.", heroButton: "내 프로젝트 보기", aboutTitle: "내 소개", aboutParagraph1: "안녕하세요! 저는 열정적인 소프트웨어 엔지니어인 기완 푸르나마이며, 2023년에 프라카르야 국제 직업학교에서 최우수 학생으로 선정되었으며, 현재 오픈 대학교에서 학사 학위를 취득하고 있습니다(2027년 졸업 예정). 저는 기술 및 정보학 분야에서 유능한 전문 지식을 보유하고 있습니다.", aboutParagraph2: "더 정확히 말하자면, 저는 소프트웨어 엔지니어로서 전문가입니다. 제 경험을 바탕으로 다양한 복잡한 문제를 분석하고 해결하여 도전을 혁신적이고 효율적인 솔루션으로 전환할 수 있습니다.", aboutParagraph3: "저는 팀 협업의 힘과 정의된 목표를 설정하고 달성하기 위해 함께 일하는 능력을 굳게 믿으며, 모든 프로젝트가 원활하게 진행되고 긍정적인 영향을 미치도록 보장합니다. 🏆✨", projectsTitle: "주요 프로젝트",
+                pageTitle: "기완 푸르나마 포트폴리오 - 소프트웨어 엔지니어", brandName: "G//P // 인텔_시그널",
+                navHome: "대시보드", navAbout: "프로필", navProjects: "임무", navSkills: "역량", navContact: "통신",
+                heroGreeting: "시스템 준비 완료 // 환영합니다, 요원",
+                heroSubtitle: "소프트웨어 엔지니어 // 전술 기술",
+                heroDescription: "국방 기술 및 정보 시스템에 중점을 두고 복잡한 실제 문제를 해결하기 위한 혁신적이고 효율적인 소프트웨어 솔루션을 제작합니다.",
+                heroButton: "임무 보기",
+                profileStatus: "상태: ", profileClearance: "허가: ",
+                statusFirewall: "방화벽 상태:", statusDataLink: "데이터 링크:", statusNetworkSync: "네트워크 동기화:",
+                aboutTitle: "정보 프로필",
+                aboutParagraph1: "저는 국방 시스템 및 지리 공간 정보 개발을 전문으로 하는 소프트웨어 엔지니어 기완 푸르나마입니다. 프라카르야 국제 직업학교에서 최우수 학생 상을 받았으며 현재 오픈 대학교에서 학위를 이수하고 있으며, 전략적 과제를 해결하는 고급 기술 솔루션을 만드는 데 제 기술을 바칩니다.",
+                aboutParagraph2: "제 경험은 REPUBLIKORP 및 ASELSAN과 함께 복잡한 전투 관리 시스템(BMS)을 설계하는 것부터 카라카 22 임무를 위한 동적 지휘 센터 개발을 주도하는 것까지 다양합니다. 저는 ArcGIS API 및 PostgreSQL/PostGIS 백엔드를 포함한 다양한 기술을 통합하여 현장에서 중요한 실시간 상황 인식을 제공하는 데 능숙합니다.",
+                aboutParagraph3: "저는 군사 시스템이든 폐기물 관리 시스템과 같은 민간 응용 프로그램이든 모든 프로젝트에 분석적인 사고 방식으로 접근하여 핵심 문제를 해결합니다. 저는 협업 환경에서 성장하며 운영 요구 사항을 신뢰할 수 있고 효율적인 소프트웨어로 변환하고 모든 솔루션이 측정 가능한 전략적 영향을 미치도록 보장합니다.",
+                projectsTitle: "임무 기록",
                 project1Title: "전투 관리 시스템", project1Description: "REPUBLIKORP 및 ASELSAN과 함께 전투 관리 시스템을 개발했습니다. 군사 조정 효율성을 위한 아키텍처, 중요 모듈 구현 및 시스템 통합을 담당했습니다.",
                 project2Title: "폐기물 관리 시스템", project2Description: "PT Indocement와 함께 폐기물 관리 시스템 앱을 개발했습니다. 이 애플리케이션은 폐기물 수거 경로를 최적화하고, 양을 모니터링하며, 재활용 효율성을 향상시킵니다.",
-                project3Title: "SEO 및 메타 광고 분석가", project3Description: "Consultant.ID에서 프리랜서 SEO 및 메타 광고 분석가로 활동했습니다. 키워드 연구, 콘텐츠 최적화, 광고 성과 분석 및 디지털 캠페인 전략 수립을 수행했습니다.",
                 project4Title: "카라카 22 지휘 센터", project4Description: "카라카 22의 지리공간 지휘 센터 개발을 주도했습니다. JavaScript 및 ArcGIS API를 사용하여 동적 실시간 상황 인식 플랫폼을 설계했으며 PostgreSQL/PostGIS 백엔드와 통합했습니다.",
                 project5Title: "인도 디펜스 2024 전시업체", project5Description: "인도 디펜스 2024에서 리퍼블릭코프의 핵심 기술 대표 및 전시업체로 활동했습니다. 국제 대표단 및 군 관계자에게 고급 시스템을 시연했습니다.",
-                skillsTitle: "기술적 능력", skillsLanguagesTitle: "프로그래밍 언어:", skillsFrameworksTitle: "프레임워크 및 라이브러리:", skillsToolsTitle: "데이터베이스 및 도구:", skillsMilitaryTitle: "군사 목적:",
+                skillsTitle: "역량 매트릭스", skillsLanguagesTitle: "프로그래밍 언어:", skillsFrameworksTitle: "프레임워크 및 라이브러리:", skillsToolsTitle: "데이터베이스 및 도구:", skillsMilitaryTitle: "군사 목적:",
                 skillMilitaryTech: "군사 기술", skillTacticalKnowledge: "전술 지식", skillDataLink: "전술 데이터 링크", skillAgentSupport: "지능형 에이전트 지원", skillIntegration: "무기 및 군수 통합",
-                contactTitle: "연락하기", contactDescription: "저는 언제나 토론, 협업 또는 새로운 기회에 열려 있습니다. 언제든지 연락주세요!", contactNameLabel: "전체 이름", contactEmailLabel: "이메일 주소", contactSubjectLabel: "제목", contactMessageLabel: "메시지", contactSubmitButton: "메시지 보내기", contactOrReachOut: "또는 다음을 통해 연락하십시오:", footerCopyright: "Copyright 2025 기완 푸르나마. 모든 권리 보유.",
+                contactTitle: "보안 통신 채널", contactDescription: "저는 언제나 토론, 협업 또는 새로운 기회에 열려 있습니다. 언제든지 연락주세요!",
+                contactNameLabel: "전체 이름", contactEmailLabel: "이메일 주소", contactSubjectLabel: "제목", contactMessageLabel: "메시지...", contactSubmitButton: "전송 보내기",
+                footerCopyright: "© 2025 기완 푸르나마. 모든 권리 보유.",
             },
             ar: {
-                pageTitle: "ملف أعمال جيوان بورناما - مهندس برمجيات", brandName: "جيوان بورناما", navHome: "الرئيسية", navAbout: "عني", navProjects: "مشاريع", navSkills: "مهارات", navContact: "اتصل", heroName: "جيوان بورناما", heroSubtitle: "مهندس برمجيات", heroDescription: "أنا مهندس برمجيات شغوف بإنشاء حلول برمجية مبتكرة وفعالة لحل مشاكل العالم الحقيقي.", heroButton: "عرض مشاريعي", aboutTitle: "عني", aboutParagraph1: "مرحباً! أنا جيوان بورناما، مهندس برمجيات شغوف، حصلت على جائزة أفضل طالب في مدرسة براكاريا الدولية المهنية في عام 2023، وأتابع حاليًا دراستي الجامعية في جامعة أوبن (من المتوقع التخرج في عام 2027). أمتلك خبرة كفؤة في مجالات التكنولوجيا والمعلوماتية.", aboutParagraph2: "بتعبير أدق، أنا خبير كمهندس برمجيات. بناءً على خبرتي، يمكنني تحليل وحل المشكلات المعقدة المختلفة، وتحويل التحديات إلى حلول مبتكرة وفعالة.", aboutParagraph3: "أؤمن بشدة بقوة التعاون الجماعي والقدرة على العمل معًا لوضع وتحقيق الأهداف المحددة، مما يضمن سير كل مشروع بسلاسة وتحقيق تأثير إيجابي. 🏆✨", projectsTitle: "مشاريع مميزة",
+                pageTitle: "ملف أعمال جيوان بورناما - مهندس برمجيات", brandName: "ج//ب // إنتل_سيج",
+                navHome: "لوحة التحكم", navAbout: "الملف الشخصي", navProjects: "المهام", navSkills: "الكفاءة", navContact: "الاتصالات",
+                heroGreeting: "النظام جاهز // مرحبًا أيها العميل",
+                heroSubtitle: "مهندس برمجيات // تكنولوجيا تكتيكية",
+                heroDescription: "صياغة حلول برمجية مبتكرة وفعالة لحل مشاكل العالم الحقيقي المعقدة، مع التركيز على تكنولوجيا الدفاع وأنظمة الاستخبارات.",
+                heroButton: "عرض المهام",
+                profileStatus: "الحالة: ", profileClearance: "التصريح: ",
+                statusFirewall: "حالة جدار الحماية:", statusDataLink: "وصلة البيانات:", statusNetworkSync: "مزامنة الشبكة:",
+                aboutTitle: "ملف الاستخبارات",
+                aboutParagraph1: "أنا جيوان بورناما، مهندس برمجيات متخصص في تطوير أنظمة الدفاع والذكاء الجغرافي المكاني. مسلحًا بجائزة أفضل طالب من مدرسة براكاريا الدولية المهنية وأتابع حاليًا دراستي في جامعة تيربوكا، أكرس مهاراتي لإنشاء حلول تقنية متقدمة تواجه التحديات الاستراتيجية.",
+                aboutParagraph2: "تتراوح خبرتي من تصميم أنظمة إدارة المعارك المعقدة (BMS) مع REPUBLIKORP و ASELSAN إلى قيادة تطوير مركز قيادة ديناميكي لمهمة Caraka 22. أنا بارع في دمج التقنيات المتنوعة، بما في ذلك ArcGIS API وخلفيات PostgreSQL/PostGIS، لتوفير وعي ظرفي حاسم في الوقت الفعلي في الميدان.",
+                aboutParagraph3: "أتعامل مع كل مشروع، سواء كان نظامًا عسكريًا أو تطبيقًا مدنيًا مثل نظام إدارة النفايات، بعقلية تحليلية لحل المشكلات الأساسية. أزدهر في البيئات التعاونية، وأترجم الاحتياجات التشغيلية إلى برامج موثوقة وفعالة، وأضمن أن كل حل يقدم تأثيرًا استراتيجيًا قابلاً للقياس.",
+                projectsTitle: "سجلات المهام",
                 project1Title: "نظام إدارة المعركة", project1Description: "قمت بتطوير نظام إدارة المعركة مع REPUBLIKORP و ASELSAN. مسؤول عن الهندسة المعمارية، وتنفيذ الوحدات الحرجة، وتكامل النظام لكفاءة التنسيق العسكري.",
                 project2Title: "نظام إدارة النفايات", project2Description: "قمت بتطوير تطبيق نظام إدارة النفايات مع PT Indocement. يعمل التطبيق على تحسين مسارات جمع النفايات ومراقبة الحجم وتحسين كفاءة إعادة التدوير.",
-                project3Title: "محلل تحسين محركات البحث وإعلانات ميتا", project3Description: "عملت بشكل مستقل كمحلل لتحسين محركات البحث وإعلانات ميتا في Consultant.ID. أجريت بحثًا عن الكلمات الرئيسية، وتحسين المحتوى، وتحليل أداء الإعلانات، وصياغة استراتيجيات الحملات الرقمية.",
                 project4Title: "مركز قيادة كاراكا 22", project4Description: "قاد تطوير مركز القيادة الجيومكانية لـ كارا카 22. صمم منصة ديناميكية للوعي الظرفي في الوقت الفعلي باستخدام JavaScript و ArcGIS API، متكاملة مع خلفية PostgreSQL/PostGIS.",
                 project5Title: "العارض في معرض إندو ديفينس 2024", project5Description: "عمل كممثل فني رئيسي وعارض لشركة Republikorp في معرض إندو ديفينس 2024. عرض أنظمة متقدمة للوفود الدولية والمسؤولين العسكريين.",
-                skillsTitle: "مهارات تقنية", skillsLanguagesTitle: "لغات البرمجة:", skillsFrameworksTitle: "أطر العمل والمكتبات:", skillsToolsTitle: "قواعد البيانات والأدوات:", skillsMilitaryTitle: "الغرض العسكري:",
+                skillsTitle: "مصفوفة الكفاءة", skillsLanguagesTitle: "لغات البرمجة:", skillsFrameworksTitle: "أطر العمل والمكتبات:", skillsToolsTitle: "قواعد البيانات والأدوات:", skillsMilitaryTitle: "الغرض العسكري:",
                 skillMilitaryTech: "تكنولوجيا عسكرية", skillTacticalKnowledge: "معرفة تكتيكية", skillDataLink: "رابط بيانات تكتيكي", skillAgentSupport: "دعم الوكيل الذكي", skillIntegration: "تكامل الأسلحة والخدمات اللوجستية",
-                contactTitle: "اتصل بي", contactDescription: "أنا منفتح دائمًا للمناقشات أو التعاون أو الفرص الجديدة. لا تتردد في التواصل!", contactNameLabel: "الاسم الكامل", contactEmailLabel: "عنوان البريد الإلكتروني", contactSubjectLabel: "الموضوع", contactMessageLabel: "رسالة", contactSubmitButton: "إرسال رسالة", contactOrReachOut: "أو تواصل معي عبر:", footerCopyright: "Copyright 2025 جيوان بورناما. جميع الحقوق محفوظة.",
+                contactTitle: "قناة اتصالات آمنة", contactDescription: "أنا منفتح دائمًا للمناقشات أو التعاون أو الفرص الجديدة. لا تتردد في التواصل!",
+                contactNameLabel: "الاسم الكامل", contactEmailLabel: "عنوان البريد الإلكتروني", contactSubjectLabel: "الموضوع", contactMessageLabel: "رسالتك...", contactSubmitButton: "إرسال الإرسال",
+                footerCopyright: "© 2025 جيوان بورناما. جميع الحقوق محفوظة.",
             },
             tr: {
-                pageTitle: "Giwan Purnama Portföyü - Yazılım Mühendisi", brandName: "Giwan Purnama", navHome: "Ana Sayfa", navAbout: "Hakkımda", navProjects: "Projeler", navSkills: "Yetenekler", navContact: "İletişim", heroName: "Giwan Purnama", heroSubtitle: "Yazılım Mühendisi", heroDescription: "Gerçek dünya problemlerini çözmek için yenilikçi ve verimli yazılım çözümleri oluşturma konusunda tutkulu bir yazılım mühendisiyim.", heroButton: "Projelerimi Görüntüle", aboutTitle: "Hakkımda", aboutParagraph1: "Merhaba! Ben Giwan Purnama, tutkulu bir Yazılım Mühendisi, 2023'te Prakarya Uluslararası Meslek Lisesi'nin En İyi Öğrencisi olarak ödüllendirildim ve şu anda Açık Üniversite'de lisans eğitimime devam ediyorum (beklenen mezuniyet 2027). Teknoloji ve Bilişim alanlarında yetkin uzmanlığa sahibim.", aboutParagraph2: "Daha kesin olmak gerekirse, bir Yazılım Mühendisi olarak uzmanım. Deneyimlerime dayanarak, çeşitli karmaşık sorunları analiz edip çözebilir, zorlukları yenilikçi ve verimli çözümlere dönüştürebilirim.", aboutParagraph3: "Takım işbirliğinin gücüne ve belirlenen hedefleri belirlemek ve başarmak için birlikte çalışma yeteneğine, her projenin sorunsuz yürümesini ve olumlu etki yaratmasını sağlamaya kuvvetle inanıyorum. 🏆✨", projectsTitle: "Öne Çıkan Projeler",
+                pageTitle: "Giwan Purnama Portföyü - Yazılım Mühendisi", brandName: "G//P // INTEL_SIG",
+                navHome: "Kontrol Paneli", navAbout: "Profil", navProjects: "Görevler", navSkills: "Yetkinlik", navContact: "İletişim",
+                heroGreeting: "SİSTEM HAZIR // HOŞ GELDİNİZ, OPERATÖR",
+                heroSubtitle: "Yazılım Mühendisi // Taktik Teknoloji",
+                heroDescription: "Savunma teknolojisi ve istihbarat sistemlerine odaklanarak karmaşık gerçek dünya sorunlarını çözmek için yenilikçi ve verimli yazılım çözümleri oluşturmak.",
+                heroButton: "Görevleri Görüntüle",
+                profileStatus: "DURUM: ", profileClearance: "YETKİ: ",
+                statusFirewall: "Güvenlik Duvarı Durumu:", statusDataLink: "Veri Bağlantısı:", statusNetworkSync: "Ağ Senkronizasyonu:",
+                aboutTitle: "İstihbarat Profili",
+                aboutParagraph1: "Ben Giwan Purnama, savunma sistemleri ve coğrafi uzamsal istihbarat geliştirme konusunda uzmanlaşmış bir Yazılım Mühendisiyim. Prakarya Uluslararası Meslek Lisesi'nden En İyi Öğrenci ödülüyle donanmış ve şu anda Universitas Terbuka'da eğitimime devam ederken, stratejik zorlukları ele alan gelişmiş teknoloji çözümleri oluşturmaya becerilerimi adıyorum.",
+                aboutParagraph2: "Deneyimim, REPUBLIKORP & ASELSAN ile karmaşık Savaş Yönetim Sistemleri (BMS) mimarisinden, Caraka 22 görevi için dinamik bir Komuta Merkezi geliştirilmesine liderlik etmeye kadar uzanmaktadır. Sahada kritik gerçek zamanlı durumsal farkındalık sağlamak için ArcGIS API ve PostgreSQL/PostGIS arka uçları da dahil olmak üzere çeşitli teknolojileri entegre etme konusunda yetkinim.",
+                aboutParagraph3: "Askeri bir sistem veya Atık Yönetim Sistemi gibi sivil bir uygulama olsun, her projeye temel sorunları çözmek için analitik bir zihniyetle yaklaşıyorum. İşbirliğine dayalı ortamlarda gelişiyor, operasyonel ihtiyaçları güvenilir ve verimli yazılımlara dönüştürüyor ve her çözümün ölçülebilir bir stratejik etki sağlamasını sağlıyorum.",
+                projectsTitle: "Görev Kayıtları",
                 project1Title: "Savaş Yönetim Sistemi", project1Description: "REPUBLIKORP ve ASELSAN ile bir Savaş Yönetim Sistemi geliştirdi. Askeri koordinasyon verimliliği için mimari, kritik modül uygulaması ve sistem entegrasyonundan sorumlu.",
                 project2Title: "Atık Yönetim Sistemi", project2Description: "PT Indocement ile bir Atık Yönetim Sistemi uygulaması geliştirdi. Uygulama, atık toplama rotalarını optimize eder, hacmi izler ve geri dönüşüm verimliliğini artırır.",
-                project3Title: "SEO ve Meta Reklam Analisti", project3Description: "Consultant.ID'de serbest SEO ve Meta Reklam Analisti olarak çalıştı. Anahtar kelime araştırması, içerik optimizasyonu, reklam performansı analizi yaptı ve dijital kampanya stratejileri oluşturdu.",
-                project4Title: "Caraka 22 Komuta Merkezi", project4Description: "Caraka 22 için coğrafi komuta merkezinin geliştirilmesine öncülük etti. JavaScript ve ArcGIS API'si kullanılarak dinamik, gerçek zamanlı durumsal farkındalık platformu tasarlandı ve PostgreSQL/PostGIS arka ucuyla entegre edildi.",
+                project4Title: "Caraka 22 Komuta Merkezi", project4Description: "Caraka 22 için coğrafi komuta merkezinin geliştirilmesine öncük etti. JavaScript ve ArcGIS API'si kullanılarak dinamik, gerçek zamanlı durumsal farkındalık platformu tasarlandı ve PostgreSQL/PostGIS arka ucuyla entegre edildi.",
                 project5Title: "Indo Defence 2024 Katılımcısı", project5Description: "Indo Defence 2024'te Republikorp için kilit bir teknik temsilci ve katılımcı olarak görev yaptı. Uluslararası heyetlere ve askeri yetkililere gelişmiş sistemleri sergiledi.",
-                skillsTitle: "Teknik Yetenekler", skillsLanguagesTitle: "Programlama Dilleri:", skillsFrameworksTitle: "Çerçeveler ve Kütüphaneler:", skillsToolsTitle: "Veritabanları ve Araçlar:", skillsMilitaryTitle: "Askeri Amaçlı:",
+                skillsTitle: "Yetkinlik Matrisi", skillsLanguagesTitle: "Programlama Dilleri:", skillsFrameworksTitle: "Çerçeveler ve Kütüphaneler:", skillsToolsTitle: "Veritabanları ve Araçlar:", skillsMilitaryTitle: "Askeri Amaçlı:",
                 skillMilitaryTech: "Askeri Teknoloji", skillTacticalKnowledge: "Taktik Bilgi", skillDataLink: "Taktik Veri Bağlantısı", skillAgentSupport: "Akıllı Ajan Desteği", skillIntegration: "Silah ve Lojistik Entegrasyonu",
-                contactTitle: "Bana Ulaşın", contactDescription: "Tartışmalara, işbirliklerine veya yeni fırsatlara her zaman açığım. Ulaşmaktan çekinmeyin!", contactNameLabel: "Tam Ad", contactEmailLabel: "E-posta Adresi", contactSubjectLabel: "Konu", contactMessageLabel: "Mesaj", contactSubmitButton: "Mesaj Gönder", contactOrReachOut: "Veya bana şu yollarla ulaşın:", footerCopyright: "Copyright 2025 Giwan Purnama. Tüm hakları saklıdır.",
+                contactTitle: "Güvenli İletişim Kanalı", contactDescription: "Tartışmalara, işbirliklerine veya yeni fırsatlara her zaman açığım. Ulaşmaktan çekinmeyin!",
+                contactNameLabel: "Tam Ad", contactEmailLabel: "E-posta Adresi", contactSubjectLabel: "Konu", contactMessageLabel: "Mesajınız...", contactSubmitButton: "İletimi Gönder",
+                footerCopyright: "© 2025 Giwan Purnama. Tüm Hakları Saklıdır.",
             },
             de: {
-                pageTitle: "Giwan Purnama Portfolio - Software-Ingenieur", brandName: "Giwan Purnama", navHome: "Startseite", navAbout: "Über mich", navProjects: "Projekte", navSkills: "Fähigkeiten", navContact: "Kontakt", heroName: "Giwan Purnama", heroSubtitle: "Software-Ingenieur", heroDescription: "Ich bin ein Software-Ingenieur mit Leidenschaft für die Entwicklung innovativer und effizienter Softwarelösungen zur Lösung realer Probleme.", heroButton: "Meine Projekte ansehen", aboutTitle: "Über mich", aboutParagraph1: "Hallo! Ich bin Giwan Purnama, ein leidenschaftlicher Software-Ingenieur, der 2023 als bester Schüler der Prakarya Internasional Berufsschule ausgezeichnet wurde und derzeit seinen Bachelor-Abschluss an der Universitas Terbuka anstrebt (voraussichtlicher Abschluss 2027). Ich verfüge über kompetente Fachkenntnisse in den Bereichen Technologie und Informatik.", aboutParagraph2: "Genauer gesagt, bin ich Experte als Software-Ingenieur. Aufgrund meiner Erfahrung kann ich verschiedene komplexe Probleme analysieren und lösen und Herausforderungen in innovative und effiziente Lösungen umwandeln.", aboutParagraph3: "Ich glaube fest an die Kraft der Teamarbeit und die Fähigkeit, zusammenzuarbeiten, um definierte Ziele zu setzen und zu erreichen, um sicherzustellen, dass jedes Projekt reibungslos verläuft und eine positive Wirkung erzielt. 🏆✨", projectsTitle: "Ausgewählte Projekte",
+                pageTitle: "Giwan Purnama Portfolio - Software-Ingenieur", brandName: "G//P // INTEL_SIG",
+                navHome: "Dashboard", navAbout: "Profil", navProjects: "Missionen", navSkills: "Kompetenz", navContact: "Kommunikation",
+                heroGreeting: "SYSTEM BEREIT // WILLKOMMEN, OPERATOR",
+                heroSubtitle: "Software-Ingenieur // Taktische Technologie",
+                heroDescription: "Erstellung innovativer und effizienter Softwarelösungen zur Lösung komplexer realer Probleme mit Schwerpunkt auf Verteidigungstechnologie und Nachrichtensystemen.",
+                heroButton: "Missionen anzeigen",
+                profileStatus: "STATUS: ", profileClearance: "FREIGABE: ",
+                statusFirewall: "Firewall-Status:", statusDataLink: "Datenverbindung:", statusNetworkSync: "Netzwerksynchronisation:",
+                aboutTitle: "Geheimdienstprofil",
+                aboutParagraph1: "Ich bin Giwan Purnama, ein Software-Ingenieur, der sich auf die Entwicklung von Verteidigungssystemen und geopatialer Intelligenz spezialisiert hat. Ausgezeichnet mit dem Preis für den besten Schüler der Prakarya Internasional Berufsschule und derzeit mein Studium an der Universitas Terbuka fortsetzend, widme ich meine Fähigkeiten der Schaffung fortschrittlicher Technologielösungen, die strategische Herausforderungen bewältigen.",
+                aboutParagraph2: "Meine Erfahrung reicht von der Architektur komplexer Battle Management Systems (BMS) mit REPUBLIKORP & ASELSAN bis zur Leitung der Entwicklung eines dynamischen Kommandozentrums für die Mission Caraka 22. Ich bin versiert in der Integration verschiedener Technologien, einschließlich der ArcGIS API und PostgreSQL/PostGIS-Backends, um eine entscheidende Echtzeit-Lageerkennung im Feld zu ermöglichen.",
+                aboutParagraph3: "Ich gehe jedes Projekt, ob es sich um ein militärisches System oder eine zivile Anwendung wie das Abfallmanagementsystem handelt, mit einer analytischen Denkweise an, um Kernprobleme zu lösen. Ich gedeihe in kollaborativen Umgebungen, übersetze operative Anforderungen in zuverlässige und effiziente Software und stelle sicher, dass jede Lösung eine messbare strategische Wirkung erzielt.",
+                projectsTitle: "Missionsprotokolle",
                 project1Title: "Kampfmanagementsystem", project1Description: "Entwickelte ein Kampfmanagementsystem mit REPUBLIKORP & ASELSAN. Verantwortlich für Architektur, Implementierung kritischer Module und Systemintegration für die Effizienz der militärischen Koordination.",
                 project2Title: "Abfallwirtschaftssystem", project2Description: "Entwickelte eine Abfallwirtschaftssystem-App mit PT Indocement. Die Anwendung optimiert die Abfallsammelrouten, überwacht das Volumen und verbessert die Recycling-Effizienz.",
-                project3Title: "SEO & Meta-Werbeanzeigen-Analyst", project3Description: "Freiberuflich als SEO- und Meta-Werbeanzeigen-Analyst bei Consultant.ID tätig. Führte Keyword-Recherchen, Inhaltsoptimierungen, Anzeigenleistungsanalysen durch und formulierte digitale Kampagnenstrategien.",
                 project4Title: "Caraka 22 Kommandozentrale", project4Description: "Leitete die Entwicklung der geospatialen Kommandozentrale für Caraka 22. Entwickelte eine dynamische Echtzeit-Lageerkennungsplattform mit JavaScript und der ArcGIS API, integriert mit einem PostgreSQL/PostGIS-Backend.",
                 project5Title: "Aussteller Indo Defence 2024", project5Description: "Diente als wichtiger technischer Vertreter und Aussteller für Republikorp auf der Indo Defence 2024. Demonstrierte fortschrittliche Systeme vor internationalen Delegationen und Militärbeamten.",
-                skillsTitle: "Technische Fähigkeiten", skillsLanguagesTitle: "Programmiersprachen:", skillsFrameworksTitle: "Frameworks & Bibliotheken:", skillsToolsTitle: "Datenbanken & Tools:", skillsMilitaryTitle: "Militärischer Zweck:",
+                skillsTitle: "Kompetenzmatrix", skillsLanguagesTitle: "Programmiersprachen:", skillsFrameworksTitle: "Frameworks & Bibliotheken:", skillsToolsTitle: "Datenbanken & Tools:", skillsMilitaryTitle: "Militärischer Zweck:",
                 skillMilitaryTech: "Militärtechnologie", skillTacticalKnowledge: "Taktisches Wissen", skillDataLink: "Taktische Datenverbindung", skillAgentSupport: "Unterstützung durch intelligente Agenten", skillIntegration: "Waffen- und Logistikintegration",
-                contactTitle: "Kontaktieren Sie mich", contactDescription: "Ich bin immer offen für Diskussionen, Kooperationen oder neue Möglichkeiten. Zögern Sie nicht, sich zu melden!", contactNameLabel: "Vollständiger Name", contactEmailLabel: "E-Mail-Adresse", contactSubjectLabel: "Betreff", contactMessageLabel: "Nachricht", contactSubmitButton: "Nachricht senden", contactOrReachOut: "Oder erreichen Sie mich über:", footerCopyright: "Copyright 2025 Giwan Purnama. Alle Rechte vorbehalten.",
+                contactTitle: "Sicherer Kommunikationskanal", contactDescription: "Ich bin immer offen für Diskussionen, Kooperationen oder neue Möglichkeiten. Zögern Sie nicht, sich zu melden!",
+                contactNameLabel: "Vollständiger Name", contactEmailLabel: "E-Mail-Adresse", contactSubjectLabel: "Betreff", contactMessageLabel: "Ihre Nachricht...", contactSubmitButton: "Übertragung senden",
+                footerCopyright: "© 2025 Giwan Purnama. Alle Rechte vorbehalten.",
             },
             ja: {
-                pageTitle: "ギワン・プルナマ ポートフォリオ - ソフトウェアエンジニア", brandName: "ギワン・プルナマ", navHome: "ホーム", navAbout: "私について", navProjects: "プロジェクト", navSkills: "スキル", navContact: "連絡先", heroName: "ギワン・プルナマ", heroSubtitle: "ソフトウェアエンジニア", heroDescription: "私は、現実世界の問題を解決するために、革新的で効率的なソフトウェアソリューションを作成することに情熱を注ぐソフトウェアエンジニアです。", heroButton: "私のプロジェクトを見る", aboutTitle: "私について", aboutParagraph1: "こんにちは！私は情熱的なソフトウェアエンジニア、ギワン・プルナマです。2023年にプラカルヤ国際専門学校の最優秀学生として表彰され、現在オープン大学で学士号を取得中です（2027年卒業予定）。私はテクノロジーと情報科学の分野で有能な専門知識を持っています。", aboutParagraph2: "より正確に言えば、私はソフトウェアエンジニアのエキスパートです。私の経験に基づき、さまざまな複雑な問題を分析・解決し、課題を革新的で効率的なソリューションに変えることができます。", aboutParagraph3: "私はチームコラボレーションの力と、定義された目標を設定し達成するために協力する能力を強く信じており、すべてのプロジェクトがスムーズに進行し、プラスの影響をもたらすことを保証します。🏆✨", projectsTitle: "注目のプロジェクト",
+                pageTitle: "ギワン・プルナマ ポートフォリオ - ソフトウェアエンジニア", brandName: "G//P // インテルSIG",
+                navHome: "ダッシュボード", navAbout: "プロフィール", navProjects: "ミッション", navSkills: "能力", navContact: "通信",
+                heroGreeting: "システム準備完了 // ようこそ、オペレーター",
+                heroSubtitle: "ソフトウェアエンジニア // 戦術技術",
+                heroDescription: "防衛技術とインテリジェンスシステムに焦点を当て、複雑な現実世界の問題を解決するための革新的で効率的なソフトウェアソリューションを作成します。",
+                heroButton: "ミッションを見る",
+                profileStatus: "ステータス: ", profileClearance: "クリアランス: ",
+                statusFirewall: "ファイアウォールステータス:", statusDataLink: "データリンク:", statusNetworkSync: "ネットワーク同期:",
+                aboutTitle: "インテリジェンスプロフィール",
+                aboutParagraph1: "私はギワン・プルナマ、防衛システムと地理空間インテリジェンスの開発を専門とするソフトウェアエンジニアです。プラカルヤ国際専門学校から最優秀学生賞を受賞し、現在テルブカ大学で学位取得を目指しており、戦略的課題に対処する高度な技術ソリューションの作成にスキルを捧げています。",
+                aboutParagraph2: "私の経験は、REPUBLIKORP & ASELSANとの複雑な戦闘管理システム（BMS）の設計から、Caraka 22ミッションのための動的なコマンドセンターの開発を主導することまで多岐にわたります。ArcGIS APIやPostgreSQL/PostGISバックエンドなど、さまざまな技術を統合して、現場で重要なリアルタイムの状況認識を提供することに習熟しています。",
+                aboutParagraph3: "私は、軍事システムであれ、廃棄物管理システムのような民間アプリケーションであれ、すべてのプロジェクトに分析的な考え方でアプローチし、核心的な問題を解決します。私は協調的な環境で成長し、運用上のニーズを信頼性が高く効率的なソフトウェアに変換し、すべてのソリューションが測定可能な戦略的影響をもたらすことを保証します。",
+                projectsTitle: "ミッションログ",
                 project1Title: "戦闘管理システム", project1Description: "REPUBLIKORPとASELSANと共同で戦闘管理システムを開発しました。軍事調整効率のためのアーキテクチャ、重要モジュールの実装、システム統合を担当しました。",
                 project2Title: "廃棄物管理システム", project2Description: "PT Indocementと共同で廃棄物管理システムアプリを開発しました。このアプリケーションは、廃棄物収集ルートを最適化し、量を監視し、リサイクル効率を向上させます。",
-                project3Title: "SEO＆メタ広告アナリスト", project3Description: "Consultant.IDでフリーランスのSEOおよびメタ広告アナリストとして活動しました。キーワード調査、コンテンツ最適化、広告パフォーマンス分析を実施し、デジタルキャンペーン戦略を策定しました。",
                 project4Title: "カラカ22コマンドセンター", project4Description: "カラカ22の地理空間コマンドセンターの開発を主導しました。JavaScriptとArcGIS APIを使用して動的なリアルタイム状況認識プラットフォームを設計し、PostgreSQL/PostGISバックエンドと統合しました。",
                 project5Title: "インドディフェンス2024出展者", project5Description: "インドディフェンス2024でRepublikorpの主要な技術代表および出展者として務めました。国際代表団や軍関係者に高度なシステムを実演しました。",
-                skillsTitle: "技術スキル", skillsLanguagesTitle: "プログラミング言語：", skillsFrameworksTitle: "フレームワークとライブラリ：", skillsToolsTitle: "データベースとツール：", skillsMilitaryTitle: "軍事目的：",
+                skillsTitle: "能力マトリックス", skillsLanguagesTitle: "プログラミング言語：", skillsFrameworksTitle: "フレームワークとライブラリ：", skillsToolsTitle: "データベースとツール：", skillsMilitaryTitle: "軍事目的：",
                 skillMilitaryTech: "軍事技術", skillTacticalKnowledge: "戦術知識", skillDataLink: "戦術データリンク", skillAgentSupport: "インテリジェントエージェントサポート", skillIntegration: "兵器とロジスティクスの統合",
-                contactTitle: "お問い合わせ", contactDescription: "ディスカッション、コラボレーション、新しい機会についていつでも歓迎します。お気軽にご連絡ください！", contactNameLabel: "フルネーム", contactEmailLabel: "メールアドレス", contactSubjectLabel: "件名", contactMessageLabel: "メッセージ", contactSubmitButton: "メッセージを送信", contactOrReachOut: "または、こちらからご連絡ください：", footerCopyright: "Copyright 2025 ギワン・プルナマ。無断複写・転載を禁じます。",
+                contactTitle: "安全な通信チャネル", contactDescription: "ディスカッション、コラボレーション、新しい機会についていつでも歓迎します。お気軽にご連絡ください！",
+                contactNameLabel: "フルネーム", contactEmailLabel: "メールアドレス", contactSubjectLabel: "件名", contactMessageLabel: "メッセージ...", contactSubmitButton: "送信を送信",
+                footerCopyright: "© 2025 ギワン・プルナマ。無断複写・転載を禁じます。",
             },
         };
 
-        let currentLanguage = localStorage.getItem('portfolioLanguage') || 'id';
-
+        let currentLanguage = localStorage.getItem('portfolioLanguage') || 'en';
         function applyLanguage(langCode) {
+            const lang = translations[langCode] || translations['en'];
             document.querySelectorAll('[data-translate-key]').forEach(element => {
                 const key = element.getAttribute('data-translate-key');
-                if (translations[langCode] && translations[langCode][key]) {
-                    if (key.includes('Paragraph') || key.includes('Description')) {
-                         element.innerHTML = translations[langCode][key];
+                if (lang[key]) {
+                    if (key.includes('Paragraph') || key.includes('Description') || key === 'heroName') { // heroName handled by typing effect
+                        if (key !== 'heroName') element.innerHTML = lang[key];
                     } else {
-                        element.textContent = translations[langCode][key];
+                        element.textContent = lang[key];
                     }
                 }
             });
-            document.title = translations[langCode].pageTitle;
+            document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-translate-placeholder');
+                if (lang[key]) element.placeholder = lang[key];
+            });
+            document.title = lang.pageTitle;
             document.documentElement.lang = langCode;
             document.getElementById('language-select').value = langCode;
-            document.getElementById('language-select-mobile').value = langCode;
             localStorage.setItem('portfolioLanguage', langCode);
         }
-
         applyLanguage(currentLanguage);
-
         document.getElementById('language-select').addEventListener('change', (e) => applyLanguage(e.target.value));
-        document.getElementById('language-select-mobile').addEventListener('change', (e) => applyLanguage(e.target.value));
-    </script>
+
+        // --- Skills Radar Chart ---
+        function createSkillsChart() {
+            const ctx = document.getElementById('skillsRadarChart').getContext('2d');
+            window.skillsRadarChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Kotlin/Java', 'Databases', 'Web Tech', 'GIS', 'Tactical Sys.'],
+                    datasets: [{
+                        label: 'Proficiency Level',
+                        data: [90, 85, 80, 95, 88],
+                        backgroundColor: 'rgba(38, 255, 223, 0.2)',
+                        borderColor: 'rgba(38, 255, 223, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(38, 255, 223, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(38, 255, 223, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(255, 255, 255, 0.2)' },
+                            grid: { color: 'rgba(255, 255, 255, 0.2)' },
+                            pointLabels: {
+                                color: '#E0F2F1',
+                                font: { family: "'Roboto Mono', monospace", size: 11 }
+                            },
+                            ticks: { color: '#011C26', backdropColor: 'rgba(255, 255, 255, 0.1)', stepSize: 25 },
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        }
+                    }
+                }
+            });
+        }
+        if (document.querySelector('#skills').classList.contains('active')) {
+            createSkillsChart();
+        }
+    });
+</script>
 </body>
 </html>
 
