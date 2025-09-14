@@ -22,7 +22,7 @@
         /* --- INTEL HUD THEME --- */
         :root {
             --bf-bg-dark: #011C26;
-            --bf-bg-panel: rgba(0, 0, 0, 0.3);
+            --bf-bg-panel: rgba(0, 0, 0, 0.2);
             --bf-accent-cyan: #26FFDF;
             --bf-accent-bg: rgba(38, 255, 222, 0.5);
             --bf-accent-orange: #F26A1B;
@@ -37,7 +37,7 @@
         body {
             font-family: 'Chakra Petch', sans-serif;
             background-color: var(--bf-bg-dark);
-            background-image: linear-gradient(rgba(1, 28, 38, 0.85), rgba(1, 28, 38, 0.85)), url('https://e0.pxfuel.com/wallpapers/637/566/desktop-wallpaper-world-map-black-digital-world-map.jpg');
+            background-image: linear-gradient(rgba(1, 21, 19, 0.75), rgba(1, 21, 19, 0.75)), url('https://img.freepik.com/premium-photo/digital-representation-europe-with-glowing-network-connections-data-points_1232269-18240.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -99,12 +99,12 @@
 
         .logo-glitch { animation: logo-flicker 3s linear infinite; }
         @keyframes logo-flicker { 0%, 100% { opacity: 1; } 50.2% { opacity: 0.7; transform: skewX(5deg); } 50.5% { opacity: 1; transform: skewX(0); } }
-        
+
         #boot-sequence .boot-text {
             opacity: 0;
             animation: fadeInUp 0.5s ease-out forwards;
         }
-         @keyframes fadeInUp {
+        @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
@@ -202,7 +202,7 @@
             clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
         }
         .hero-button:hover { background-color: var(--bf-accent-cyan); color: var(--bf-bg-dark); box-shadow: 0 0 12px var(--bf-accent-cyan); }
-        .profile-card img { filter: grayscale(1) contrast(1.2) brightness(0.9) sepia(1) hue-rotate(130deg) saturate(500%); }
+        .profile-card img { filter: grayscale(1) contrast(1.2) brightness(0.9) sepia(1) hue-rotate(130deg) saturate(150%); }
 
         .project-card { transition: all 0.3s ease; }
         .project-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 0 25px rgba(38, 255, 223, 0.2); }
@@ -230,7 +230,7 @@
         main::-webkit-scrollbar-track { background: transparent; }
         main::-webkit-scrollbar-thumb { background: var(--bf-border-active); border-radius: 4px; }
         main::-webkit-scrollbar-thumb:hover { background: #5fffe9; }
-        
+
         /* --- TIMELINE --- */
         .timeline { position: relative; padding-left: 2rem; }
         .timeline::before {
@@ -244,7 +244,7 @@
             background: var(--bf-accent-cyan); border: 2px solid var(--bf-bg-dark);
             transform: translateX(-4px); box-shadow: 0 0 10px var(--bf-accent-cyan);
         }
-        
+
         /* --- CERTIFICATION CARD --- */
         .cert-card {
             border-left: 3px solid var(--bf-border); transition: all 0.3s ease;
@@ -270,7 +270,7 @@
                 <line x1="16" y1="12" x2="22" y2="12"></line>
             </svg>
             <div>
-                <h1 class="text-4xl sm:text-5xl font-bold tracking-widest glitch" data-text="G//P INTEL-SIG">G//P INTEL-SIG</h1>
+                <h1 class="text-4xl sm:text-5xl font-bold tracking-widest glitch" data-text="OPERATOR .aka GIWAN">OPERATOR .aka GIWAN</h1>
                 <p class="text-lg sm:text-xl text-gray-400 tracking-wider">PORTFOLIO INTERFACE</p>
             </div>
         </div>
@@ -299,10 +299,10 @@
     <!-- HEADER -->
     <header class="hud-panel flex justify-between items-center p-4">
         <a href="#" class="font-bold text-xl md:text-2xl tracking-widest text-[var(--bf-accent-cyan)]" data-translate-key="brandName" style="text-shadow: 0 0 8px var(--bf-accent-cyan);">
-            G//P // INTEL_SIG
+            G//P //24 INTEL_OPERATOR
         </a>
         <div id="language-selector-container">
-             <select id="language-select" class="bg-transparent border p-2 rounded-none focus:outline-none focus:ring-1 focus:ring-[var(--bf-accent-cyan)]">
+            <select id="language-select" class="bg-transparent border p-2 rounded-none focus:outline-none focus:ring-1 focus:ring-[var(--bf-accent-cyan)]" >
                 <option class="bg-[var(--bf-bg-dark)]" value="en">🇺🇸 English</option>
                 <option class="bg-[var(--bf-bg-dark)]" value="id">🇮🇩 Bahasa Indonesia</option>
                 <option class="bg-[var(--bf-bg-dark)]" value="hi">🇮🇳 Hindi</option>
@@ -318,32 +318,32 @@
 
     <!-- SIDEBAR NAVIGATION -->
     <aside class="hud-panel p-4" id="main-nav">
-        <p class="nav-header" data-translate-key="navHeaderMain">MAIN</p>
+        <p class="nav-header text-[var(--bf-accent-cyan)]" data-translate-key="navHeaderMain" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">MAIN</p>
         <ul>
             <li><a href="#home" class="nav-link active"><i data-lucide="layout-dashboard"></i> <span data-translate-key="navHome">Dashboard</span></a></li>
         </ul>
 
-        <p class="nav-header" data-translate-key="navHeaderProfile">OPERATIVE</p>
+        <p class="nav-header text-[var(--bf-accent-cyan)]" data-translate-key="navHeaderProfile" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">OPERATOR</p>
         <ul>
             <li><a href="#about" class="nav-link"><i data-lucide="user"></i> <span data-translate-key="navBioData">Bio Data</span></a></li>
             <li><a href="#service-record" class="nav-link"><i data-lucide="history"></i> <span data-translate-key="navServiceRecord">Service Record</span></a></li>
         </ul>
 
-        <p class="nav-header" data-translate-key="navHeaderMissions">MISSIONS</p>
-         <ul>
+        <p class="nav-header text-[var(--bf-accent-cyan)]" data-translate-key="navHeaderMissions" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">MISSIONS</p>
+        <ul>
             <li><a href="#projects" class="nav-link"><i data-lucide="folder-git-2"></i> <span data-translate-key="navProjects">Mission Logs</span></a></li>
         </ul>
 
-        <p class="nav-header" data-translate-key="navHeaderCompetency">COMPETENCY</p>
+        <p class="nav-header text-[var(--bf-accent-cyan)]" data-translate-key="navHeaderCompetency" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">COMPETENCY</p>
         <ul>
-             <li><a href="#skills" class="nav-link"><i data-lucide="scan-line"></i> <span data-translate-key="navTechSkills">Technical Skills</span></a></li>
-             <li><a href="#certifications" class="nav-link"><i data-lucide="award"></i> <span data-translate-key="navCerts">Awards & Certs</span></a></li>
+            <li><a href="#skills" class="nav-link"><i data-lucide="scan-line"></i> <span data-translate-key="navTechSkills">Technical Skills</span></a></li>
+            <li><a href="#certifications" class="nav-link"><i data-lucide="award"></i> <span data-translate-key="navCerts">Awards & Certs</span></a></li>
         </ul>
 
-        <p class="nav-header" data-translate-key="navHeaderComms">COMMS</p>
-         <ul>
+        <p class="nav-header text-[var(--bf-accent-cyan)]" data-translate-key="navHeaderComms" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">COMMS</p>
+        <ul>
             <li><a href="#contact" class="nav-link"><i data-lucide="satellite-dish"></i> <span data-translate-key="navContact">Secure Channel</span></a></li>
-         </ul>
+        </ul>
     </aside>
 
     <!-- MAIN CONTENT -->
@@ -353,8 +353,8 @@
             <div class="grid lg:grid-cols-3 gap-6 h-full">
                 <div class="lg:col-span-2 hud-panel p-8 flex flex-col justify-center">
                     <div>
-                        <p class="text-lg text-[var(--bf-accent-cyan)] font-mono" data-translate-key="heroGreeting">SYSTEM READY // WELCOME, OPERATIVE</p>
-                        <h1 class="text-5xl md:text-7xl font-bold my-4">
+                        <p class="text-lg text-[var(--bf-accent-cyan)] font-mono" data-translate-key="heroGreeting" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">SYSTEM READY // WELCOME, OPERATOR</p>
+                        <h1 class="text-5xl text-white md:text-7xl font-bold my-4" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">
                             <span id="typed-name"></span><span class="typing-cursor"></span>
                         </h1>
                         <p class="text-xl md:text-2xl text-[var(--bf-text-dark)] tracking-widest" data-translate-key="heroSubtitle">Software Engineer // Tactical Tech</p>
@@ -368,19 +368,19 @@
                         </div>
                     </div>
                     <div class="mt-10">
-                        <a href="#projects" class="hero-button text-white font-semibold py-3 px-8 text-lg inline-flex items-center nav-trigger" data-translate-key="heroButton">
+                        <a href="#projects" class="hero-button font-semibold py-3 px-8 text-lg inline-flex items-center nav-trigger text-white" data-translate-key="heroButton" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">
                             Lihat Misi <i data-lucide="arrow-right" class="ml-2 h-5 w-5"></i>
                         </a>
                     </div>
                 </div>
                 <div class="hud-panel p-4 profile-card flex flex-col items-center justify-center">
-                    <img src="giwan.jpg" alt="Foto Giwan Purnama" class="w-40 h-40 rounded-full border-2 border-[var(--bf-accent-cyan)]" style="box-shadow: 0 0 20px var(--bf-accent-cyan);">
-                    <p class="mt-4 text-xl font-semibold" data-translate-key="heroName">Giwan Purnama</p>
+                    <img src="giwan2.jpg" alt="Foto Giwan Purnama" class="w-40 h-40 rounded-full border-2 border-[var(--bf-accent-cyan)]" style="box-shadow: 0 0 20px var(--bf-accent-cyan);">
+                    <p class="mt-4 text-xl font-semibold" data-translate-key="heroName" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">Giwan Purnama</p>
                     <p class="text-[var(--bf-text-dark)] text-sm">
-                        <span data-translate-key="profileStatus"></span><span class="text-[var(--bf-accent-cyan)]">ACTIVE</span>
+                        <span data-translate-key="profileStatus"></span><span class="text-[var(--bf-accent-cyan)]" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">ACTIVE</span>
                     </p>
                     <p class="text-[var(--bf-text-dark)] text-sm">
-                        <span data-translate-key="profileClearance"></span><span class="text-[var(--bf-accent-cyan)]">LEVEL 5</span>
+                        <span data-translate-key="profileClearance"></span><span class="text-[var(--bf-accent-cyan)]" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">LEVEL 5</span>
                     </p>
                 </div>
             </div>
@@ -392,9 +392,12 @@
                 <h2 class="text-3xl font-bold mb-8 section-title" data-translate-key="aboutTitle">Bio Data</h2>
                 <div class="grid md:grid-cols-5 gap-10 items-center">
                     <div class="md:col-span-2">
-                        <img src="giwan2.webp" alt="Ilustrasi Tentang Saya" class="w-full" style="clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%); border: 1px solid var(--bf-border);">
+                        <img src="giwan.jpg" alt="Ilustrasi Tentang Saya" class="w-full" style="clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%); border: 1px solid var(--bf-border);">
                     </div>
                     <div class="md:col-span-3 font-mono text-sm text-[var(--bf-text-dark)] space-y-4">
+                        <h1 class="text-5xl text-white md:text-7xl font-bold my-4" style="text-shadow: 0 0 20px var(--bf-accent-cyan); font-family: 'Chakra Petch', sans-serif;">
+                            GIWAN PURNAMA
+                        </h1>
                         <p data-translate-key="aboutParagraph1"></p>
                         <p data-translate-key="aboutParagraph2"></p>
                         <p data-translate-key="aboutParagraph3"></p>
@@ -402,30 +405,30 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- SERVICE RECORD SECTION -->
         <section id="service-record" class="content-section">
-             <div class="hud-panel p-8">
+            <div class="hud-panel p-8">
                 <h2 class="text-3xl font-bold mb-8 section-title" data-translate-key="serviceRecordTitle">Service Record</h2>
                 <div class="timeline">
                     <!-- Item 1 -->
                     <div class="timeline-item">
-                        <p class="font-mono text-xs text-[var(--bf-accent-cyan)]" data-translate-key="serviceRecord1Date">JUNE 2025</p>
-                        <h3 class="text-xl font-semibold text-white" data-translate-key="serviceRecord1Title">Indo Defence 2024 Exhibitor</h3>
+                        <p class="font-mono text-xs text-[var(--bf-accent-cyan)]" data-translate-key="serviceRecord1Date" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">JUNE 2025</p>
+                        <h3 class="text-xl font-semibold text-white" data-translate-key="serviceRecord1Title" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">Indo Defence 2024 Exhibitor</h3>
                         <p class="text-sm text-[var(--bf-text-dark)] mb-2" data-translate-key="serviceRecord1Org">REPUBLIKORP</p>
                         <p class="font-mono text-sm text-gray-400" data-translate-key="serviceRecord1Desc">Served as a key technical representative, demonstrating advanced defense systems to international delegations and military officials.</p>
                     </div>
                     <!-- Item 2 -->
                     <div class="timeline-item">
-                        <p class="font-mono text-xs text-[var(--bf-accent-cyan)]" data-translate-key="serviceRecord2Date">2043 - PRESENT</p>
-                        <h3 class="text-xl font-semibold text-white" data-translate-key="serviceRecord2Title">Battlefield Management System</h3>
+                        <p class="font-mono text-xs text-[var(--bf-accent-cyan)]" data-translate-key="serviceRecord2Date" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">2043 - PRESENT</p>
+                        <h3 class="text-xl font-semibold text-white" data-translate-key="serviceRecord2Title" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">Battlefield Management System</h3>
                         <p class="text-sm text-[var(--bf-text-dark)] mb-2" data-translate-key="serviceRecord2Org">REPUBLIKORP & ASELSAN</p>
                         <p class="font-mono text-sm text-gray-400" data-translate-key="serviceRecord2Desc">Responsible for system architecture, implementation of critical modules, and integration for military coordination efficiency.</p>
                     </div>
-                     <!-- Item 3 -->
+                    <!-- Item 3 -->
                     <div class="timeline-item">
-                        <p class="font-mono text-xs text-[var(--bf-accent-cyan)]" data-translate-key="serviceRecord3Date">2025 - PRESENT</p>
-                        <h3 class="text-xl font-semibold text-white" data-translate-key="serviceRecord3Title">Caraka 22 Command Center</h3>
+                        <p class="font-mono text-xs text-[var(--bf-accent-cyan)]" data-translate-key="serviceRecord3Date" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">2025 - PRESENT</p>
+                        <h3 class="text-xl font-semibold text-white" data-translate-key="serviceRecord3Title" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">Caraka 22 Command Center</h3>
                         <p class="text-sm text-[var(--bf-text-dark)] mb-2" data-translate-key="serviceRecord3Org">Indonesian Army</p>
                         <p class="font-mono text-sm text-gray-400" data-translate-key="serviceRecord3Desc">Led the development of a dynamic, real-time situational awareness platform using JavaScript and the ArcGIS API.</p>
                     </div>
@@ -444,9 +447,9 @@
                             <img src="bms.jpg" alt="Battlefield Management System" class="w-full h-full object-cover">
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-white" data-translate-key="project1Title">Battlefield Management System</h3>
+                            <h3 class="text-xl font-bold mb-2 text-white" data-translate-key="project1Title" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">Battlefield Management System</h3>
                             <p class="text-[var(--bf-text-dark)] text-sm mb-4 font-mono min-h-[6rem]" data-translate-key="project1Description"></p>
-                            <div class="flex flex-wrap gap-2 text-xs"><strong class="w-full text-[var(--bf-accent-cyan)] text-xs">TECH DEPLOYED:</strong> <span class="skill-tag px-3 py-1">Kotlin</span><span class="skill-tag px-3 py-1">Java</span><span class="skill-tag px-3 py-1">Arcgis</span><span class="skill-tag px-3 py-1">PostgreSQL</span></div>
+                            <div class="flex flex-wrap gap-2 text-xs"><strong class="w-full text-[var(--bf-accent-cyan)] text-xs" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">TECH DEPLOYED:</strong> <span class="skill-tag px-3 py-1">Kotlin</span><span class="skill-tag px-3 py-1">Java</span><span class="skill-tag px-3 py-1">Arcgis</span><span class="skill-tag px-3 py-1">PostgreSQL</span></div>
                         </div>
                     </div>
                     <!-- Project 4 -->
@@ -455,20 +458,20 @@
                             <img src="caraka.jpg" alt="Caraka 22 Command Center" class="w-full h-full object-cover">
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-white" data-translate-key="project4Title">Caraka 22 Command Center</h3>
+                            <h3 class="text-xl font-bold mb-2 text-white" data-translate-key="project4Title" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">Caraka 22 Command Center</h3>
                             <p class="text-[var(--bf-text-dark)] text-sm mb-4 font-mono min-h-[6rem]" data-translate-key="project4Description"></p>
-                            <div class="flex flex-wrap gap-2 text-xs"><strong class="w-full text-[var(--bf-accent-cyan)] text-xs">TECH DEPLOYED:</strong> <span class="skill-tag px-3 py-1">JavaScript</span><span class="skill-tag px-3 py-1">ArcGIS API</span><span class="skill-tag px-3 py-1">PostgreSQL</span><span class="skill-tag px-3 py-1">PostGIS</span></div>
+                            <div class="flex flex-wrap gap-2 text-xs"><strong class="w-full text-[var(--bf-accent-cyan)] text-xs" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">TECH DEPLOYED:</strong> <span class="skill-tag px-3 py-1">JavaScript</span><span class="skill-tag px-3 py-1">ArcGIS API</span><span class="skill-tag px-3 py-1">PostgreSQL</span><span class="skill-tag px-3 py-1">PostGIS</span></div>
                         </div>
                     </div>
                     <!-- Project 5 -->
                     <div class="project-card hud-panel p-0 overflow-hidden">
                         <div class="project-image-container overflow-hidden aspect-video">
-                            <img src="indodefence.jpg" alt="Indo Defence 2024 Exhibitor" class="w-full h-full object-cover">
+                            <img src="id.png" alt="Indo Defence 2024 Exhibitor" class="w-full h-full object-cover">
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-white" data-translate-key="project5Title">Indo Defence 2024 Exhibitor</h3>
+                            <h3 class="text-xl font-bold mb-2 text-white" data-translate-key="project5Title" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">Indo Defence 2024 Exhibitor</h3>
                             <p class="text-[var(--bf-text-dark)] text-sm mb-4 font-mono min-h-[6rem]" data-translate-key="project5Description"></p>
-                            <div class="flex flex-wrap gap-2 text-xs"><strong class="w-full text-[var(--bf-accent-cyan)] text-xs">TECH DEPLOYED:</strong> <span class="skill-tag px-3 py-1">Technical Representative</span><span class="skill-tag px-3 py-1">System Demonstrations</span></div>
+                            <div class="flex flex-wrap gap-2 text-xs"><strong class="w-full text-[var(--bf-accent-cyan)] text-xs" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">TECH DEPLOYED:</strong> <span class="skill-tag px-3 py-1">Technical Representative</span><span class="skill-tag px-3 py-1">System Demonstrations</span></div>
                         </div>
                     </div>
                     <!-- Project 2 -->
@@ -477,9 +480,9 @@
                             <img src="wms.jpg" alt="Waste Management System" class="w-full h-full object-cover">
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-white" data-translate-key="project2Title">Waste Management System</h3>
+                            <h3 class="text-xl font-bold mb-2 text-white" data-translate-key="project2Title" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">Waste Management System</h3>
                             <p class="text-[var(--bf-text-dark)] text-sm mb-4 font-mono min-h-[6rem]" data-translate-key="project2Description"></p>
-                            <div class="flex flex-wrap gap-2 text-xs"><strong class="w-full text-[var(--bf-accent-cyan)] text-xs">TECH DEPLOYED:</strong> <span class="skill-tag px-3 py-1">Kotlin</span><span class="skill-tag px-3 py-1">Jetpack Compose</span><span class="skill-tag px-3 py-1">Laravel</span><span class="skill-tag px-3 py-1">MongoDB</span></div>
+                            <div class="flex flex-wrap gap-2 text-xs"><strong class="w-full text-[var(--bf-accent-cyan)] text-xs" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">TECH DEPLOYED:</strong> <span class="skill-tag px-3 py-1">Kotlin</span><span class="skill-tag px-3 py-1">Jetpack Compose</span><span class="skill-tag px-3 py-1">Laravel</span><span class="skill-tag px-3 py-1">MongoDB</span></div>
                         </div>
                     </div>
                 </div>
@@ -492,11 +495,11 @@
                 <h2 class="text-3xl font-bold mb-8 section-title" data-translate-key="skillsTitle">Technical Skills</h2>
                 <div class="grid md:grid-cols-2 gap-8 items-center">
                     <div>
-                        <canvas id="skillsRadarChart"></canvas>
+                        <canvas id="skillsRadarChart" ></canvas>
                     </div>
                     <div class="space-y-4">
                         <div>
-                            <h3 class="text-lg font-semibold text-[var(--bf-accent-cyan)]" data-translate-key="skillsMilitaryTitle">Military Purpose:</h3>
+                            <h3 class="text-lg font-semibold text-[var(--bf-accent-cyan)]" data-translate-key="skillsMilitaryTitle" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">Military Purpose:</h3>
                             <div class="flex flex-wrap gap-2 mt-2">
                                 <span class="skill-tag px-3 py-1" data-translate-key="skillMilitaryTech">Military Technology</span>
                                 <span class="skill-tag px-3 py-1" data-translate-key="skillTacticalKnowledge">Tactical Knowledge</span>
@@ -506,7 +509,7 @@
                             </div>
                         </div>
                         <div>
-                            <h3 class="text-lg font-semibold text-[var(--bf-accent-cyan)]" data-translate-key="skillsLanguagesTitle">Programming Languages:</h3>
+                            <h3 class="text-lg font-semibold text-[var(--bf-accent-cyan)]" data-translate-key="skillsLanguagesTitle" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">Programming Languages:</h3>
                             <div class="flex flex-wrap gap-2 mt-2">
                                 <span class="skill-tag px-3 py-1">Kotlin</span>
                                 <span class="skill-tag px-3 py-1">Java</span>
@@ -515,7 +518,7 @@
                             </div>
                         </div>
                         <div>
-                            <h3 class="text-lg font-semibold text-[var(--bf-accent-cyan)]" data-translate-key="skillsFrameworksTitle">Frameworks & Libraries:</h3>
+                            <h3 class="text-lg font-semibold text-[var(--bf-accent-cyan)]" data-translate-key="skillsFrameworksTitle" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">Frameworks & Libraries:</h3>
                             <div class="flex flex-wrap gap-2 mt-2">
                                 <span class="skill-tag px-3 py-1">Kotlin Gradle</span>
                                 <span class="skill-tag px-3 py-1">Jetpack Compose</span>
@@ -525,7 +528,7 @@
                             </div>
                         </div>
                         <div>
-                            <h3 class="text-lg font-semibold text-[var(--bf-accent-cyan)]" data-translate-key="skillsToolsTitle">Databases & Tools:</h3>
+                            <h3 class="text-lg font-semibold text-[var(--bf-accent-cyan)]" data-translate-key="skillsToolsTitle" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">Databases & Tools:</h3>
                             <div class="flex flex-wrap gap-2 mt-2">
                                 <span class="skill-tag px-3 py-1">MongoDB</span>
                                 <span class="skill-tag px-3 py-1">PostgreSQL</span>
@@ -548,14 +551,14 @@
                     <div class="cert-card p-4 flex items-center gap-4">
                         <i data-lucide="award" class="w-10 h-10 text-[var(--bf-accent-cyan)]"></i>
                         <div>
-                            <h3 class="text-lg font-semibold text-white" data-translate-key="cert1Title">Best Student of The Year</h3>
+                            <h3 class="text-lg font-semibold text-white" data-translate-key="cert1Title" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">Best Student of The Year</h3>
                             <p class="text-sm text-[var(--bf-text-dark)]" data-translate-key="cert1Issuer">PRAKARYA INTERNASIONAL VOCATIONAL HIGH SCHOOL, 2023</p>
                         </div>
                     </div>
-                     <div class="cert-card p-4 flex items-center gap-4">
+                    <div class="cert-card p-4 flex items-center gap-4">
                         <i data-lucide="award" class="w-10 h-10 text-[var(--bf-accent-cyan)]"></i>
                         <div>
-                            <h3 class="text-lg font-semibold text-white" data-translate-key="cert2Title">Software Engineering Competence (BSNP) 0043/P/BSNP/1/2020</h3>
+                            <h3 class="text-lg font-semibold text-white" data-translate-key="cert2Title" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">Software Engineering Competence (BSNP) 0043/P/BSNP/1/2020</h3>
                             <p class="text-sm text-[var(--bf-text-dark)]" data-translate-key="cert2Issuer">PT. LASKAR TEKNOLOGI MULIA (CYBERLABS), 2023</p>
                         </div>
                     </div>
@@ -575,7 +578,7 @@
                     </div>
                     <input type="text" name="subject" placeholder="Subjek" required class="w-full" data-translate-placeholder="contactSubjectLabel">
                     <textarea name="message" rows="5" placeholder="Pesan Anda..." required class="w-full" data-translate-placeholder="contactMessageLabel"></textarea>
-                    <button type="submit" class="w-full justify-center py-3 px-4 hero-button text-sm font-medium" data-translate-key="contactSubmitButton">
+                    <button type="submit" class="w-full justify-center py-3 px-4 hero-button text-sm font-medium" data-translate-key="contactSubmitButton" style="text-shadow: 0 0 20px var(--bf-accent-cyan);">
                         Kirim Transmisi
                     </button>
                 </form>
@@ -729,7 +732,7 @@
 
         const translations = {
             id: {
-                pageTitle: "Portofolio Giwan Purnama - Software Engineer", brandName: "G//P // INTEL_SIG",
+                pageTitle: "Portofolio Giwan Purnama - Software Engineer", brandName: "G//P //24 INTEL_OPERATOR",
                 navHeaderMain: "UTAMA", navHome: "Dashboard",
                 navHeaderProfile: "OPERATOR", navBioData: "Bio Data", navServiceRecord: "Riwayat Dinas",
                 navHeaderMissions: "MISI", navProjects: "Log Misi",
@@ -756,7 +759,7 @@
                 project5Title: "Exhibitor Indo Defence 2024", project5Description: "Bertindak sebagai perwakilan teknis utama dan exhibitor untuk Republikorp di Indo Defence 2024. Mendemonstrasikan sistem canggih kepada delegasi internasional dan pejabat militer.",
                 skillsTitle: "Keahlian Teknis", skillsLanguagesTitle: "Bahasa Pemrograman:", skillsFrameworksTitle: "Framework & Library:", skillsToolsTitle: "Database & Tools:", skillsMilitaryTitle: "Tujuan Militer:",
                 skillMilitaryTech: "Teknologi Militer", skillTacticalKnowledge: "Pengetahuan Taktikal", skillDataLink: "Taktikal Data Link", skillAgentSupport: "Dukungan Agen Cerdas", skillIntegration: "Integrasi Persenjataan & Logistik",
-                certsTitle: "Penghargaan & Sertifikasi", 
+                certsTitle: "Penghargaan & Sertifikasi",
                 cert1Title: "Siswa Terbaik Tahun Ini", cert1Issuer: "SMK PRAKARYA INTERNASIONAL, 2023",
                 cert2Title: "Kompetensi Rekayasa Perangkat Lunak (BSNP) 0043/P/BSNP/1/2020", cert2Issuer: "PT. LASKAR TEKNOLOGI MULIA (CYBERLABS), 2023",
                 contactTitle: "Kanal Komunikasi Aman", contactDescription: "Saya selalu terbuka untuk diskusi, kolaborasi, atau peluang baru. Jangan ragu untuk menghubungi saya!",
@@ -764,13 +767,13 @@
                 footerCopyright: "© 2025 Giwan Purnama. Hak Cipta Dilindungi.",
             },
             en: {
-                pageTitle: "Giwan Purnama Portfolio - Software Engineer", brandName: "G//P // INTEL_SIG",
+                pageTitle: "Giwan Purnama Portfolio - Software Engineer", brandName: "G//P //24 INTEL_OPERATOR",
                 navHeaderMain: "MAIN", navHome: "Dashboard",
-                navHeaderProfile: "OPERATIVE", navBioData: "Bio Data", navServiceRecord: "Service Record",
+                navHeaderProfile: "OPERATOR", navBioData: "Bio Data", navServiceRecord: "Service Record",
                 navHeaderMissions: "MISSIONS", navProjects: "Mission Logs",
                 navHeaderCompetency: "COMPETENCY", navTechSkills: "Technical Skills", navCerts: "Awards & Certs",
                 navHeaderComms: "COMMS", navContact: "Secure Channel",
-                heroGreeting: "SYSTEM READY // WELCOME, OPERATIVE",
+                heroGreeting: "SYSTEM READY // WELCOME, OPERATOR",
                 heroName: "Giwan Purnama", heroSubtitle: "Software Engineer // Tactical Tech",
                 heroDescription: "Crafting innovative and efficient software solutions to solve complex real-world problems, with a focus on defense technology and intelligence systems.",
                 heroButton: "View Missions",
@@ -791,7 +794,7 @@
                 project5Title: "Indo Defence 2024 Exhibitor", project5Description: "Served as a key technical representative and exhibitor for Republikorp at Indo Defence 2024. Demonstrated advanced systems to international delegations and military officials.",
                 skillsTitle: "Technical Skills", skillsLanguagesTitle: "Programming Languages:", skillsFrameworksTitle: "Frameworks & Libraries:", skillsToolsTitle: "Databases & Tools:", skillsMilitaryTitle: "Military Purpose:",
                 skillMilitaryTech: "Military Technology", skillTacticalKnowledge: "Tactical Knowledge", skillDataLink: "Tactical Data Link", skillAgentSupport: "Intelligent Agent Support", skillIntegration: "Weaponry & Logistics Integration",
-                certsTitle: "Awards & Certifications", 
+                certsTitle: "Awards & Certifications",
                 cert1Title: "Best Student of The Year", cert1Issuer: "PRAKARYA INTERNASIONAL VOCATIONAL HIGH SCHOOL, 2023",
                 cert2Title: "Software Engineering Competence  (BSNP) 0043/P/BSNP/1/2020", cert2Issuer: "PT. LASKAR TEKNOLOGI MULIA (CYBERLABS), 2023 ",
                 contactTitle: "Secure Comms Channel", contactDescription: "I am always open to discussions, collaborations, or new opportunities. Feel free to reach out!",
@@ -939,7 +942,7 @@
                 footerCopyright: "© 2025 جيوان بورناما. جميع الحقوق محفوظة.",
             },
             tr: {
-                pageTitle: "Giwan Purnama Portföyü - Yazılım Mühendisi", brandName: "G//P // INTEL_SIG",
+                pageTitle: "Giwan Purnama Portföyü - Yazılım Mühendisi", brandName: "G//P //24 INTEL_OPERATOR",
                 navHeaderMain: "ANA", navHome: "Kontrol Paneli",
                 navHeaderProfile: "OPERATİF", navBioData: "Biyo Veri", navServiceRecord: "Hizmet Kaydı",
                 navHeaderMissions: "GÖREVLER", navProjects: "Görev Kayıtları",
@@ -974,7 +977,7 @@
                 footerCopyright: "© 2025 Giwan Purnama. Tüm Hakları Saklıdır.",
             },
             de: {
-                pageTitle: "Giwan Purnama Portfolio - Software-Ingenieur", brandName: "G//P // INTEL_SIG",
+                pageTitle: "Giwan Purnama Portfolio - Software-Ingenieur", brandName: "G//P //24 INTEL_OPERATOR",
                 navHeaderMain: "HAUPTMENÜ", navHome: "Dashboard",
                 navHeaderProfile: "OPERATIV", navBioData: "Biografische Daten", navServiceRecord: "Dienstakte",
                 navHeaderMissions: "MISSIONEN", navProjects: "Missionsprotokolle",
@@ -1009,7 +1012,7 @@
                 footerCopyright: "© 2025 Giwan Purnama. Alle Rechte vorbehalten.",
             },
             ja: {
-                pageTitle: "ギワン・プルナマ ポートフォリオ - ソフトウェアエンジニア", brandName: "G//P // インテルSIG",
+                pageTitle: "ギワン・プルナマ ポートフォリオ - ソフトウェアエンジニア", brandName: "G//P // インテルOPERATOR",
                 navHeaderMain: "メイン", navHome: "ダッシュボード",
                 navHeaderProfile: "オペレーター", navBioData: "バイオデータ", navServiceRecord: "勤務記録",
                 navHeaderMissions: "ミッション", navProjects: "ミッションログ",
@@ -1046,7 +1049,7 @@
         };
 
         let currentLanguage = localStorage.getItem('portfolioLanguage') || 'en';
-        
+
         function applyLanguage(langCode) {
             const lang = translations[langCode] || translations['en'];
             document.querySelectorAll('[data-translate-key]').forEach(element => {
@@ -1065,7 +1068,7 @@
             });
             document.title = lang.pageTitle;
             document.documentElement.lang = langCode;
-            
+
             // Sync both language selectors
             const langSelectorHeader = document.querySelector('#language-selector-container select');
             if(langSelectorHeader) langSelectorHeader.value = langCode;
@@ -1075,7 +1078,7 @@
 
         const langSelector = document.getElementById('language-select');
         langSelector.addEventListener('change', (e) => applyLanguage(e.target.value));
-        
+
         applyLanguage(currentLanguage);
 
 
@@ -1125,5 +1128,4 @@
 </script>
 </body>
 </html>
-
 
